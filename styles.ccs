@@ -112,7 +112,10 @@ img {
   border-radius: 14px;
   font-weight: 700;
   text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease,
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
     color 0.25s ease;
   border: 1px solid transparent;
   cursor: pointer;
@@ -247,7 +250,7 @@ img {
   color: white;
   background:
     linear-gradient(120deg, rgba(2, 6, 23, 0.78), rgba(15, 23, 42, 0.38)),
-    url("../assets/images/hero.jpg") center/cover no-repeat;
+    url("../assets/images/hero/hero-home.jpg") center/cover no-repeat;
   overflow: hidden;
 }
 
@@ -267,9 +270,9 @@ img {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(15, 23, 42, 0.8) 0%,
-    rgba(15, 23, 42, 0.52) 45%,
-    rgba(15, 23, 42, 0.3) 100%
+    rgba(15, 23, 42, 0.72) 0%,
+    rgba(15, 23, 42, 0.42) 42%,
+    rgba(15, 23, 42, 0.18) 100%
   );
 }
 
@@ -360,7 +363,10 @@ img {
   color: #0f172a;
   font-weight: 600;
   border: 1px solid #e2e8f0;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease,
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
     background 0.22s ease;
 }
 
@@ -396,7 +402,10 @@ img {
   padding: 26px 22px;
   border-radius: 20px;
   text-align: center;
-  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
   border: 1px solid #e2e8f0;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
@@ -438,7 +447,10 @@ img {
   overflow: hidden;
   border: 1px solid #e2e8f0;
   box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
-  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
 }
 
 .tour-card:hover {
@@ -455,19 +467,19 @@ img {
 .tour-image.placeholder.saona {
   background:
     linear-gradient(rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0.18)),
-    url("../assets/images/saona.jpg") center/cover no-repeat;
+    url("../assets/images/tours/saona/saona-1.jpg") center/cover no-repeat;
 }
 
 .tour-image.placeholder.buggies {
   background:
     linear-gradient(rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0.18)),
-    url("../assets/images/buggies.jpg") center/cover no-repeat;
+    url("../assets/images/tours/buggies/buggies-1.jpg") center/cover no-repeat;
 }
 
 .tour-image.placeholder.catamaran {
   background:
     linear-gradient(rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0.18)),
-    url("../assets/images/catamaran.jpg") center/cover no-repeat;
+    url("../assets/images/tours/catamaran/catamaran-1.jpg") center/cover no-repeat;
 }
 
 .tour-content {
@@ -593,7 +605,7 @@ img {
   height: 280px;
   background:
     linear-gradient(rgba(15, 23, 42, 0.14), rgba(15, 23, 42, 0.18)),
-    url("../assets/images/transport.jpg") center/cover no-repeat;
+    url("../assets/images/transport/transport-1.jpg") center/cover no-repeat;
 }
 
 .transport-info {
