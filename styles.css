@@ -239,9 +239,6 @@ img {
 /* ========================= */
 /* HERO */
 /* ========================= */
-/* ========================= */
-/* HERO */
-/* ========================= */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -250,7 +247,7 @@ img {
   align-items: center;
   color: white;
   background:
-    linear-gradient(120deg, rgba(2, 6, 23, 0.76), rgba(15, 23, 42, 0.36)),
+    linear-gradient(120deg, rgba(2, 6, 23, 0.55), rgba(15, 23, 42, 0.22)),
     url("assets/imagines/hero/home.hero.jpg") center/cover no-repeat;
   overflow: hidden;
 }
@@ -271,9 +268,9 @@ img {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(15, 23, 42, 0.72) 0%,
-    rgba(15, 23, 42, 0.42) 42%,
-    rgba(15, 23, 42, 0.18) 100%
+    rgba(15, 23, 42, 0.35) 0%,
+    rgba(15, 23, 42, 0.18) 42%,
+    rgba(15, 23, 42, 0.08) 100%
   );
 }
 
