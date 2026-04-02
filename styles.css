@@ -294,6 +294,7 @@ img {
 .hero-text h1 {
   margin: 14px 0 18px;
   color: #ffffff;
+  text-shadow: 0 8px 30px rgba(0,0,0,0.6);
 }
 
 .hero-text p {
