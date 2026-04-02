@@ -259,8 +259,9 @@ img {
   height: 520px;
   right: -120px;
   top: 80px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 65%);
-  pointer-events: none;
+  .hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url("assets/imagines/hero/home.hero.jpg") center/cover no-repeat;
 }
 
 .hero-overlay {
