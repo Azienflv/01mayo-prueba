@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Excursions | PCG Tours</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-container">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">PCG</span>
+      <span class="logo-text">Punta Cana Going Tours</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="excursions.html">Excursions</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </div>
+</header>
+
+<main style="padding-top:120px;">
+
+<!-- HERO -->
+<section class="section">
+  <div class="container center">
+    <h1>All Excursions</h1>
+    <p>Choose your adventure in Punta Cana</p>
+  </div>
+</section>
+
+<!-- GRID -->
+<section class="featured-excursions section">
+  <div class="container">
+
+    <div class="cards-grid">
+
+      <!-- SAONA -->
+      <article class="tour-card">
+        <img src="assets/imagines/tours/saona/saona-1.jpg" class="tour-img" />
+        <div class="tour-content">
+          <h3>Saona Island</h3>
+          <p>Crystal clear waters, natural pool and unforgettable Caribbean experience.</p>
+          <a href="https://wa.me/18293319938?text=I%20want%20Saona%20Island" class="card-link" target="_blank">
+            Book now →
+          </a>
+        </div>
+      </article>
+
+      <!-- BUGGIES -->
+      <article class="tour-card">
+        <img src="assets/imagines/tours/buggies/buggies-1.jpg" class="tour-img" />
+        <div class="tour-content">
+          <h3>Buggies Adventure</h3>
+          <p>Adrenaline, mud, countryside and off-road fun.</p>
+          <a href="https://wa.me/18293319938?text=I%20want%20Buggies" class="card-link" target="_blank">
+            Book now →
+          </a>
+        </div>
+      </article>
+
+      <!-- PARTY BOAT -->
+      <article class="tour-card">
+        <img src="assets/imagines/tours/partyboat/partyboat-1.jpg" class="tour-img" />
+        <div class="tour-content">
+          <h3>Party Boat</h3>
+          <p>Music, drinks and ocean vibes with unforgettable views.</p>
+          <a href="https://wa.me/18293319938?text=I%20want%20Party%20Boat" class="card-link" target="_blank">
+            Book now →
+          </a>
+        </div>
+      </article>
+
+      <!-- DOLPHIN -->
+      <article class="tour-card">
+        <img src="assets/imagines/tours/dolphin/dolphin-1.jpg" class="tour-img" />
+        <div class="tour-content">
+          <h3>Dolphin Encounter</h3>
+          <p>Swim and interact with dolphins in a magical experience.</p>
+
+          <!-- ESTE ES EL LINK IMPORTANTE -->
+          <a href="dolphin.html" class="card-link">
+            View details →
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 PCG Tours</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/18293319938" class="whatsapp-float" target="_blank">
+  💬
+</a>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", () => {
+  mainNav.classList.toggle("active");
+});
+</script>
+
+</body>
+</html>
