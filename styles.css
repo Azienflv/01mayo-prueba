@@ -106,15 +106,17 @@ img {
 }
 
 .site-logo {
-  height: 44px;
+  height:38px;
   width: auto;
   display: block;
   object-fit: contain;
 }
 
 .logo-text {
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
   color: #0f172a;
   line-height: 1;
   white-space: nowrap;
@@ -124,15 +126,30 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 82px;
+  min-height: 78px;
   gap: 24px;
 }
 
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  margin-left: auto;
+.main-nav a {
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 600;
+  position: relative;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #06b6d4;
+  transition: 0.3s;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
 }
 
 /* ========================= */
