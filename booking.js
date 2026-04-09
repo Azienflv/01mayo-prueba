@@ -339,6 +339,51 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "domitai-park": {
+    title: "Domitai Park",
+    basePriceLabel: "From $89 USD",
+    adultPrice: 89,
+    childPrice: 55,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "fusion-zipline": {
+    title: "Fusion Zipline",
+    basePriceLabel: "From $95 USD",
+    adultPrice: 95,
+    childPrice: 60,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "fusion-horse": {
+    title: "Fusion Horseback",
+    basePriceLabel: "From $85 USD",
+    adultPrice: 85,
+    childPrice: 50,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
