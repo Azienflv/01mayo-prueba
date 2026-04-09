@@ -189,6 +189,51 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "cocobongo-regular": {
+    title: "Coco Bongo Regular",
+    basePriceLabel: "From $75 USD",
+    adultPrice: 75,
+    childPrice: 75,
+    times: ["8:00 PM", "9:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "cocobongo-gold-member": {
+    title: "Coco Bongo Gold Member",
+    basePriceLabel: "From $95 USD",
+    adultPrice: 95,
+    childPrice: 95,
+    times: ["8:00 PM", "9:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "cocobongo-front-row": {
+    title: "Coco Bongo Front Row",
+    basePriceLabel: "From $130 USD",
+    adultPrice: 130,
+    childPrice: 130,
+    times: ["8:00 PM", "9:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
