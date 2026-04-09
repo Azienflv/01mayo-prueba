@@ -459,6 +459,21 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "horseback-riding": {
+    title: "Horseback Riding",
+    basePriceLabel: "From $60 USD",
+    adultPrice: 60,
+    childPrice: 40,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
