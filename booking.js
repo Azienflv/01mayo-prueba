@@ -504,6 +504,21 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "santo-domingo-city-tour": {
+    title: "Santo Domingo City Tour",
+    basePriceLabel: "From $85 USD",
+    adultPrice: 85,
+    childPrice: 55,
+    times: ["7:00 AM", "8:00 AM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
