@@ -489,6 +489,21 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "scape-park": {
+    title: "Scape Park",
+    basePriceLabel: "From $99 USD",
+    adultPrice: 99,
+    childPrice: 65,
+    times: ["8:00 AM", "10:00 AM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
