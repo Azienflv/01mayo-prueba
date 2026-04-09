@@ -444,6 +444,21 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "safari-punta-cana": {
+    title: "Safari Punta Cana",
+    basePriceLabel: "From $65 USD",
+    adultPrice: 65,
+    childPrice: 40,
+    times: ["8:00 AM", "9:00 AM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
