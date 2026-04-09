@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Full Pack Terracota | PCG Tours</title>
 
-  <link rel="stylesheet" href="../../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../styles.css"/>
 </head>
 
 <body>
@@ -26,52 +27,59 @@
 
 <main style="padding-top:100px;">
   <section class="section">
-    <div class="container">
+    <div class="container booking-layout">
 
-      <h1>Full Pack Terracota</h1>
+      <div class="booking-main">
+        <h1>Full Pack Terracota</h1>
 
-      <img
-        src="../../assets/imagines/tours/bavaro-adventure/bavaro-1.jpg"
-        alt="Full Pack Terracota"
-        style="width:100%; border-radius:12px; margin:20px 0;"
-      >
+        <img
+          src="../../assets/imagines/tours/bavaro-adventure/bavaro-1.jpg"
+          alt="Full Pack Terracota"
+          class="booking-hero-img"
+        >
 
-      <p>
-        Enjoy a complete adventure package at Bávaro Adventure Park with multiple attractions,
-        exciting activities, and a full experience designed for travelers who want more in one day.
-      </p>
+        <div class="booking-tabs">
+          <span class="active">Overview</span>
+          <span>Details</span>
+          <span>Good to know</span>
+        </div>
 
-      <h3>Highlights</h3>
-      <ul>
-        <li>✔ Complete park experience</li>
-        <li>✔ Multiple attractions included</li>
-        <li>✔ Perfect for adventure lovers</li>
-      </ul>
+        <div class="booking-copy">
+          <p>
+            Enjoy a complete park package with multiple attractions, outdoor fun, and a more immersive adventure inside Bávaro Adventure Park.
+          </p>
 
-      <h3>Includes</h3>
-      <ul>
-        <li>✔ Park access</li>
-        <li>✔ Adventure activities</li>
-        <li>✔ Safety equipment</li>
-      </ul>
+          <ul>
+            <li>Complete park experience</li>
+            <li>Multiple attractions included</li>
+            <li>Adventure package</li>
+            <li>Transportation included</li>
+          </ul>
 
-      <h3>Important Info</h3>
-      <ul>
-        <li>Wear comfortable clothes and sneakers</li>
-        <li>Bring sunscreen and sunglasses</li>
-        <li>Follow all safety instructions</li>
-      </ul>
+          <h3>Included</h3>
+          <ul>
+            <li>Bilingual guide</li>
+            <li>Transportation</li>
+            <li>Selected park activities</li>
+          </ul>
 
-      <a
-        href="https://wa.me/18293319938?text=Hello%20I%20want%20Full%20Pack%20Terracota"
-        class="btn btn-primary"
-      >
-        Book now
-      </a>
+          <h3>Practical information</h3>
+          <ul>
+            <li>Wear comfortable clothes and sneakers</li>
+            <li>Bring sunscreen and sunglasses</li>
+            <li>Great for active travelers</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="booking-sidebar">
+        <div id="booking-widget" data-tour="full-pack-terracota"></div>
+      </aside>
 
     </div>
   </section>
 </main>
 
+<script src="../../booking.js"></script>
 </body>
 </html>
