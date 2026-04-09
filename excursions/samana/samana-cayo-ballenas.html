@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Samaná Whale Watching | PCG Tours</title>
+  <title>Samaná + Whale Watching | PCG Tours</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../../styles.css"/>
 </head>
 
@@ -12,43 +14,73 @@
 <header class="site-header">
   <div class="container header-container">
     <a href="../../index.html" class="logo">
-      <img src="../../assets/imagines/logo.png" class="site-logo">
+      <img src="../../assets/imagines/logo.png" class="site-logo" alt="PCG Logo">
       <span class="logo-text">Punta Cana Going Tours</span>
     </a>
+
+    <nav class="main-nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../excursions.html">Excursions</a>
+    </nav>
   </div>
 </header>
 
 <main style="padding-top:100px;">
-<section class="section">
-  <div class="container">
+  <section class="section">
+    <div class="container booking-layout">
 
-    <h1>Samaná + Whale Watching</h1>
+      <div class="booking-main">
+        <h1>Samaná + Whale Watching</h1>
 
-    <img src="../../assets/imagines/tours/samana-cayo/samana-cayo-1.png" style="width:100%; border-radius:12px; margin:20px 0;">
+        <img
+          src="../../assets/imagines/tours/samana-cayo/samana-cayo-1.png"
+          alt="Samaná + Whale Watching"
+          class="booking-hero-img"
+        >
 
-    <p>
-      Experience one of the most magical natural events: whale watching in Samaná, combined with a tropical excursion.
-    </p>
+        <div class="booking-tabs">
+          <span class="active">Overview</span>
+          <span>Details</span>
+          <span>Good to know</span>
+        </div>
 
-    <h3>Highlights</h3>
-    <ul>
-      <li>✔ Whale watching (seasonal)</li>
-      <li>✔ Boat experience</li>
-      <li>✔ Samaná landscapes</li>
-    </ul>
+        <div class="booking-copy">
+          <p>
+            Experience one of the most magical natural events in the Dominican Republic:
+            whale watching in Samaná, combined with tropical scenery and unforgettable views.
+          </p>
 
-    <h3>Important</h3>
-    <ul>
-      <li>Only available Jan–March</li>
-    </ul>
+          <ul>
+            <li>Whale watching experience</li>
+            <li>Tropical Samaná landscapes</li>
+            <li>Seasonal nature adventure</li>
+            <li>Transportation included</li>
+          </ul>
 
-    <a href="https://wa.me/18293319938?text=Hello%20I%20want%20Samana%20Whale%20Watching" class="btn btn-primary">
-      Book now
-    </a>
+          <h3>Included</h3>
+          <ul>
+            <li>Bilingual guide</li>
+            <li>Transportation</li>
+            <li>Boat and excursion experience</li>
+          </ul>
 
-  </div>
-</section>
+          <h3>Practical information</h3>
+          <ul>
+            <li>Only available during whale season</li>
+            <li>Bring sunscreen, light clothes, and a hat</li>
+            <li>Perfect for nature lovers</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="booking-sidebar">
+        <div id="booking-widget" data-tour="samana-cayo-ballenas"></div>
+      </aside>
+
+    </div>
+  </section>
 </main>
 
+<script src="../../booking.js"></script>
 </body>
 </html>
