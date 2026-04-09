@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Full Pack Buggies | PCG Tours</title>
 
-  <link rel="stylesheet" href="../../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../styles.css"/>
 </head>
 
 <body>
@@ -13,39 +14,72 @@
 <header class="site-header">
   <div class="container header-container">
     <a href="../../index.html" class="logo">
-      <img src="../../assets/imagines/logo.png" class="site-logo">
+      <img src="../../assets/imagines/logo.png" class="site-logo" alt="PCG Logo">
       <span class="logo-text">Punta Cana Going Tours</span>
     </a>
+
+    <nav class="main-nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../excursions.html">Excursions</a>
+    </nav>
   </div>
 </header>
 
 <main style="padding-top:100px;">
-<section class="section">
-  <div class="container">
+  <section class="section">
+    <div class="container booking-layout">
 
-    <h1>Full Pack Buggies</h1>
+      <div class="booking-main">
+        <h1>Full Pack Buggies</h1>
 
-    <img src="../../assets/imagines/tours/bavaro-adventure/bavaro-1.jpg" style="width:100%; border-radius:12px; margin:20px 0;">
+        <img
+          src="../../assets/imagines/tours/bavaro-adventure/bavaro-1.jpg"
+          alt="Full Pack Buggies"
+          class="booking-hero-img"
+        >
 
-    <p>
-      Enjoy an off-road buggy experience combined with multiple attractions inside Bávaro Adventure Park.
-    </p>
+        <div class="booking-tabs">
+          <span class="active">Overview</span>
+          <span>Details</span>
+          <span>Good to know</span>
+        </div>
 
-    <h3>Highlights</h3>
-    <ul>
-      <li>✔ Buggy adventure</li>
-      <li>✔ Park access</li>
-      <li>✔ Multiple activities</li>
-    </ul>
+        <div class="booking-copy">
+          <p>
+            Enjoy an off-road buggy experience combined with multiple attractions inside Bávaro Adventure Park for a complete action-packed day.
+          </p>
 
-    <a href="https://wa.me/18293319938?text=Hello%20I%20want%20Full%20Pack%20Buggies"
-       class="btn btn-primary">
-       Book now
-    </a>
+          <ul>
+            <li>Buggy adventure</li>
+            <li>Park access</li>
+            <li>Multiple attractions</li>
+            <li>Transportation included</li>
+          </ul>
 
-  </div>
-</section>
+          <h3>Included</h3>
+          <ul>
+            <li>Bilingual guide</li>
+            <li>Transportation</li>
+            <li>Selected park activities</li>
+          </ul>
+
+          <h3>Practical information</h3>
+          <ul>
+            <li>Wear comfortable clothes</li>
+            <li>Bring sunglasses and sunscreen</li>
+            <li>Ideal for adventure lovers</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="booking-sidebar">
+        <div id="booking-widget" data-tour="full-pack-buggies"></div>
+      </aside>
+
+    </div>
+  </section>
 </main>
 
+<script src="../../booking.js"></script>
 </body>
 </html>
