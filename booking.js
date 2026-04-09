@@ -294,6 +294,51 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "aqua-adrenaline-pack": {
+    title: "Aqua Adrenaline Pack",
+    basePriceLabel: "From $95 USD",
+    adultPrice: 95,
+    childPrice: 60,
+    times: ["9:00 AM", "11:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "aqua-adventure-pack": {
+    title: "Aqua Adventure Pack",
+    basePriceLabel: "From $85 USD",
+    adultPrice: 85,
+    childPrice: 55,
+    times: ["9:00 AM", "11:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "aqua-splash-pack": {
+    title: "Aqua Splash Pack",
+    basePriceLabel: "From $75 USD",
+    adultPrice: 75,
+    childPrice: 45,
+    times: ["9:00 AM", "11:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
