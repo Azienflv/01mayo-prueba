@@ -42,7 +42,7 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
-  }
+  },
     "buggies-classic": {
     title: "Buggies Classic",
     basePriceLabel: "From $65 USD",
@@ -101,7 +101,52 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+    "samana-cayo-levantado": {
+    title: "Samaná & Cayo Levantado",
+    basePriceLabel: "From $110 USD",
+    adultPrice: 110,
+    childPrice: 65,
+    times: ["6:30 AM", "7:00 AM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "samana-cayo-limon": {
+    title: "Samaná + Cayo + El Limón",
+    basePriceLabel: "From $125 USD",
+    adultPrice: 125,
+    childPrice: 75,
+    times: ["6:30 AM", "7:00 AM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "samana-cayo-ballenas": {
+    title: "Samaná + Whale Watching",
+    basePriceLabel: "From $135 USD",
+    adultPrice: 135,
+    childPrice: 80,
+    times: ["6:00 AM", "6:30 AM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
+
 };
 
 function renderBookingWidget() {
