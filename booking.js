@@ -384,6 +384,51 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "dolphin-encounter": {
+    title: "Dolphin Encounter",
+    basePriceLabel: "From $99 USD",
+    adultPrice: 99,
+    childPrice: 79,
+    times: ["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "dolphin-swim": {
+    title: "Dolphin Swim",
+    basePriceLabel: "From $129 USD",
+    adultPrice: 129,
+    childPrice: 99,
+    times: ["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "dolphin-royal-swim": {
+    title: "Dolphin Royal Swim",
+    basePriceLabel: "From $159 USD",
+    adultPrice: 159,
+    childPrice: 129,
+    times: ["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
