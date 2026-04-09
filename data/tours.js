@@ -15,7 +15,7 @@ const MASTER_TOURS = [
     id: "saona-vip",
     name: "Saona VIP",
     adult: 109,
-    child: 65,
+    child: 55,
     times: ["7:00 AM", "8:00 AM"],
     file: "excursions/saona/saona-vip.html"
   },
@@ -23,76 +23,76 @@ const MASTER_TOURS = [
     family: "saona",
     id: "saona-luxury",
     name: "Saona Luxury",
-    adult: 129,
-    child: 85,
-    times: ["7:00 AM"],
+    adult: 139,
+    child: 70,
+    times: ["7:00 AM", "8:00 AM"],
     file: "excursions/saona/saona-luxury.html"
   },
 
   // BUGGIES
   {
     family: "buggies",
-    id: "buggies-full-pack",
-    name: "Full Pack Buggies",
-    adult: 75,
+    id: "buggies-classic",
+    name: "Buggies Classic",
+    adult: 65,
+    child: 40,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    file: "excursions/buggies/buggies-classic.html"
+  },
+  {
+    family: "buggies",
+    id: "buggies-prime",
+    name: "Buggies Prime",
+    adult: 79,
+    child: 45,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    file: "excursions/buggies/buggies-prime.html"
+  },
+  {
+    family: "buggies",
+    id: "buggies-night",
+    name: "Buggies Night",
+    adult: 89,
     child: 50,
-    times: ["9:00 AM", "1:00 PM"],
-    file: "excursions/buggies/full-pack-buggies.html"
+    times: ["6:00 PM", "7:00 PM"],
+    file: "excursions/buggies/buggies-night.html"
   },
   {
     family: "buggies",
-    id: "buggies-terracota",
-    name: "Full Pack Terracota",
-    adult: 80,
-    child: 55,
-    times: ["9:00 AM", "1:00 PM"],
-    file: "excursions/buggies/terracota.html"
-  },
-  {
-    family: "buggies",
-    id: "buggies-splash",
-    name: "Splash Emotion",
-    adult: 85,
-    child: 60,
-    times: ["9:00 AM", "1:00 PM"],
-    file: "excursions/buggies/splash-emotion.html"
-  },
-  {
-    family: "buggies",
-    id: "buggies-combo",
-    name: "Buggies + Splash Emotion",
+    id: "buggies-blast",
+    name: "Buggies Blast",
     adult: 95,
-    child: 65,
-    times: ["9:00 AM", "1:00 PM"],
-    file: "excursions/buggies/buggies-splash.html"
+    child: 55,
+    times: ["8:00 AM", "11:00 AM", "3:00 PM"],
+    file: "excursions/buggies/buggies-blast.html"
   },
 
   // SAMANA
   {
     family: "samana",
-    id: "samana-cayo",
+    id: "samana-cayo-levantado",
     name: "Samaná & Cayo Levantado",
-    adult: 130,
-    child: 85,
-    times: ["7:00 AM"],
-    file: "excursions/samana/samana-cayo.html"
+    adult: 110,
+    child: 65,
+    times: ["6:30 AM", "7:00 AM"],
+    file: "excursions/samana/samana-cayo-levantado.html"
   },
   {
     family: "samana",
-    id: "samana-limon",
-    name: "Samaná + El Limón",
-    adult: 140,
-    child: 95,
-    times: ["7:00 AM"],
+    id: "samana-cayo-limon",
+    name: "Samaná + Cayo + El Limón",
+    adult: 125,
+    child: 75,
+    times: ["6:30 AM", "7:00 AM"],
     file: "excursions/samana/samana-cayo-limon.html"
   },
   {
     family: "samana",
-    id: "samana-whales",
-    name: "Samaná + Whales",
-    adult: 150,
-    child: 100,
-    times: ["7:00 AM"],
+    id: "samana-cayo-ballenas",
+    name: "Samaná + Whale Watching",
+    adult: 135,
+    child: 80,
+    times: ["6:00 AM", "6:30 AM"],
     file: "excursions/samana/samana-cayo-ballenas.html"
   },
 
@@ -125,33 +125,100 @@ const MASTER_TOURS = [
     file: "excursions/dolphin/royal-swim.html"
   },
 
-  // DOMITAI
+  // MONKEYLAND
   {
-    family: "domitai",
-    id: "domitai-park",
-    name: "Domitai Park",
+    family: "monkeyland",
+    id: "monkey-land",
+    name: "Monkey Land",
+    adult: 75,
+    child: 45,
+    times: ["8:00 AM", "1:00 PM"],
+    file: "excursions/monkeyland/monkey-land.html"
+  },
+  {
+    family: "monkeyland",
+    id: "double-adventure",
+    name: "Double Adventure",
+    adult: 99,
+    child: 60,
+    times: ["8:00 AM", "1:00 PM"],
+    file: "excursions/monkeyland/double-adventure.html"
+  },
+  {
+    family: "monkeyland",
+    id: "triple-adventure",
+    name: "Triple Adventure",
+    adult: 129,
+    child: 75,
+    times: ["8:00 AM", "1:00 PM"],
+    file: "excursions/monkeyland/triple-adventure.html"
+  },
+
+  // COCO BONGO
+  {
+    family: "cocobongo",
+    id: "cocobongo-regular",
+    name: "Coco Bongo Regular",
+    adult: 75,
+    child: 75,
+    times: ["8:00 PM", "9:00 PM"],
+    file: "excursions/cocobongo/regular.html"
+  },
+  {
+    family: "cocobongo",
+    id: "cocobongo-gold-member",
+    name: "Coco Bongo Gold Member",
+    adult: 95,
+    child: 95,
+    times: ["8:00 PM", "9:00 PM"],
+    file: "excursions/cocobongo/gold-member.html"
+  },
+  {
+    family: "cocobongo",
+    id: "cocobongo-front-row",
+    name: "Coco Bongo Front Row",
+    adult: 130,
+    child: 130,
+    times: ["8:00 PM", "9:00 PM"],
+    file: "excursions/cocobongo/front-row.html"
+  },
+
+  // BAVARO ADVENTURE
+  {
+    family: "bavaro-adventure",
+    id: "full-pack-buggies",
+    name: "Full Pack Buggies",
+    adult: 109,
+    child: 65,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    file: "excursions/bavaro-adventure/full-pack-buggies.html"
+  },
+  {
+    family: "bavaro-adventure",
+    id: "full-pack-terracota",
+    name: "Full Pack Terracota",
+    adult: 119,
+    child: 70,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    file: "excursions/bavaro-adventure/full-pack-terracota.html"
+  },
+  {
+    family: "bavaro-adventure",
+    id: "splash-emotion",
+    name: "Splash Emotion",
     adult: 89,
     child: 55,
-    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
-    file: "excursions/domitai/domitai-park.html"
+    times: ["9:00 AM", "11:00 AM", "2:00 PM"],
+    file: "excursions/bavaro-adventure/splash-emotion.html"
   },
   {
-    family: "domitai",
-    id: "fusion-zipline",
-    name: "Fusion Zipline",
-    adult: 95,
-    child: 60,
-    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
-    file: "excursions/domitai/fusion-zipline.html"
-  },
-  {
-    family: "domitai",
-    id: "fusion-horse",
-    name: "Fusion Horseback",
-    adult: 85,
-    child: 50,
-    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
-    file: "excursions/domitai/fusion-horse.html"
+    family: "bavaro-adventure",
+    id: "buggies-splash-emotion",
+    name: "Buggies + Splash Emotion",
+    adult: 129,
+    child: 75,
+    times: ["8:00 AM", "11:00 AM", "2:00 PM"],
+    file: "excursions/bavaro-adventure/buggies-splash-emotion.html"
   },
 
   // LAKE PARK
@@ -183,7 +250,36 @@ const MASTER_TOURS = [
     file: "excursions/lakepark/aqua-splash-pack.html"
   },
 
-  // INDIVIDUALES
+  // DOMITAI
+  {
+    family: "domitai",
+    id: "domitai-park",
+    name: "Domitai Park",
+    adult: 89,
+    child: 55,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    file: "excursions/domitai/domitai-park.html"
+  },
+  {
+    family: "domitai",
+    id: "fusion-zipline",
+    name: "Fusion Zipline",
+    adult: 95,
+    child: 60,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    file: "excursions/domitai/fusion-zipline.html"
+  },
+  {
+    family: "domitai",
+    id: "fusion-horse",
+    name: "Fusion Horseback",
+    adult: 85,
+    child: 50,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    file: "excursions/domitai/fusion-horse.html"
+  },
+
+  // TOURS INDIVIDUALES
   {
     family: "single",
     id: "party-boat",
