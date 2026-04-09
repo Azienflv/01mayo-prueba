@@ -145,6 +145,50 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+    "monkey-land": {
+    title: "Monkey Land",
+    basePriceLabel: "From $75 USD",
+    adultPrice: 75,
+    childPrice: 45,
+    times: ["8:00 AM", "1:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "double-adventure": {
+    title: "Double Adventure",
+    basePriceLabel: "From $99 USD",
+    adultPrice: 99,
+    childPrice: 60,
+    times: ["8:00 AM", "1:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "triple-adventure": {
+    title: "Triple Adventure",
+    basePriceLabel: "From $129 USD",
+    adultPrice: 129,
+    childPrice: 75,
+    times: ["8:00 AM", "1:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
