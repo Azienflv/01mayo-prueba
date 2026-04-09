@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Samaná + El Limón | PCG Tours</title>
+  <title>Samaná + Cayo + El Limón | PCG Tours</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../../styles.css"/>
 </head>
 
@@ -12,38 +14,73 @@
 <header class="site-header">
   <div class="container header-container">
     <a href="../../index.html" class="logo">
-      <img src="../../assets/imagines/logo.png" class="site-logo">
+      <img src="../../assets/imagines/logo.png" class="site-logo" alt="PCG Logo">
       <span class="logo-text">Punta Cana Going Tours</span>
     </a>
+
+    <nav class="main-nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../excursions.html">Excursions</a>
+    </nav>
   </div>
 </header>
 
 <main style="padding-top:100px;">
-<section class="section">
-  <div class="container">
+  <section class="section">
+    <div class="container booking-layout">
 
-    <h1>Samaná + Cayo + El Limón</h1>
+      <div class="booking-main">
+        <h1>Samaná + Cayo + El Limón</h1>
 
-    <img src="../../assets/imagines/tours/samana-cayo/samana-cayo-1.png" style="width:100%; border-radius:12px; margin:20px 0;">
+        <img
+          src="../../assets/imagines/tours/samana-cayo/samana-cayo-1.png"
+          alt="Samaná + Cayo + El Limón"
+          class="booking-hero-img"
+        >
 
-    <p>
-      A complete Samaná experience including the famous El Limón waterfall, tropical landscapes, and Cayo Levantado beach.
-    </p>
+        <div class="booking-tabs">
+          <span class="active">Overview</span>
+          <span>Details</span>
+          <span>Good to know</span>
+        </div>
 
-    <h3>Highlights</h3>
-    <ul>
-      <li>✔ El Limón waterfall</li>
-      <li>✔ Horseback or walking route</li>
-      <li>✔ Cayo Levantado beach</li>
-    </ul>
+        <div class="booking-copy">
+          <p>
+            A more complete Samaná experience including beach time, Cayo Levantado,
+            and the famous El Limón waterfall for travelers who want nature and adventure in one day.
+          </p>
 
-    <a href="https://wa.me/18293319938?text=Hello%20I%20want%20Samana%20with%20El%20Limon" class="btn btn-primary">
-      Book now
-    </a>
+          <ul>
+            <li>Cayo Levantado beach stop</li>
+            <li>El Limón waterfall visit</li>
+            <li>Nature and adventure combo</li>
+            <li>Transportation included</li>
+          </ul>
 
-  </div>
-</section>
+          <h3>Included</h3>
+          <ul>
+            <li>Bilingual guide</li>
+            <li>Transportation</li>
+            <li>Access to excursion stops</li>
+          </ul>
+
+          <h3>Practical information</h3>
+          <ul>
+            <li>Bring swimsuit, towel, sunscreen, and sneakers</li>
+            <li>Wear comfortable clothes</li>
+            <li>Great for active travelers</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="booking-sidebar">
+        <div id="booking-widget" data-tour="samana-cayo-limon"></div>
+      </aside>
+
+    </div>
+  </section>
 </main>
 
+<script src="../../booking.js"></script>
 </body>
 </html>
