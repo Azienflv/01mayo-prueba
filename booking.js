@@ -474,6 +474,21 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "el-dorado-park": {
+    title: "El Dorado Park",
+    basePriceLabel: "From $70 USD",
+    adultPrice: 70,
+    childPrice: 45,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
