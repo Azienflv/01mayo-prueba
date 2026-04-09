@@ -1107,6 +1107,8 @@ Verifica el ccs
 }
 
 .booking-card {
+   width: 100%;
+  box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #dbe4f0;
   border-radius: 22px;
@@ -1303,4 +1305,23 @@ Verifica el ccs
   .booking-price-top strong {
     font-size: 2rem;
   }
+}
+
+.booking-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(340px, 420px);
+  gap: 32px;
+  align-items: start;
+}
+
+.booking-main {
+  min-width: 0;
+}
+
+.booking-sidebar {
+  min-width: 0;
+  width: 100%;
+  position: sticky;
+  top: 110px;
+  align-self: start;
 }
