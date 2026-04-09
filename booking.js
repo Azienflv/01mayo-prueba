@@ -429,6 +429,21 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+    "party-boat": {
+    title: "Party Boat",
+    basePriceLabel: "From $69 USD",
+    adultPrice: 69,
+    childPrice: 49,
+    times: ["10:00 AM", "1:00 PM", "4:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 
 };
