@@ -12,6 +12,36 @@ const toursData = {
       "Meliá Caribe Beach",
       "Majestic Colonial"
     ]
+  },
+
+  "saona-vip": {
+    title: "Saona VIP",
+    basePriceLabel: "From $109 USD",
+    adultPrice: 109,
+    childPrice: 55,
+    times: ["7:00 AM", "8:00 AM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "saona-luxury": {
+    title: "Saona Luxury",
+    basePriceLabel: "From $139 USD",
+    adultPrice: 139,
+    childPrice: 70,
+    times: ["7:00 AM", "8:00 AM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
   }
 };
 
