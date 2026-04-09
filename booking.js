@@ -43,6 +43,65 @@ const toursData = {
       "Majestic Colonial"
     ]
   }
+    "buggies-classic": {
+    title: "Buggies Classic",
+    basePriceLabel: "From $65 USD",
+    adultPrice: 65,
+    childPrice: 40,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "buggies-prime": {
+    title: "Buggies Prime",
+    basePriceLabel: "From $79 USD",
+    adultPrice: 79,
+    childPrice: 45,
+    times: ["8:00 AM", "10:00 AM", "2:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "buggies-night": {
+    title: "Buggies Night",
+    basePriceLabel: "From $89 USD",
+    adultPrice: 89,
+    childPrice: 50,
+    times: ["6:00 PM", "7:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  },
+
+  "buggies-blast": {
+    title: "Buggies Blast",
+    basePriceLabel: "From $95 USD",
+    adultPrice: 95,
+    childPrice: 55,
+    times: ["8:00 AM", "11:00 AM", "3:00 PM"],
+    hotels: [
+      "Hard Rock Hotel",
+      "RIU Republica",
+      "Barceló Bávaro",
+      "Meliá Caribe Beach",
+      "Majestic Colonial"
+    ]
+  }
 };
 
 function renderBookingWidget() {
