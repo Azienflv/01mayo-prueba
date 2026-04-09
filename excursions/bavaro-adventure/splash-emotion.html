@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Splash Emotion | PCG Tours</title>
 
-  <link rel="stylesheet" href="../../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../styles.css"/>
 </head>
 
 <body>
@@ -26,52 +27,59 @@
 
 <main style="padding-top:100px;">
   <section class="section">
-    <div class="container">
+    <div class="container booking-layout">
 
-      <h1>Splash Emotion</h1>
+      <div class="booking-main">
+        <h1>Splash Emotion</h1>
 
-      <img
-        src="../../assets/imagines/tours/bavaro-adventure/bavaro-1.jpg"
-        alt="Splash Emotion"
-        style="width:100%; border-radius:12px; margin:20px 0;"
-      >
+        <img
+          src="../../assets/imagines/tours/bavaro-adventure/bavaro-1.jpg"
+          alt="Splash Emotion"
+          class="booking-hero-img"
+        >
 
-      <p>
-        Dive into a refreshing and exciting water experience at Bávaro Adventure Park.
-        Splash Emotion is perfect for travelers looking for fun, energy, and water-based adventure.
-      </p>
+        <div class="booking-tabs">
+          <span class="active">Overview</span>
+          <span>Details</span>
+          <span>Good to know</span>
+        </div>
 
-      <h3>Highlights</h3>
-      <ul>
-        <li>✔ Water attractions</li>
-        <li>✔ Fun for friends and families</li>
-        <li>✔ Refreshing adventure experience</li>
-      </ul>
+        <div class="booking-copy">
+          <p>
+            Dive into a refreshing and exciting water experience at Bávaro Adventure Park with fun attractions designed for travelers who love water-based action.
+          </p>
 
-      <h3>Includes</h3>
-      <ul>
-        <li>✔ Water activity access</li>
-        <li>✔ Park assistance</li>
-        <li>✔ Safety equipment when needed</li>
-      </ul>
+          <ul>
+            <li>Water attractions</li>
+            <li>Fun for friends and families</li>
+            <li>Refreshing adventure experience</li>
+            <li>Transportation included</li>
+          </ul>
 
-      <h3>Important Info</h3>
-      <ul>
-        <li>Bring swimsuit and towel</li>
-        <li>Use sunscreen</li>
-        <li>Ideal for travelers who enjoy water activities</li>
-      </ul>
+          <h3>Included</h3>
+          <ul>
+            <li>Park assistance</li>
+            <li>Transportation</li>
+            <li>Water attraction access</li>
+          </ul>
 
-      <a
-        href="https://wa.me/18293319938?text=Hello%20I%20want%20Splash%20Emotion"
-        class="btn btn-primary"
-      >
-        Book now
-      </a>
+          <h3>Practical information</h3>
+          <ul>
+            <li>Bring swimsuit and towel</li>
+            <li>Use sunscreen</li>
+            <li>Ideal for travelers who enjoy water fun</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="booking-sidebar">
+        <div id="booking-widget" data-tour="splash-emotion"></div>
+      </aside>
 
     </div>
   </section>
 </main>
 
+<script src="../../booking.js"></script>
 </body>
 </html>
