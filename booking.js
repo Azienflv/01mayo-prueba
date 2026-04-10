@@ -66,11 +66,7 @@ async function renderBookingWidget() {
         <label for="booking-hotel">Pickup hotel</label>
         <select id="booking-hotel" class="booking-input">
           <option value="">Select hotel</option>
-          <option value="Hard Rock Hotel">Hard Rock Hotel</option>
-          <option value="RIU Republica">RIU Republica</option>
-          <option value="Barceló Bávaro">Barceló Bávaro</option>
-          <option value="Meliá Caribe Beach">Meliá Caribe Beach</option>
-          <option value="Majestic Colonial">Majestic Colonial</option>
+${hotels.map((item) => `<option value="${item.hotel_name}">${item.hotel_name}</option>`).join("")}
         </select>
       </div>
 
