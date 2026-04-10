@@ -161,7 +161,7 @@ ${hotels.map((item) => `<option value="${item.hotel_name}">${item.hotel_name}</o
     const selectedDate = dateEl.value || "not selected";
     const selectedTime = timeEl.value || "not selected";
     const selectedHotel = hotelEl.value || "not selected";
-    const total = adults * tour.adult + children * tour.child;
+    const total = adults * tour.adult_price + children * tour.child_price;
 
     const message =
       `Hello PCG Tours, I want to reserve ${tour.name}. ` +
