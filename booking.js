@@ -1,9 +1,24 @@
 const SUPABASE_URL = "https://gqurgezuuytxrcmudnik.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXJnZXp1dXl0eHJjbXVkbmlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTAyMjIsImV4cCI6MjA5MDE4NjIyMn0.1EW73snm3LvXPW0jK-g_-Klze0FyIbXI4dzv0J2XGr4";
 
-function getTourDataById(tourId) {
-  if (!Array.isArray(MASTER_TOURS)) return null;
-  return MASTER_TOURS.find((tour) => tour.id === tourId) || null;
+async function getTourDataBySlug(slug) {
+  const { data: tour } = await supabase
+    .from("tours")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  const { data: times } = await supabase
+    .from("tour_times")
+    .select("*")
+    .eq("tour_id", tour.id);
+
+  const { data: hotels } = await supabase
+    .from("tour_hotels")
+    .select("*")
+    .eq("tour_id", tour.id);
+
+  return { tour, times, hotels };
 }
 
 function renderBookingWidget() {
