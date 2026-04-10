@@ -52,7 +52,7 @@ async function renderBookingWidget() {
         <div class="booking-field">
           <label for="booking-time">Start time</label>
           <select id="booking-time" class="booking-input">
-            ${tour.times.map((time) => `<option value="${time}">${time}</option>`).join("")}
+            ${times.map((item) => `<option value="${item.time_label}">${item.time_label}</option>`).join("")}
           </select>
         </div>
 
