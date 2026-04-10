@@ -1,26 +1,45 @@
 const SUPABASE_URL = "https://gqurgezuuytxrcmudnik.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXJnZXp1dXl0eHJjbXVkbmlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTAyMjIsImV4cCI6MjA5MDE4NjIyMn0.1EW73snm3LvXPW0jK-g_-Klze0FyIbXI4dzv0J2XGr4";
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 async function getTourDataBySlug(slug) {
-  const { data: tour } = await supabase
+  const { data: tour, error: tourError } = await supabase
     .from("tours")
     .select("*")
     .eq("slug", slug)
     .single();
 
-  const { data: times } = await supabase
+  if (tourError || !tour) {
+    console.error("Error loading tour:", tourError);
+    return { tour: null, times: [], hotels: [] };
+  }
+
+  const { data: times, error: timesError } = await supabase
     .from("tour_times")
     .select("*")
-    .eq("tour_id", tour.id);
+    .eq("tour_id", tour.id)
+    .eq("active", true);
 
-  const { data: hotels } = await supabase
+  if (timesError) {
+    console.error("Error loading times:", timesError);
+  }
+
+  const { data: hotels, error: hotelsError } = await supabase
     .from("tour_hotels")
     .select("*")
-    .eq("tour_id", tour.id);
+    .eq("tour_id", tour.id)
+    .eq("active", true);
 
-  return { tour, times, hotels };
+  if (hotelsError) {
+    console.error("Error loading hotels:", hotelsError);
+  }
+
+  return {
+    tour,
+    times: times || [],
+    hotels: hotels || []
+  };
 }
 
 async function renderBookingWidget() {
@@ -52,13 +71,17 @@ async function renderBookingWidget() {
         <div class="booking-field">
           <label for="booking-time">Start time</label>
           <select id="booking-time" class="booking-input">
-            ${times.map((item) => `<option value="${item.time_label}">${item.time_label}</option>`).join("")}
+            ${
+              times.length
+                ? times.map((item) => `<option value="${item.time_label}">${item.time_label}</option>`).join("")
+                : `<option value="">No times available</option>`
+            }
           </select>
         </div>
 
         <div class="booking-field">
           <label>Duration</label>
-          <input type="text" class="booking-input" value="Full day" readonly />
+          <input type="text" class="booking-input" value="${tour.duration || "Full day"}" readonly />
         </div>
       </div>
 
@@ -66,7 +89,7 @@ async function renderBookingWidget() {
         <label for="booking-hotel">Pickup hotel</label>
         <select id="booking-hotel" class="booking-input">
           <option value="">Select hotel</option>
-${hotels.map((item) => `<option value="${item.hotel_name}">${item.hotel_name}</option>`).join("")}
+          ${hotels.map((item) => `<option value="${item.hotel_name}">${item.hotel_name}</option>`).join("")}
         </select>
       </div>
 
@@ -126,7 +149,7 @@ ${hotels.map((item) => `<option value="${item.hotel_name}">${item.hotel_name}</o
     adultCountEl.textContent = adults;
     childCountEl.textContent = children;
 
-    const total = adults * tour.adult + children * tour.child;
+    const total = adults * tour.adult_price + children * tour.child_price;
     totalEl.textContent = `$${total} USD`;
   }
 
