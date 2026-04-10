@@ -23,12 +23,12 @@ async function getTourDataBySlug(slug) {
   return { tour, times, hotels };
 }
 
-function renderBookingWidget() {
+async function renderBookingWidget() {
   const widget = document.getElementById("booking-widget");
   if (!widget) return;
 
   const tourKey = widget.dataset.tour;
-  const tour = getTourDataById(tourKey);
+  const { tour, times, hotels } = await getTourDataBySlug(tourKey);
 
   if (!tour) {
     widget.innerHTML = "<p>Tour data not available.</p>";
@@ -39,7 +39,7 @@ function renderBookingWidget() {
     <div class="booking-card">
       <div class="booking-price-top">
         <span class="booking-price-label">From</span>
-        <strong>$${tour.adult} USD</strong>
+        <strong>$${tour.adult_price} USD</strong>
         <small>Price per adult</small>
       </div>
 
@@ -80,7 +80,7 @@ function renderBookingWidget() {
         <div class="booking-person-row">
           <div>
             <strong>Adults</strong>
-            <span>$${tour.adult} USD each</span>
+            <span>$${tour.adult_price} USD each</span>
           </div>
           <div class="qty-control">
             <button type="button" class="qty-btn" data-type="adult" data-action="minus">−</button>
@@ -92,7 +92,7 @@ function renderBookingWidget() {
         <div class="booking-person-row">
           <div>
             <strong>Children</strong>
-            <span>$${tour.child} USD each</span>
+            <span>$${tour.child_price} USD each</span>
           </div>
           <div class="qty-control">
             <button type="button" class="qty-btn" data-type="child" data-action="minus">−</button>
@@ -104,7 +104,7 @@ function renderBookingWidget() {
 
       <div class="booking-total-box">
         <span>Total</span>
-        <strong id="booking-total">$${tour.adult * 2} USD</strong>
+        <strong id="booking-total">$${tour.adult_price * 2} USD</strong>
       </div>
 
       <div class="booking-actions">
