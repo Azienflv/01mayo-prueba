@@ -1,55 +1,14 @@
-const SUPABASE_URL = "https://gqurgezuuytxrcmudnik.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXJnZXp1dXl0eHJjbXVkbmlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTAyMjIsImV4cCI6MjA5MDE4NjIyMn0.1EW73snm3LvXPW0jK-g_-Klze0FyIbXI4dzv0J2XGr4";
-
-const supabase = window.supabase.createClient(
-  SUPABASE_URL, 
-  SUPABASE_ANON_KEY);
-
-async function getTourDataBySlug(slug) {
-  const { data: tour, error: tourError } = await supabase
-    .from("tours")
-    .select("*")
-    .eq("slug", slug)
-    .single();
-
-  if (tourError || !tour) {
-    console.error("Error loading tour:", tourError);
-    return { tour: null, times: [], hotels: [] };
-  }
-
-  const { data: times, error: timesError } = await supabase
-    .from("tour_times")
-    .select("*")
-    .eq("tour_id", tour.id)
-    .eq("active", true);
-
-  if (timesError) {
-    console.error("Error loading times:", timesError);
-  }
-
-  const { data: hotels, error: hotelsError } = await supabase
-    .from("tour_hotels")
-    .select("*")
-    .eq("tour_id", tour.id)
-    .eq("active", true);
-
-  if (hotelsError) {
-    console.error("Error loading hotels:", hotelsError);
-  }
-
-  return {
-    tour,
-    times: times || [],
-    hotels: hotels || []
-  };
+function getTourDataById(tourId) {
+  if (!Array.isArray(MASTER_TOURS)) return null;
+  return MASTER_TOURS.find((tour) => tour.id === tourId) || null;
 }
 
-async function renderBookingWidget() {
+function renderBookingWidget() {
   const widget = document.getElementById("booking-widget");
   if (!widget) return;
 
   const tourKey = widget.dataset.tour;
-  const { tour, times, hotels } = await getTourDataBySlug(tourKey);
+  const tour = getTourDataById(tourKey);
 
   if (!tour) {
     widget.innerHTML = "<p>Tour data not available.</p>";
@@ -60,7 +19,7 @@ async function renderBookingWidget() {
     <div class="booking-card">
       <div class="booking-price-top">
         <span class="booking-price-label">From</span>
-        <strong>$${tour.adult_price} USD</strong>
+        <strong>$${tour.adult} USD</strong>
         <small>Price per adult</small>
       </div>
 
@@ -73,17 +32,13 @@ async function renderBookingWidget() {
         <div class="booking-field">
           <label for="booking-time">Start time</label>
           <select id="booking-time" class="booking-input">
-            ${
-              times.length
-                ? times.map((item) => `<option value="${item.time_label}">${item.time_label}</option>`).join("")
-                : `<option value="">No times available</option>`
-            }
+            ${tour.times.map((time) => `<option value="${time}">${time}</option>`).join("")}
           </select>
         </div>
 
         <div class="booking-field">
           <label>Duration</label>
-          <input type="text" class="booking-input" value="${tour.duration || "Full day"}" readonly />
+          <input type="text" class="booking-input" value="Full day" readonly />
         </div>
       </div>
 
@@ -91,7 +46,11 @@ async function renderBookingWidget() {
         <label for="booking-hotel">Pickup hotel</label>
         <select id="booking-hotel" class="booking-input">
           <option value="">Select hotel</option>
-          ${hotels.map((item) => `<option value="${item.hotel_name}">${item.hotel_name}</option>`).join("")}
+          <option value="Hard Rock Hotel">Hard Rock Hotel</option>
+          <option value="RIU Republica">RIU Republica</option>
+          <option value="Barceló Bávaro">Barceló Bávaro</option>
+          <option value="Meliá Caribe Beach">Meliá Caribe Beach</option>
+          <option value="Majestic Colonial">Majestic Colonial</option>
         </select>
       </div>
 
@@ -101,7 +60,7 @@ async function renderBookingWidget() {
         <div class="booking-person-row">
           <div>
             <strong>Adults</strong>
-            <span>$${tour.adult_price} USD each</span>
+            <span>$${tour.adult} USD each</span>
           </div>
           <div class="qty-control">
             <button type="button" class="qty-btn" data-type="adult" data-action="minus">−</button>
@@ -113,7 +72,7 @@ async function renderBookingWidget() {
         <div class="booking-person-row">
           <div>
             <strong>Children</strong>
-            <span>$${tour.child_price} USD each</span>
+            <span>$${tour.child} USD each</span>
           </div>
           <div class="qty-control">
             <button type="button" class="qty-btn" data-type="child" data-action="minus">−</button>
@@ -125,7 +84,7 @@ async function renderBookingWidget() {
 
       <div class="booking-total-box">
         <span>Total</span>
-        <strong id="booking-total">$${tour.adult_price * 2} USD</strong>
+        <strong id="booking-total">$${tour.adult * 2} USD</strong>
       </div>
 
       <div class="booking-actions">
@@ -151,7 +110,7 @@ async function renderBookingWidget() {
     adultCountEl.textContent = adults;
     childCountEl.textContent = children;
 
-    const total = adults * tour.adult_price + children * tour.child_price;
+    const total = adults * tour.adult + children * tour.child;
     totalEl.textContent = `$${total} USD`;
   }
 
@@ -186,7 +145,7 @@ async function renderBookingWidget() {
     const selectedDate = dateEl.value || "not selected";
     const selectedTime = timeEl.value || "not selected";
     const selectedHotel = hotelEl.value || "not selected";
-    const total = adults * tour.adult_price + children * tour.child_price;
+    const total = adults * tour.adult + children * tour.child;
 
     const message =
       `Hello PCG Tours, I want to reserve ${tour.name}. ` +
