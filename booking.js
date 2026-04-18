@@ -334,39 +334,50 @@ function renderBookingWidget() {
     });
 
     cashBtn.addEventListener("click", async () => {
-      if (!validateStep2()) return;
+  if (!validateStep2()) return;
 
-      cashBtn.disabled = true;
-      cashBtn.textContent = "Saving reservation...";
+  // Abrir ventana/pestaña inmediatamente para evitar bloqueo de Safari
+  const whatsappWindow = window.open("", "_blank");
 
-      const result = await saveReservationToSupabase("cash", "pending_cash");
+  cashBtn.disabled = true;
+  cashBtn.textContent = "Saving reservation...";
 
-      if (!result.ok) {
-        alert("There was an error saving the reservation. Please try again.");
-        cashBtn.disabled = false;
-        cashBtn.textContent = "Confirm cash";
-        return;
-      }
+  const result = await saveReservationToSupabase("cash", "pending_cash");
 
-      const message =
-        `Hello PCG Tours, I want to confirm my reservation in cash. ` +
-        `Tour: ${tour.name}. ` +
-        `Date: ${bookingState.date}. ` +
-        `Time: ${bookingState.time}. ` +
-        `Hotel: ${bookingState.hotel}. ` +
-        `Adults: ${adults}. ` +
-        `Children: ${children}. ` +
-        `Name: ${bookingState.fullName}. ` +
-        `Email: ${bookingState.email}. ` +
-        `Phone: ${bookingState.phone}. ` +
-        `Total: $${getTotal()} USD.`;
+  if (!result.ok) {
+    if (whatsappWindow) {
+      whatsappWindow.close();
+    }
+    alert("There was an error saving the reservation. Please try again.");
+    cashBtn.disabled = false;
+    cashBtn.textContent = "Confirm cash";
+    return;
+  }
 
-      const whatsappUrl = `https://wa.me/18293319938?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, "_blank");
+  const message =
+    `Hello PCG Tours, I want to confirm my reservation in cash. ` +
+    `Tour: ${tour.name}. ` +
+    `Date: ${bookingState.date}. ` +
+    `Time: ${bookingState.time}. ` +
+    `Hotel: ${bookingState.hotel}. ` +
+    `Adults: ${adults}. ` +
+    `Children: ${children}. ` +
+    `Name: ${bookingState.fullName}. ` +
+    `Email: ${bookingState.email}. ` +
+    `Phone: ${bookingState.phone}. ` +
+    `Total: $${getTotal()} USD.`;
 
-      cashBtn.disabled = false;
-      cashBtn.textContent = "Confirm cash";
-    });
+  const whatsappUrl = `https://wa.me/18293319938?text=${encodeURIComponent(message)}`;
+
+  if (whatsappWindow) {
+    whatsappWindow.location.href = whatsappUrl;
+  } else {
+    window.location.href = whatsappUrl;
+  }
+
+  cashBtn.disabled = false;
+  cashBtn.textContent = "Confirm cash";
+});
 
     paypalBtn.addEventListener("click", () => {
       if (!validateStep2()) return;
