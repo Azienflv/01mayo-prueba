@@ -1,3 +1,10 @@
+const SUPABASE_URL = "https://gqurgezuuytxrcmudnik.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXJnZXp1dXl0eHJjbXVkbmlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTAyMjIsImV4cCI6MjA5MDE4NjIyMn0.1EW73snm3LvXPW0jK-g_-Klze0FyIbXI4dzv0J2XGr4";
+
+const supabaseClient =
+  window.supabase &&
+  window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 function getTourDataById(tourId) {
   if (!Array.isArray(MASTER_TOURS)) return null;
   return MASTER_TOURS.find((tour) => tour.id === tourId) || null;
@@ -58,6 +65,44 @@ function renderBookingWidget() {
         </div>
       </div>
     `;
+  }
+
+  async function saveReservationToSupabase(paymentMethod, status) {
+    if (!supabaseClient) {
+      console.error("Supabase client not available.");
+      return { ok: false, error: "Supabase client not available." };
+    }
+
+    const reservationPayload = {
+      client_name: bookingState.fullName,
+      phone: bookingState.phone,
+      email: bookingState.email,
+      tour_slug: tour.id,
+      tour_name: tour.name,
+      hotel_name: bookingState.hotel,
+      pickup_time: null,
+      selected_date: bookingState.date,
+      selected_time: bookingState.time,
+      adults,
+      children,
+      total: getTotal(),
+      discount: 0,
+      source: "web",
+      status,
+      payment_method: paymentMethod
+    };
+
+    const { data, error } = await supabaseClient
+      .from("reservations")
+      .insert([reservationPayload])
+      .select();
+
+    if (error) {
+      console.error("Error saving reservation:", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data };
   }
 
   function renderStep1() {
@@ -288,8 +333,20 @@ function renderBookingWidget() {
       renderStep1();
     });
 
-    cashBtn.addEventListener("click", () => {
+    cashBtn.addEventListener("click", async () => {
       if (!validateStep2()) return;
+
+      cashBtn.disabled = true;
+      cashBtn.textContent = "Saving reservation...";
+
+      const result = await saveReservationToSupabase("cash", "pending_cash");
+
+      if (!result.ok) {
+        alert("There was an error saving the reservation. Please try again.");
+        cashBtn.disabled = false;
+        cashBtn.textContent = "Confirm cash";
+        return;
+      }
 
       const message =
         `Hello PCG Tours, I want to confirm my reservation in cash. ` +
@@ -306,6 +363,9 @@ function renderBookingWidget() {
 
       const whatsappUrl = `https://wa.me/18293319938?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, "_blank");
+
+      cashBtn.disabled = false;
+      cashBtn.textContent = "Confirm cash";
     });
 
     paypalBtn.addEventListener("click", () => {
