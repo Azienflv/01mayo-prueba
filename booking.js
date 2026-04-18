@@ -369,4 +369,21 @@ function renderBookingWidget() {
   renderStep1();
 }
 
-document.addEventListener("DOMContentLoaded", renderBookingWidget);
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    if (typeof MASTER_TOURS === "undefined") {
+      throw new Error("MASTER_TOURS not loaded");
+    }
+
+    renderBookingWidget();
+  } catch (error) {
+    console.error("BOOKING ERROR:", error);
+
+    const widget = document.getElementById("booking-widget");
+    if (widget) {
+      widget.innerHTML = `<p style="color:red; padding:16px;">Booking error: ${error.message}</p>`;
+    }
+
+    alert(`Booking error: ${error.message}`);
+  }
+});
