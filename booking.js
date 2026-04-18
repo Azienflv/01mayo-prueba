@@ -340,11 +340,8 @@ function renderBookingWidget() {
   const result = await saveReservationToSupabase("cash", "pending_cash");
 
   if (!result.ok) {
-    alert(`Save error: ${result.error?.message || "Unknown error"}`);
-    cashBtn.disabled = false;
-    cashBtn.textContent = "Confirm cash";
-    return;
-  }
+  console.error("FULL ERROR:", result.error);
+  alert(JSON.stringify(result.error, null, 2));
 
   const message =
     `Hello PCG Tours, I want to confirm my reservation in cash. ` +
