@@ -1327,3 +1327,84 @@ Verifica el ccs
   top: 110px;
   align-self: start;
 }
+
+.booking-summary-card {
+  background: #f8fbff;
+  border: 1px solid #dbe4f0;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.booking-summary-card h4 {
+  margin-bottom: 14px;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.booking-summary-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.booking-summary-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #475569;
+  font-size: 0.96rem;
+}
+
+.booking-summary-list strong {
+  color: #0f172a;
+}
+
+.booking-summary-total {
+  border-top: 1px solid #dbe4f0;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.booking-summary-total strong {
+  font-size: 1.4rem;
+}
+
+.booking-payment-box {
+  margin-top: 18px;
+}
+
+.booking-payment-box h4 {
+  margin-bottom: 14px;
+  color: #0f172a;
+}
+
+.booking-payment-options {
+  display: grid;
+  gap: 12px;
+}
+
+.booking-cash-btn,
+.booking-back-btn {
+  background: #fff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.booking-cash-btn:hover,
+.booking-back-btn:hover {
+  border-color: #0ea5e9;
+  color: #0ea5e9;
+}
+
+.booking-actions-split {
+  margin-top: 16px;
+}
+
+.booking-step-two .btn {
+  min-height: 54px;
+}
