@@ -68,43 +68,41 @@ function renderBookingWidget() {
   }
 
   async function saveReservationToSupabase(paymentMethod, status) {
-    if (!supabaseClient) {
-      console.error("Supabase client not available.");
-      return { ok: false, error: "Supabase client not available." };
-    }
-
-    const reservationPayload = {
-      client_name: bookingState.fullName,
-      phone: bookingState.phone,
-      email: bookingState.email,
-      tour_slug: tour.id,
-      tour_name: tour.name,
-      hotel_name: bookingState.hotel,
-      pickup_time: null,
-      selected_date: bookingState.date,
-      selected_time: bookingState.time,
-      adults,
-      children,
-      total: getTotal(),
-      discount: 0,
-      source: "web",
-      status,
-      payment_method: paymentMethod
-    };
-
-    const { data, error } = await supabaseClient
-      .from("reservations")
-      .insert([reservationPayload])
-      .select();
-
-    if (error) {
-      console.error("Error saving reservation:", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data };
+  if (!supabaseClient) {
+    return { ok: false, error: { message: "Supabase client not available." } };
   }
 
+  const reservationPayload = {
+    client_name: bookingState.fullName,
+    phone: bookingState.phone,
+    email: bookingState.email,
+    tour_slug: tour.id,
+    tour_name: tour.name,
+    hotel_name: bookingState.hotel,
+    pickup_time: null,
+    selected_date: bookingState.date,
+    selected_time: bookingState.time,
+    adults: adults,
+    children: children,
+    total: getTotal(),
+    discount: 0,
+    source: "web",
+    status: status,
+    payment_method: paymentMethod
+  };
+
+  const { data, error } = await supabaseClient
+    .from("reservations")
+    .insert([reservationPayload])
+    .select();
+
+  if (error) {
+    console.error("SUPABASE INSERT ERROR:", error);
+    return { ok: false, error };
+  }
+
+  return { ok: true, data };
+}
   function renderStep1() {
     widget.innerHTML = `
       <div class="booking-card">
@@ -333,11 +331,8 @@ function renderBookingWidget() {
       renderStep1();
     });
 
-    cashBtn.addEventListener("click", async () => {
+   cashBtn.addEventListener("click", async () => {
   if (!validateStep2()) return;
-
-  // Abrir ventana/pestaña inmediatamente para evitar bloqueo de Safari
-  const whatsappWindow = window.open("", "_blank");
 
   cashBtn.disabled = true;
   cashBtn.textContent = "Saving reservation...";
@@ -345,10 +340,7 @@ function renderBookingWidget() {
   const result = await saveReservationToSupabase("cash", "pending_cash");
 
   if (!result.ok) {
-    if (whatsappWindow) {
-      whatsappWindow.close();
-    }
-    alert("There was an error saving the reservation. Please try again.");
+    alert(`Save error: ${result.error?.message || "Unknown error"}`);
     cashBtn.disabled = false;
     cashBtn.textContent = "Confirm cash";
     return;
@@ -368,17 +360,8 @@ function renderBookingWidget() {
     `Total: $${getTotal()} USD.`;
 
   const whatsappUrl = `https://wa.me/18293319938?text=${encodeURIComponent(message)}`;
-
-  if (whatsappWindow) {
-    whatsappWindow.location.href = whatsappUrl;
-  } else {
-    window.location.href = whatsappUrl;
-  }
-
-  cashBtn.disabled = false;
-  cashBtn.textContent = "Confirm cash";
+  window.location.href = whatsappUrl;
 });
-
     paypalBtn.addEventListener("click", () => {
       if (!validateStep2()) return;
 
