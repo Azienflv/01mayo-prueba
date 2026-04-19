@@ -390,4 +390,20 @@ async function renderBookingWidget() {
   renderStep1();
 }
 
+function getPickupForTour(hotelObj, tour) {
+  if (!hotelObj || !hotelObj.pickups) return "";
+
+  const pickups = hotelObj.pickups;
+
+  let horarios = pickups[tour.id] || pickups[tour.name] || [];
+
+  if (!Array.isArray(horarios)) {
+    horarios = horarios ? [horarios] : [];
+  }
+
+  horarios = horarios.filter(Boolean);
+
+  return horarios.length ? horarios[0] : "";
+}
+
 document.addEventListener("DOMContentLoaded", renderBookingWidget);
