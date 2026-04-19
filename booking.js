@@ -62,24 +62,28 @@ async function renderBookingWidget() {
   }
 
   function getSummaryHtml() {
-    return `
-      <div class="booking-summary-card">
-        <h4>Reservation summary</h4>
-        <div class="booking-summary-list">
-          <div><strong>Tour:</strong> <span>${tour.name}</span></div>
-          <div><strong>Date:</strong> <span>${bookingState.date || "Not selected"}</span></div>
-          <div><strong>Time:</strong> <span>${bookingState.time || "Not selected"}</span></div>
-          <div><strong>Hotel:</strong> <span>${bookingState.hotel || "Not selected"}</span></div>
-          <div><strong>Adults:</strong> <span>${adults}</span></div>
-          <div><strong>Children:</strong> <span>${children}</span></div>
-        </div>
-        <div class="booking-summary-total">
-          <span>Total</span>
-          <strong>$${getTotal()} USD</strong>
-        </div>
+  const selectedHotelObj = hotelesData.find(h => h.nombre === bookingState.hotel);
+  const pickupTime = getPickupForTour(selectedHotelObj, tour);
+
+  return `
+    <div class="booking-summary-card">
+      <h4>Reservation summary</h4>
+      <div class="booking-summary-list">
+        <div><strong>Tour:</strong> <span>${tour.name}</span></div>
+        <div><strong>Date:</strong> <span>${bookingState.date || "Not selected"}</span></div>
+        <div><strong>Time:</strong> <span>${bookingState.time || "Not selected"}</span></div>
+        <div><strong>Hotel:</strong> <span>${bookingState.hotel || "Not selected"}</span></div>
+        <div><strong>Adults:</strong> <span>${adults}</span></div>
+        <div><strong>Children:</strong> <span>${children}</span></div>
+        <div><strong>Pickup:</strong> <span>${pickupTime || "To be confirmed"}</span></div>
       </div>
-    `;
-  }
+      <div class="booking-summary-total">
+        <span>Total</span>
+        <strong>$${getTotal()} USD</strong>
+      </div>
+    </div>
+  `;
+}
 
   async function saveReservationToSupabase(paymentMethod, status) {
     if (!supabaseClient) {
