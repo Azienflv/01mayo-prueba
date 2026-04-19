@@ -29,6 +29,22 @@ async function fetchHotelesWeb() {
   return data || [];
 }
 
+function getPickupForTour(hotelObj, tour) {
+  if (!hotelObj || !hotelObj.pickups) return "";
+
+  const pickups = hotelObj.pickups;
+
+  let horarios = pickups[tour.id] || pickups[tour.name] || [];
+
+  if (!Array.isArray(horarios)) {
+    horarios = horarios ? [horarios] : [];
+  }
+
+  horarios = horarios.filter(Boolean);
+
+  return horarios.length ? horarios[0] : "";
+}
+
 async function renderBookingWidget() {
   const widget = document.getElementById("booking-widget");
   if (!widget) return;
@@ -40,9 +56,9 @@ async function renderBookingWidget() {
     widget.innerHTML = "<p>Tour data not available.</p>";
     return;
   }
-  
+
   const hotelesData = await fetchHotelesWeb();
-  
+
   let adults = 2;
   let children = 0;
 
@@ -55,35 +71,41 @@ async function renderBookingWidget() {
     phone: ""
   };
 
-  
-
   function getTotal() {
     return adults * tour.adult + children * tour.child;
   }
 
-  function getSummaryHtml() {
-  const selectedHotelObj = hotelesData.find(h => h.nombre === bookingState.hotel);
-  const pickupTime = getPickupForTour(selectedHotelObj, tour);
+  function getSelectedHotelObj() {
+    return hotelesData.find((h) => h.nombre === bookingState.hotel) || null;
+  }
 
-  return `
-    <div class="booking-summary-card">
-      <h4>Reservation summary</h4>
-      <div class="booking-summary-list">
-        <div><strong>Tour:</strong> <span>${tour.name}</span></div>
-        <div><strong>Date:</strong> <span>${bookingState.date || "Not selected"}</span></div>
-        <div><strong>Time:</strong> <span>${bookingState.time || "Not selected"}</span></div>
-        <div><strong>Hotel:</strong> <span>${bookingState.hotel || "Not selected"}</span></div>
-        <div><strong>Adults:</strong> <span>${adults}</span></div>
-        <div><strong>Children:</strong> <span>${children}</span></div>
-        <div><strong>Pickup:</strong> <span>${pickupTime || "To be confirmed"}</span></div>
+  function getCurrentPickupTime() {
+    const selectedHotelObj = getSelectedHotelObj();
+    return getPickupForTour(selectedHotelObj, tour);
+  }
+
+  function getSummaryHtml() {
+    const pickupTime = getCurrentPickupTime();
+
+    return `
+      <div class="booking-summary-card">
+        <h4>Reservation summary</h4>
+        <div class="booking-summary-list">
+          <div><strong>Tour:</strong> <span>${tour.name}</span></div>
+          <div><strong>Date:</strong> <span>${bookingState.date || "Not selected"}</span></div>
+          <div><strong>Time:</strong> <span>${bookingState.time || "Not selected"}</span></div>
+          <div><strong>Hotel:</strong> <span>${bookingState.hotel || "Not selected"}</span></div>
+          <div><strong>Adults:</strong> <span>${adults}</span></div>
+          <div><strong>Children:</strong> <span>${children}</span></div>
+          <div><strong>Pickup:</strong> <span>${pickupTime || "To be confirmed"}</span></div>
+        </div>
+        <div class="booking-summary-total">
+          <span>Total</span>
+          <strong>$${getTotal()} USD</strong>
+        </div>
       </div>
-      <div class="booking-summary-total">
-        <span>Total</span>
-        <strong>$${getTotal()} USD</strong>
-      </div>
-    </div>
-  `;
-}
+    `;
+  }
 
   async function saveReservationToSupabase(paymentMethod, status) {
     if (!supabaseClient) {
@@ -93,6 +115,8 @@ async function renderBookingWidget() {
       };
     }
 
+    const pickupTime = getCurrentPickupTime();
+
     const reservationPayload = {
       client_name: bookingState.fullName,
       phone: bookingState.phone,
@@ -100,10 +124,7 @@ async function renderBookingWidget() {
       tour_slug: tour.id,
       tour_name: tour.name,
       hotel_name: bookingState.hotel,
-      pickup_time: (() => {
-  const hotelObj = hotelesData.find(h => h.nombre === bookingState.hotel);
-  return getPickupForTour(hotelObj, tour) || null;
-})(),
+      pickup_time: pickupTime || null,
       selected_date: bookingState.date,
       selected_time: bookingState.time,
       adults: adults,
@@ -115,17 +136,16 @@ async function renderBookingWidget() {
       payment_method: paymentMethod
     };
 
-    const { data, error } = await supabaseClient
+    const { error } = await supabaseClient
       .from("reservations")
-      .insert([reservationPayload])
-      .select();
+      .insert([reservationPayload]);
 
     if (error) {
       console.error("SUPABASE INSERT ERROR:", error);
       return { ok: false, error };
     }
 
-    return { ok: true, data };
+    return { ok: true };
   }
 
   function renderStep1() {
@@ -159,16 +179,16 @@ async function renderBookingWidget() {
         </div>
 
         <div class="booking-field">
-  <label for="booking-hotel">Pickup hotel</label>
-  <select id="booking-hotel" class="booking-input">
-    <option value="">Select hotel</option>
-    ${hotelesData.map((hotel) => `
-      <option value="${hotel.nombre}" ${bookingState.hotel === hotel.nombre ? "selected" : ""}>
-        ${hotel.nombre}
-      </option>
-    `).join("")}
-  </select>
-</div>
+          <label for="booking-hotel">Pickup hotel</label>
+          <select id="booking-hotel" class="booking-input">
+            <option value="">Select hotel</option>
+            ${hotelesData.map((hotel) => `
+              <option value="${hotel.nombre}" ${bookingState.hotel === hotel.nombre ? "selected" : ""}>
+                ${hotel.nombre}
+              </option>
+            `).join("")}
+          </select>
+        </div>
 
         <div class="booking-people">
           <h4>People</h4>
@@ -371,12 +391,15 @@ async function renderBookingWidget() {
         return;
       }
 
+      const pickupTime = getCurrentPickupTime();
+
       const message =
         `Hello PCG Tours, I want to confirm my reservation in cash. ` +
         `Tour: ${tour.name}. ` +
         `Date: ${bookingState.date}. ` +
         `Time: ${bookingState.time}. ` +
         `Hotel: ${bookingState.hotel}. ` +
+        `Pickup: ${pickupTime || "To be confirmed"}. ` +
         `Adults: ${adults}. ` +
         `Children: ${children}. ` +
         `Name: ${bookingState.fullName}. ` +
@@ -395,22 +418,6 @@ async function renderBookingWidget() {
   }
 
   renderStep1();
-}
-
-function getPickupForTour(hotelObj, tour) {
-  if (!hotelObj || !hotelObj.pickups) return "";
-
-  const pickups = hotelObj.pickups;
-
-  let horarios = pickups[tour.id] || pickups[tour.name] || [];
-
-  if (!Array.isArray(horarios)) {
-    horarios = horarios ? [horarios] : [];
-  }
-
-  horarios = horarios.filter(Boolean);
-
-  return horarios.length ? horarios[0] : "";
 }
 
 document.addEventListener("DOMContentLoaded", renderBookingWidget);
