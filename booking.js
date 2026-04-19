@@ -96,7 +96,10 @@ async function renderBookingWidget() {
       tour_slug: tour.id,
       tour_name: tour.name,
       hotel_name: bookingState.hotel,
-      pickup_time: null,
+      pickup_time: (() => {
+  const hotelObj = hotelesData.find(h => h.nombre === bookingState.hotel);
+  return getPickupForTour(hotelObj, tour) || null;
+})(),
       selected_date: bookingState.date,
       selected_time: bookingState.time,
       adults: adults,
