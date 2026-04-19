@@ -152,14 +152,16 @@ async function renderBookingWidget() {
         </div>
 
         <div class="booking-field">
-          <label for="booking-hotel">Pickup hotel</label>
-          <select id="booking-hotel" class="booking-input">
-            <option value="">Select hotel</option>
-            ${defaultHotels.map((hotel) => `
-              <option value="${hotel}" ${bookingState.hotel === hotel ? "selected" : ""}>${hotel}</option>
-            `).join("")}
-          </select>
-        </div>
+  <label for="booking-hotel">Pickup hotel</label>
+  <select id="booking-hotel" class="booking-input">
+    <option value="">Select hotel</option>
+    ${hotelesData.map((hotel) => `
+      <option value="${hotel.nombre}" ${bookingState.hotel === hotel.nombre ? "selected" : ""}>
+        ${hotel.nombre}
+      </option>
+    `).join("")}
+  </select>
+</div>
 
         <div class="booking-people">
           <h4>People</h4>
