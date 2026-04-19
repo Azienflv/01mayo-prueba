@@ -351,8 +351,48 @@ async function renderBookingWidget() {
     const emailEl = document.getElementById("booking-email");
     const phoneEl = document.getElementById("booking-phone");
     const backBtn = document.getElementById("booking-back-btn");
-    const paypalBtn = document.getElementById("paypal-btn");
     const cashBtn = document.getElementById("cash-btn");
+    
+    paypalBtn.addEventListener("click", () => {
+  if (!validateStep2()) return;
+
+  paypalBtn.innerHTML = `<div id="paypal-container"></div>`;
+
+  paypal.Buttons({
+    createOrder: function (data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: getTotal().toString()
+          },
+          description: tour.name
+        }]
+      });
+    },
+
+    onApprove: async function (data, actions) {
+      const details = await actions.order.capture();
+
+      const result = await saveReservationToSupabase("paypal", "paid");
+
+      if (!result.ok) {
+        alert("Pago recibido pero error guardando reserva ⚠️");
+        return;
+      }
+
+      alert("Pago completado ✅ Reserva confirmada");
+
+      // 🔥 aquí luego podemos redirigir a voucher
+      window.location.reload();
+    },
+
+    onError: function (err) {
+      console.error(err);
+      alert("Error en el pago ❌");
+    }
+
+  }).render("#paypal-container");
+});
 
     function savePersonalData() {
       bookingState.fullName = fullNameEl.value.trim();
