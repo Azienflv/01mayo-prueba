@@ -36,13 +36,7 @@ function renderBookingWidget() {
     phone: ""
   };
 
-  const defaultHotels = [
-    "Hard Rock Hotel",
-    "RIU Republica",
-    "Barceló Bávaro",
-    "Meliá Caribe Beach",
-    "Majestic Colonial"
-  ];
+  
 
   function getTotal() {
     return adults * tour.adult + children * tour.child;
