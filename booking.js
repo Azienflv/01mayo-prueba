@@ -7,12 +7,29 @@ const supabaseClient =
   window.supabase &&
   window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-async function getTourDataById(tourId) {
+function getTourDataById(tourId) {
   if (!Array.isArray(MASTER_TOURS)) return null;
   return MASTER_TOURS.find((tour) => tour.id === tourId) || null;
 }
 
-function renderBookingWidget() {
+async function fetchHotelesWeb() {
+  if (!supabaseClient) return [];
+
+  const { data, error } = await supabaseClient
+    .from("hoteles")
+    .select("*")
+    .eq("activo", true)
+    .order("nombre", { ascending: true });
+
+  if (error) {
+    console.error("Error cargando hoteles:", error);
+    return [];
+  }
+
+  return data || [];
+}
+
+async function renderBookingWidget() {
   const widget = document.getElementById("booking-widget");
   if (!widget) return;
 
