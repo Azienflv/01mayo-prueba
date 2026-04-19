@@ -40,7 +40,9 @@ async function renderBookingWidget() {
     widget.innerHTML = "<p>Tour data not available.</p>";
     return;
   }
-
+  
+  const hotelesData = await fetchHotelesWeb();
+  
   let adults = 2;
   let children = 0;
 
