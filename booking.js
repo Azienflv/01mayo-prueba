@@ -7,7 +7,7 @@ const supabaseClient =
   window.supabase &&
   window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-function getTourDataById(tourId) {
+async function getTourDataById(tourId) {
   if (!Array.isArray(MASTER_TOURS)) return null;
   return MASTER_TOURS.find((tour) => tour.id === tourId) || null;
 }
