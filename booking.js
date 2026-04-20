@@ -147,7 +147,59 @@ async function renderBookingWidget() {
 
     return { ok: true };
   }
+  
+    function renderPayPalButtons() {
+  const container = document.getElementById("paypal-button-container");
 
+  if (!container) return;
+
+  if (typeof paypal === "undefined") {
+    container.innerHTML = `<p style="color:red;">PayPal failed to load.</p>`;
+    return;
+  }
+
+  container.innerHTML = "";
+
+  paypal.Buttons({
+    createOrder: function (data, actions) {
+      if (!validateStep2()) {
+        throw new Error("Please complete full name, email, and phone.");
+      }
+
+      return actions.order.create({
+        purchase_units: [
+          {
+            amount: {
+              value: getTotal().toFixed(2)
+            },
+            description: tour.name
+          }
+        ]
+      });
+    },
+
+    onApprove: async function (data, actions) {
+      const details = await actions.order.capture();
+
+      const result = await saveReservationToSupabase("paypal", "paid");
+
+      if (!result.ok) {
+        alert("Payment received, but reservation could not be saved.");
+        return;
+      }
+
+      alert("Payment completed successfully ✅");
+      window.location.reload();
+    },
+
+    onError: function (err) {
+      console.error("PayPal error:", err);
+      alert("Error with PayPal checkout.");
+    }
+  }).render("#paypal-button-container");
+}
+
+  
   function renderStep1() {
     widget.innerHTML = `
       <div class="booking-card">
