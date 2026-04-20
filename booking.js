@@ -126,35 +126,51 @@ async function renderBookingWidget() {
   // 🥇 STEP 1
   // =======================
   function renderStep1() {
-    widget.innerHTML = `
-      <div class="booking-card">
-        <input type="date" id="date">
-        <select id="time">
+  widget.innerHTML = `
+    <div class="booking-card">
+      
+      <div class="booking-field">
+        <label>Select date</label>
+        <input type="date" id="booking-date" class="booking-input">
+      </div>
+
+      <div class="booking-field">
+        <label>Start time</label>
+        <select id="booking-time" class="booking-input">
           ${tour.times.map(t => `<option>${t}</option>`).join("")}
         </select>
+      </div>
 
-        <select id="hotel">
+      <div class="booking-field">
+        <label>Hotel</label>
+        <select id="booking-hotel" class="booking-input">
           <option value="">Select hotel</option>
           ${hotelesData.map(h => `<option>${h.nombre}</option>`).join("")}
         </select>
-
-        <button id="next">Next</button>
       </div>
-    `;
 
-    document.getElementById("next").onclick = () => {
-      bookingState.date = document.getElementById("date").value;
-      bookingState.time = document.getElementById("time").value;
-      bookingState.hotel = document.getElementById("hotel").value;
+      <div class="booking-actions">
+        <button id="booking-next-btn" class="btn btn-primary booking-btn-full">
+          Next
+        </button>
+      </div>
 
-      if (!bookingState.date || !bookingState.hotel) {
-        alert("Complete all fields");
-        return;
-      }
+    </div>
+  `;
 
-      renderStep2();
-    };
-  }
+  document.getElementById("booking-next-btn").onclick = () => {
+    bookingState.date = document.getElementById("booking-date").value;
+    bookingState.time = document.getElementById("booking-time").value;
+    bookingState.hotel = document.getElementById("booking-hotel").value;
+
+    if (!bookingState.date || !bookingState.hotel) {
+      alert("Complete all fields");
+      return;
+    }
+
+    renderStep2();
+  };
+}
 
   // =======================
   // 🥈 STEP 2
