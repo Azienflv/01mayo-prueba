@@ -334,165 +334,125 @@ async function renderBookingWidget() {
         return;
       }
 
-      renderStep2();
-    });
+    function renderStep2() {
+  widget.innerHTML = `
+    <div class="booking-card booking-step-two">
+      ${getSummaryHtml()}
 
-    updateMinDate();
-    updateTotals();
-  }
+      <div class="booking-field">
+        <label for="booking-fullname">Full name</label>
+        <input
+          type="text"
+          id="booking-fullname"
+          class="booking-input"
+          value="${bookingState.fullName}"
+          placeholder="Enter your full name"
+        />
+      </div>
 
-  function renderStep2() {
-    widget.innerHTML = `
-      <div class="booking-card booking-step-two">
-        ${getSummaryHtml()}
+      <div class="booking-field">
+        <label for="booking-email">Email</label>
+        <input
+          type="email"
+          id="booking-email"
+          class="booking-input"
+          value="${bookingState.email}"
+          placeholder="Enter your email"
+        />
+      </div>
 
-        <div class="booking-field">
-          <label for="booking-fullname">Full name</label>
-          <input
-            type="text"
-            id="booking-fullname"
-            class="booking-input"
-            value="${bookingState.fullName}"
-            placeholder="Enter your full name"
-          />
-        </div>
+      <div class="booking-field">
+        <label for="booking-phone">Phone</label>
+        <input
+          type="tel"
+          id="booking-phone"
+          class="booking-input"
+          value="${bookingState.phone}"
+          placeholder="Enter your phone number"
+        />
+      </div>
 
-        <div class="booking-field">
-          <label for="booking-email">Email</label>
-          <input
-            type="email"
-            id="booking-email"
-            class="booking-input"
-            value="${bookingState.email}"
-            placeholder="Enter your email"
-          />
-        </div>
+      <div class="booking-payment-box">
+        <h4>Payment method</h4>
+        <div class="booking-payment-options">
+          <div id="paypal-button-container"></div>
 
-        <div class="booking-field">
-          <label for="booking-phone">Phone</label>
-          <input
-            type="tel"
-            id="booking-phone"
-            class="booking-input"
-            value="${bookingState.phone}"
-            placeholder="Enter your phone number"
-          />
-        </div>
-
-        <div class="booking-payment-box">
-  <h4>Payment method</h4>
-  <div class="booking-payment-options">
-    <div id="paypal-button-container"></div>
-
-    <button type="button" id="cash-btn" class="btn booking-btn-full booking-cash-btn">
-      Confirm cash
-    </button>
-  </div>
-</div>
-
-        <div class="booking-actions booking-actions-split">
-          <button type="button" id="booking-back-btn" class="btn booking-back-btn">
-            Back
+          <button type="button" id="cash-btn" class="btn booking-btn-full booking-cash-btn">
+            Confirm cash
           </button>
         </div>
       </div>
-    `;
 
-    const fullNameEl = document.getElementById("booking-fullname");
-    const emailEl = document.getElementById("booking-email");
-    const phoneEl = document.getElementById("booking-phone");
-    const backBtn = document.getElementById("booking-back-btn");
-    const cashBtn = document.getElementById("cash-btn");
-    
+      <div class="booking-actions booking-actions-split">
+        <button type="button" id="booking-back-btn" class="btn booking-back-btn">
+          Back
+        </button>
+      </div>
+    </div>
+  `;
 
-    onApprove: async function (data, actions) {
-      const details = await actions.order.capture();
+  const fullNameEl = document.getElementById("booking-fullname");
+  const emailEl = document.getElementById("booking-email");
+  const phoneEl = document.getElementById("booking-phone");
+  const backBtn = document.getElementById("booking-back-btn");
+  const cashBtn = document.getElementById("cash-btn");
 
-      const result = await saveReservationToSupabase("paypal", "paid");
-
-      if (!result.ok) {
-        alert("Pago recibido pero error guardando reserva ⚠️");
-        return;
-      }
-
-      alert("Pago completado ✅ Reserva confirmada");
-
-      // 🔥 aquí luego podemos redirigir a voucher
-      window.location.reload();
-    },
-
-    onError: function (err) {
-      console.error(err);
-      alert("Error en el pago ❌");
-    }
-
-  }).render("#paypal-container");
-});
-
-    function savePersonalData() {
-      bookingState.fullName = fullNameEl.value.trim();
-      bookingState.email = emailEl.value.trim();
-      bookingState.phone = phoneEl.value.trim();
-    }
-
-    function validateStep2() {
-      savePersonalData();
-
-      if (!bookingState.fullName || !bookingState.email || !bookingState.phone) {
-        alert("Please complete full name, email, and phone.");
-        return false;
-      }
-
-      return true;
-    }
-
-    backBtn.addEventListener("click", () => {
-      savePersonalData();
-      renderStep1();
-    });
-
-    cashBtn.addEventListener("click", async () => {
-      if (!validateStep2()) return;
-
-      cashBtn.disabled = true;
-      cashBtn.textContent = "Saving reservation...";
-
-      const result = await saveReservationToSupabase("cash", "pending_cash");
-
-      if (!result.ok) {
-        alert(`Save error: ${result.error?.message || JSON.stringify(result.error)}`);
-        cashBtn.disabled = false;
-        cashBtn.textContent = "Confirm cash";
-        return;
-      }
-
-      const pickupTime = getCurrentPickupTime();
-
-      const message =
-        `Hello PCG Tours, I want to confirm my reservation in cash. ` +
-        `Tour: ${tour.name}. ` +
-        `Date: ${bookingState.date}. ` +
-        `Time: ${bookingState.time}. ` +
-        `Hotel: ${bookingState.hotel}. ` +
-        `Pickup: ${pickupTime || "To be confirmed"}. ` +
-        `Adults: ${adults}. ` +
-        `Children: ${children}. ` +
-        `Name: ${bookingState.fullName}. ` +
-        `Email: ${bookingState.email}. ` +
-        `Phone: ${bookingState.phone}. ` +
-        `Total: $${getTotal()} USD.`;
-
-      const whatsappUrl = `https://wa.me/18293319938?text=${encodeURIComponent(message)}`;
-      window.location.href = whatsappUrl;
-    });
-
-    paypalBtn.addEventListener("click", () => {
-      if (!validateStep2()) return;
-      alert("PayPal will be connected here in the next step.");
-    });
+  function savePersonalData() {
+    bookingState.fullName = fullNameEl.value.trim();
+    bookingState.email = emailEl.value.trim();
+    bookingState.phone = phoneEl.value.trim();
   }
 
-  renderStep1();
-}
+  function validateStep2() {
+    savePersonalData();
 
-document.addEventListener("DOMContentLoaded", renderBookingWidget);
+    if (!bookingState.fullName || !bookingState.email || !bookingState.phone) {
+      alert("Please complete full name, email, and phone.");
+      return false;
+    }
+
+    return true;
+  }
+
+  backBtn.addEventListener("click", () => {
+    savePersonalData();
+    renderStep1();
+  });
+
+  cashBtn.addEventListener("click", async () => {
+    if (!validateStep2()) return;
+
+    cashBtn.disabled = true;
+    cashBtn.textContent = "Saving reservation...";
+
+    const result = await saveReservationToSupabase("cash", "pending_cash");
+
+    if (!result.ok) {
+      alert(`Save error: ${result.error?.message || JSON.stringify(result.error)}`);
+      cashBtn.disabled = false;
+      cashBtn.textContent = "Confirm cash";
+      return;
+    }
+
+    const pickupTime = getCurrentPickupTime();
+
+    const message =
+      `Hello PCG Tours, I want to confirm my reservation in cash. ` +
+      `Tour: ${tour.name}. ` +
+      `Date: ${bookingState.date}. ` +
+      `Time: ${bookingState.time}. ` +
+      `Hotel: ${bookingState.hotel}. ` +
+      `Pickup: ${pickupTime || "To be confirmed"}. ` +
+      `Adults: ${adults}. ` +
+      `Children: ${children}. ` +
+      `Name: ${bookingState.fullName}. ` +
+      `Email: ${bookingState.email}. ` +
+      `Phone: ${bookingState.phone}. ` +
+      `Total: $${getTotal()} USD.`;
+
+    const whatsappUrl = `https://wa.me/18293319938?text=${encodeURIComponent(message)}`;
+    window.location.href = whatsappUrl;
+  });
+
+  renderPayPalButtons(validateStep2);
+}
