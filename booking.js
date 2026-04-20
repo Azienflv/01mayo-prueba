@@ -201,140 +201,147 @@ async function renderBookingWidget() {
 
   
   function renderStep1() {
-    widget.innerHTML = `
-      <div class="booking-card">
-        <div class="booking-price-top">
-          <span class="booking-price-label">From</span>
-          <strong>$${tour.adult} USD</strong>
-          <small>Price per adult</small>
-        </div>
+  widget.innerHTML = `
+    <div class="booking-card">
+      <div class="booking-price-top">
+        <span class="booking-price-label">From</span>
+        <strong>$${tour.adult} USD</strong>
+        <small>Price per adult</small>
+      </div>
 
+      <div class="booking-field">
+        <label for="booking-date">Select date</label>
+        <input type="date" id="booking-date" class="booking-input" value="${bookingState.date}" />
+      </div>
+
+      <div class="booking-field-grid">
         <div class="booking-field">
-          <label for="booking-date">Select date</label>
-          <input type="date" id="booking-date" class="booking-input" value="${bookingState.date}" />
-        </div>
-
-        <div class="booking-field-grid">
-          <div class="booking-field">
-            <label for="booking-time">Start time</label>
-            <select id="booking-time" class="booking-input">
-              ${tour.times.map((time) => `
-                <option value="${time}" ${bookingState.time === time ? "selected" : ""}>${time}</option>
-              `).join("")}
-            </select>
-          </div>
-
-          <div class="booking-field">
-            <label>Duration</label>
-            <input type="text" class="booking-input" value="Full day" readonly />
-          </div>
-        </div>
-
-        <div class="booking-field">
-          <label for="booking-hotel">Pickup hotel</label>
-          <select id="booking-hotel" class="booking-input">
-            <option value="">Select hotel</option>
-            ${hotelesData.map((hotel) => `
-              <option value="${hotel.nombre}" ${bookingState.hotel === hotel.nombre ? "selected" : ""}>
-                ${hotel.nombre}
-              </option>
+          <label for="booking-time">Start time</label>
+          <select id="booking-time" class="booking-input">
+            ${tour.times.map((time) => `
+              <option value="${time}" ${bookingState.time === time ? "selected" : ""}>${time}</option>
             `).join("")}
           </select>
         </div>
 
-        <div class="booking-people">
-          <h4>People</h4>
-
-          <div class="booking-person-row">
-            <div>
-              <strong>Adults</strong>
-              <span>$${tour.adult} USD each</span>
-            </div>
-            <div class="qty-control">
-              <button type="button" class="qty-btn" data-type="adult" data-action="minus">−</button>
-              <span id="adult-count">${adults}</span>
-              <button type="button" class="qty-btn" data-type="adult" data-action="plus">+</button>
-            </div>
-          </div>
-
-          <div class="booking-person-row">
-            <div>
-              <strong>Children</strong>
-              <span>$${tour.child} USD each</span>
-            </div>
-            <div class="qty-control">
-              <button type="button" class="qty-btn" data-type="child" data-action="minus">−</button>
-              <span id="child-count">${children}</span>
-              <button type="button" class="qty-btn" data-type="child" data-action="plus">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="booking-total-box">
-          <span>Total</span>
-          <strong id="booking-total">$${getTotal()} USD</strong>
-        </div>
-
-        <div class="booking-actions">
-          <button type="button" id="booking-next-btn" class="btn btn-primary booking-btn-full">
-            Next
-          </button>
+        <div class="booking-field">
+          <label>Duration</label>
+          <input type="text" class="booking-input" value="Full day" readonly />
         </div>
       </div>
-    `;
 
-    const dateEl = document.getElementById("booking-date");
-    const timeEl = document.getElementById("booking-time");
-    const hotelEl = document.getElementById("booking-hotel");
-    const nextBtn = document.getElementById("booking-next-btn");
-    const totalEl = document.getElementById("booking-total");
-    const adultCountEl = document.getElementById("adult-count");
-    const childCountEl = document.getElementById("child-count");
+      <div class="booking-field">
+        <label for="booking-hotel">Pickup hotel</label>
+        <select id="booking-hotel" class="booking-input">
+          <option value="">Select hotel</option>
+          ${hotelesData.map((hotel) => `
+            <option value="${hotel.nombre}" ${bookingState.hotel === hotel.nombre ? "selected" : ""}>
+              ${hotel.nombre}
+            </option>
+          `).join("")}
+        </select>
+      </div>
 
-    function updateMinDate() {
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, "0");
-      const dd = String(today.getDate()).padStart(2, "0");
-      dateEl.min = `${yyyy}-${mm}-${dd}`;
-    }
+      <div class="booking-people">
+        <h4>People</h4>
 
-    function updateTotals() {
-      adultCountEl.textContent = adults;
-      childCountEl.textContent = children;
-      totalEl.textContent = `$${getTotal()} USD`;
-    }
+        <div class="booking-person-row">
+          <div>
+            <strong>Adults</strong>
+            <span>$${tour.adult} USD each</span>
+          </div>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" data-type="adult" data-action="minus">−</button>
+            <span id="adult-count">${adults}</span>
+            <button type="button" class="qty-btn" data-type="adult" data-action="plus">+</button>
+          </div>
+        </div>
 
-    widget.querySelectorAll(".qty-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const type = btn.dataset.type;
-        const action = btn.dataset.action;
+        <div class="booking-person-row">
+          <div>
+            <strong>Children</strong>
+            <span>$${tour.child} USD each</span>
+          </div>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" data-type="child" data-action="minus">−</button>
+            <span id="child-count">${children}</span>
+            <button type="button" class="qty-btn" data-type="child" data-action="plus">+</button>
+          </div>
+        </div>
+      </div>
 
-        if (type === "adult") {
-          if (action === "plus") adults++;
-          if (action === "minus" && adults > 1) adults--;
-        }
+      <div class="booking-total-box">
+        <span>Total</span>
+        <strong id="booking-total">$${getTotal()} USD</strong>
+      </div>
 
-        if (type === "child") {
-          if (action === "plus") children++;
-          if (action === "minus" && children > 0) children--;
-        }
+      <div class="booking-actions">
+        <button type="button" id="booking-next-btn" class="btn btn-primary booking-btn-full">
+          Next
+        </button>
+      </div>
+    </div>
+  `;
 
-        updateTotals();
-      });
-    });
+  const dateEl = document.getElementById("booking-date");
+  const timeEl = document.getElementById("booking-time");
+  const hotelEl = document.getElementById("booking-hotel");
+  const nextBtn = document.getElementById("booking-next-btn");
+  const totalEl = document.getElementById("booking-total");
+  const adultCountEl = document.getElementById("adult-count");
+  const childCountEl = document.getElementById("child-count");
 
-    nextBtn.addEventListener("click", () => {
-      bookingState.date = dateEl.value;
-      bookingState.time = timeEl.value;
-      bookingState.hotel = hotelEl.value;
+  function updateMinDate() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    dateEl.min = `${yyyy}-${mm}-${dd}`;
+  }
 
-      if (!bookingState.date || !bookingState.time || !bookingState.hotel) {
-        alert("Please complete date, time, and hotel before continuing.");
-        return;
+  function updateTotals() {
+    adultCountEl.textContent = adults;
+    childCountEl.textContent = children;
+    totalEl.textContent = `$${getTotal()} USD`;
+  }
+
+  widget.querySelectorAll(".qty-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const type = btn.dataset.type;
+      const action = btn.dataset.action;
+
+      if (type === "adult") {
+        if (action === "plus") adults++;
+        if (action === "minus" && adults > 1) adults--;
       }
 
-    function renderStep2() {
+      if (type === "child") {
+        if (action === "plus") children++;
+        if (action === "minus" && children > 0) children--;
+      }
+
+      updateTotals();
+    });
+  });
+
+  nextBtn.addEventListener("click", () => {
+    bookingState.date = dateEl.value;
+    bookingState.time = timeEl.value;
+    bookingState.hotel = hotelEl.value;
+
+    if (!bookingState.date || !bookingState.time || !bookingState.hotel) {
+      alert("Please complete date, time, and hotel before continuing.");
+      return;
+    }
+
+    renderStep2();
+  });
+
+  updateMinDate();
+  updateTotals();
+}
+
+function renderStep2() {
   widget.innerHTML = `
     <div class="booking-card booking-step-two">
       ${getSummaryHtml()}
