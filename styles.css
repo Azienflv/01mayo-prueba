@@ -1408,3 +1408,250 @@ Verifica el ccs
 .booking-step-two .btn {
   min-height: 54px;
 }
+
+.booking-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+.booking-price-top {
+  margin-bottom: 20px;
+}
+
+.booking-price-label {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.booking-price-top strong {
+  display: block;
+  font-size: 30px;
+  color: #0f172a;
+  line-height: 1.1;
+}
+
+.booking-price-top small {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.booking-field {
+  margin-bottom: 16px;
+}
+
+.booking-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.booking-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid #dbe2ea;
+  background: #fff;
+  font-size: 15px;
+  color: #0f172a;
+}
+
+.booking-input:focus {
+  outline: none;
+  border-color: #0ea5c6;
+  box-shadow: 0 0 0 3px rgba(14, 165, 198, 0.12);
+}
+
+.booking-field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
+.booking-people {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #eef2f7;
+}
+
+.booking-people h4 {
+  margin-bottom: 14px;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.booking-person-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.booking-person-row strong {
+  display: block;
+  color: #0f172a;
+}
+
+.booking-person-row span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #0f172a;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.qty-btn:hover {
+  border-color: #0ea5c6;
+}
+
+.booking-total-box {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f8fbff, #eef8ff);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.booking-total-box span {
+  color: #475569;
+  font-weight: 600;
+}
+
+.booking-total-box strong {
+  color: #0f172a;
+  font-size: 24px;
+}
+
+.booking-actions {
+  margin-top: 20px;
+}
+
+.booking-btn-full {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 16px;
+  font-weight: 700;
+}
+
+.booking-step-two .booking-summary-card {
+  margin-bottom: 20px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #f8fafc;
+}
+
+.booking-summary-card h4 {
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.booking-summary-list {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: #334155;
+  font-size: 14px;
+}
+
+.booking-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.booking-summary-total strong {
+  font-size: 22px;
+  color: #0f172a;
+}
+
+.booking-payment-box {
+  margin-top: 18px;
+}
+
+.booking-payment-box h4 {
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.booking-payment-note {
+  margin-bottom: 12px;
+  color: #64748b;
+}
+
+.paypal-container {
+  margin-bottom: 14px;
+}
+
+.booking-cash-btn {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.booking-cash-btn:hover {
+  background: #f8fafc;
+}
+
+.booking-actions-split {
+  margin-top: 16px;
+}
+
+.booking-back-btn {
+  background: transparent;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.booking-back-btn:hover {
+  background: #f8fafc;
+}
+
+@media (max-width: 768px) {
+  .booking-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .booking-field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-person-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-total-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
