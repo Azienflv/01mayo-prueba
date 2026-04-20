@@ -328,16 +328,15 @@ async function renderBookingWidget() {
         </div>
 
         <div class="booking-payment-box">
-          <h4>Payment method</h4>
-          <div class="booking-payment-options">
-            <button type="button" id="paypal-btn" class="btn btn-primary booking-btn-full">
-              Confirm with PayPal
-            </button>
-            <button type="button" id="cash-btn" class="btn booking-btn-full booking-cash-btn">
-              Confirm cash
-            </button>
-          </div>
-        </div>
+  <h4>Payment method</h4>
+  <div class="booking-payment-options">
+    <div id="paypal-button-container"></div>
+
+    <button type="button" id="cash-btn" class="btn booking-btn-full booking-cash-btn">
+      Confirm cash
+    </button>
+  </div>
+</div>
 
         <div class="booking-actions booking-actions-split">
           <button type="button" id="booking-back-btn" class="btn booking-back-btn">
