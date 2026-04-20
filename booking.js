@@ -404,22 +404,6 @@ async function renderBookingWidget() {
     const backBtn = document.getElementById("booking-back-btn");
     const cashBtn = document.getElementById("cash-btn");
     
-    paypalBtn.addEventListener("click", () => {
-  if (!validateStep2()) return;
-
-  paypalBtn.innerHTML = `<div id="paypal-container"></div>`;
-
-  paypal.Buttons({
-    createOrder: function (data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: getTotal().toString()
-          },
-          description: tour.name
-        }]
-      });
-    },
 
     onApprove: async function (data, actions) {
       const details = await actions.order.capture();
