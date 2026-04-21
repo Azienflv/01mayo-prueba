@@ -33,10 +33,24 @@
       <div class="booking-main">
         <h1>Saona Classic</h1>
 
-        <img
-          src="../../assets/imagines/tours/saona/saona-1.jpg"
-          alt="Saona Classic"
-          class="booking-hero-img"
+        <div class="tour-gallery">
+  <div class="tour-gallery-main">
+    <img
+      id="mainTourImage"
+      src="../../assets/imagines/tours/saona/saona-1.jpg"
+      alt="Saona Classic"
+      class="booking-hero-img"
+      data-index="0"
+    >
+  </div>
+
+  <div class="tour-gallery-thumbs">
+    <img src="../../assets/imagines/tours/saona/saona-1.jpg" alt="Saona 1" class="tour-thumb active" data-index="0">
+    <img src="../../assets/imagines/tours/saona/saona-2.jpg" alt="Saona 2" class="tour-thumb" data-index="1">
+    <img src="../../assets/imagines/tours/saona/saona-3.jpg" alt="Saona 3" class="tour-thumb" data-index="2">
+    <img src="../../assets/imagines/tours/saona/saona-4.jpg" alt="Saona 4" class="tour-thumb" data-index="3">
+  </div>
+</div>
         >
 
         <div class="booking-tabs">
@@ -83,6 +97,24 @@
 </section>
 </main>
 
+<div id="tourLightbox" class="tour-lightbox" aria-hidden="true">
+  <button class="tour-lightbox-close" id="lightboxClose" type="button">✕</button>
+
+  <div class="tour-lightbox-counter" id="lightboxCounter">1 / 4</div>
+
+  <button class="tour-lightbox-nav tour-lightbox-prev" id="lightboxPrev" type="button">‹</button>
+
+  <div class="tour-lightbox-content">
+    <img id="lightboxImage" src="" alt="Gallery image">
+  </div>
+
+  <button class="tour-lightbox-nav tour-lightbox-next" id="lightboxNext" type="button">›</button>
+</div>
+
+
+
+
+  
  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <!-- 💳 PAYPAL SDK -->
