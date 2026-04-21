@@ -491,8 +491,9 @@ async function renderBookingWidget() {
 document.addEventListener("DOMContentLoaded", renderBookingWidget);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const images = Array.from(document.querySelectorAll(".tour-gallery-gyg img"));
+  const galleryImages = Array.from(document.querySelectorAll(".tour-gallery-gyg img"));
   const mainImage = document.querySelector(".tour-gallery-main img");
+  const viewAllBtn = document.querySelector(".tour-gallery-more");
 
   const lightbox = document.getElementById("tourLightbox");
   const lightboxImage = document.getElementById("lightboxImage");
@@ -501,27 +502,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxPrev = document.getElementById("lightboxPrev");
   const lightboxNext = document.getElementById("lightboxNext");
 
-  // 🔥 esto es CLAVE para que no rompa otras páginas
-  if (!mainImage || !thumbs.length || !lightbox) return;
+  if (!mainImage || !galleryImages.length || !lightbox) return;
 
-  const images = thumbs.map((thumb) => ({
-    src: thumb.src,
-    alt: thumb.alt || "Gallery image"
+  const images = galleryImages.map((img) => ({
+    src: img.src,
+    alt: img.alt || "Gallery image"
   }));
 
   let currentIndex = 0;
 
-  function setActiveThumb(index) {
-    thumbs.forEach((thumb) => thumb.classList.remove("active"));
-    if (thumbs[index]) thumbs[index].classList.add("active");
-    currentIndex = index;
-    mainImage.src = images[index].src;
-    mainImage.alt = images[index].alt;
-    mainImage.dataset.index = index;
-  }
-
   function updateLightbox(index) {
     lightboxImage.src = images[index].src;
+    lightboxImage.alt = images[index].alt;
     lightboxCounter.textContent = `${index + 1} / ${images.length}`;
   }
 
@@ -529,11 +521,13 @@ document.addEventListener("DOMContentLoaded", () => {
     currentIndex = index;
     updateLightbox(currentIndex);
     lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("lightbox-open");
   }
 
   function closeLightbox() {
     lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lightbox-open");
   }
 
@@ -547,14 +541,17 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLightbox(currentIndex);
   }
 
-  thumbs.forEach((thumb, index) => {
-    thumb.addEventListener("click", () => setActiveThumb(index));
-    thumb.addEventListener("dblclick", () => openLightbox(index));
+  galleryImages.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      openLightbox(index);
+    });
   });
 
-  mainImage.addEventListener("click", () => {
-    openLightbox(Number(mainImage.dataset.index || 0));
-  });
+  if (viewAllBtn) {
+    viewAllBtn.addEventListener("click", () => {
+      openLightbox(0);
+    });
+  }
 
   lightboxClose.addEventListener("click", closeLightbox);
   lightboxPrev.addEventListener("click", showPrev);
@@ -571,7 +568,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowLeft") showPrev();
     if (e.key === "ArrowRight") showNext();
   });
-
-  setActiveThumb(0);
 });
-
