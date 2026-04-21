@@ -491,8 +491,8 @@ async function renderBookingWidget() {
 document.addEventListener("DOMContentLoaded", renderBookingWidget);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const mainImage = document.getElementById("mainTourImage");
-  const thumbs = Array.from(document.querySelectorAll(".tour-thumb"));
+  const images = Array.from(document.querySelectorAll(".tour-gallery-gyg img"));
+  const mainImage = document.querySelector(".tour-gallery-main img");
 
   const lightbox = document.getElementById("tourLightbox");
   const lightboxImage = document.getElementById("lightboxImage");
@@ -574,3 +574,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setActiveThumb(0);
 });
+
