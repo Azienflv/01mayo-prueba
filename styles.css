@@ -2706,3 +2706,55 @@ body.lightbox-open {
     right: 10px;
   }
 }
+.tour-gallery-gyg {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.tour-gallery-main img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+.tour-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.tour-gallery-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.tour-gallery-more {
+  position: relative;
+  background: rgba(0,0,0,0.6);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tour-gallery-more span {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.tour-gallery-grid img:hover,
+.tour-gallery-main img:hover {
+  transform: scale(1.02);
+  transition: 0.2s;
+}
