@@ -32,7 +32,15 @@
 <section class="section">
   <div class="container center">
     <h1>All Excursions</h1>
-    <p>Choose your adventure in Punta Cana</p>
+<p>Choose your adventure in Punta Cana</p>
+
+<div class="search-box">
+  <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="Search tours (Saona, Buggies, VIP...)"
+  />
+</div>
   </div>
 </section>
 <div class="excursions-search-wrap">
@@ -553,6 +561,31 @@ menuToggle.addEventListener("click", () => {
   mainNav.classList.toggle("active");
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("searchInput");
+  const cards = document.querySelectorAll(".searchable-tour-card");
 
+  if (!input || !cards.length) return;
+
+  input.addEventListener("input", () => {
+    const value = input.value.toLowerCase();
+
+    cards.forEach(card => {
+      const title = card.dataset.title.toLowerCase();
+      const family = card.dataset.family.toLowerCase();
+      const desc = card.dataset.description.toLowerCase();
+
+      const text = title + " " + family + " " + desc;
+
+      if (text.includes(value)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
