@@ -489,3 +489,88 @@ async function renderBookingWidget() {
 }
 
 document.addEventListener("DOMContentLoaded", renderBookingWidget);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const mainImage = document.getElementById("mainTourImage");
+  const thumbs = Array.from(document.querySelectorAll(".tour-thumb"));
+
+  const lightbox = document.getElementById("tourLightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const lightboxCounter = document.getElementById("lightboxCounter");
+  const lightboxClose = document.getElementById("lightboxClose");
+  const lightboxPrev = document.getElementById("lightboxPrev");
+  const lightboxNext = document.getElementById("lightboxNext");
+
+  // 🔥 esto es CLAVE para que no rompa otras páginas
+  if (!mainImage || !thumbs.length || !lightbox) return;
+
+  const images = thumbs.map((thumb) => ({
+    src: thumb.src,
+    alt: thumb.alt || "Gallery image"
+  }));
+
+  let currentIndex = 0;
+
+  function setActiveThumb(index) {
+    thumbs.forEach((thumb) => thumb.classList.remove("active"));
+    if (thumbs[index]) thumbs[index].classList.add("active");
+    currentIndex = index;
+    mainImage.src = images[index].src;
+    mainImage.alt = images[index].alt;
+    mainImage.dataset.index = index;
+  }
+
+  function updateLightbox(index) {
+    lightboxImage.src = images[index].src;
+    lightboxCounter.textContent = `${index + 1} / ${images.length}`;
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox(currentIndex);
+    lightbox.classList.add("is-open");
+    document.body.classList.add("lightbox-open");
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    document.body.classList.remove("lightbox-open");
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateLightbox(currentIndex);
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateLightbox(currentIndex);
+  }
+
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener("click", () => setActiveThumb(index));
+    thumb.addEventListener("dblclick", () => openLightbox(index));
+  });
+
+  mainImage.addEventListener("click", () => {
+    openLightbox(Number(mainImage.dataset.index || 0));
+  });
+
+  lightboxClose.addEventListener("click", closeLightbox);
+  lightboxPrev.addEventListener("click", showPrev);
+  lightboxNext.addEventListener("click", showNext);
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("is-open")) return;
+
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showPrev();
+    if (e.key === "ArrowRight") showNext();
+  });
+
+  setActiveThumb(0);
+});
