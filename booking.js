@@ -569,3 +569,50 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowRight") showNext();
   });
 });
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("excursionsSearch");
+    const countText = document.getElementById("excursionsSearchCount");
+    const cards = Array.from(document.querySelectorAll(".searchable-tour-card"));
+
+    if (!searchInput || !cards.length) return;
+
+    function normalizeText(text) {
+      return (text || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function filterExcursions() {
+      const query = normalizeText(searchInput.value.trim());
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const title = normalizeText(card.dataset.title);
+        const family = normalizeText(card.dataset.family);
+        const description = normalizeText(card.dataset.description);
+
+        const haystack = `${title} ${family} ${description}`;
+        const matches = !query || haystack.includes(query);
+
+        card.classList.toggle("is-hidden", !matches);
+
+        if (matches) visibleCount++;
+      });
+
+      if (!query) {
+        countText.textContent = "Showing all excursions";
+      } else if (visibleCount === 0) {
+        countText.textContent = `No excursions found for "${searchInput.value}"`;
+      } else if (visibleCount === 1) {
+        countText.textContent = `1 excursion found`;
+      } else {
+        countText.textContent = `${visibleCount} excursions found`;
+      }
+    }
+
+    searchInput.addEventListener("input", filterExcursions);
+  });
+</script>
