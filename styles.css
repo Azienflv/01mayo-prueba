@@ -3065,3 +3065,50 @@ body.lightbox-open {
     top: auto;
   }
 }
+
+.excursions-search-wrap {
+  max-width: 760px;
+  margin: 24px auto 36px;
+  text-align: center;
+}
+
+.excursions-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #dbe2ea;
+  border-radius: 18px;
+  padding: 14px 18px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.06);
+}
+
+.excursions-search-icon {
+  font-size: 18px;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.excursions-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: #0f172a;
+  font-family: inherit;
+}
+
+.excursions-search-input::placeholder {
+  color: #64748b;
+}
+
+.excursions-search-count {
+  margin-top: 10px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.searchable-tour-card.is-hidden {
+  display: none !important;
+}
