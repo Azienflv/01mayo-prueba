@@ -6,7 +6,7 @@
   <title>Buggies Night | PCG Tours</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../../styles.css"/>
+  <link rel="stylesheet" href="../../styles.css?v=31"/>
 </head>
 
 <body>
@@ -32,11 +32,23 @@
       <div class="booking-main">
         <h1>Buggies Night</h1>
 
-        <img
-          src="../../assets/imagines/tours/buggies/buggies-1.jpg"
-          alt="Buggies Night"
-          class="booking-hero-img"
-        >
+        <div class="tour-gallery-gyg">
+
+  <div class="tour-gallery-main">
+    <img src="../../assets/imagines/tours/buggies/night-1.jpg" alt="Buggies Night">
+  </div>
+
+  <div class="tour-gallery-grid">
+    <img src="../../assets/imagines/tours/buggies/night-2.jpg" alt="">
+    <img src="../../assets/imagines/tours/buggies/night-3.jpg" alt="">
+    <img src="../../assets/imagines/tours/buggies/night-4.jpg" alt="">
+    
+    <div class="tour-gallery-more">
+      <span>View all photos</span>
+    </div>
+  </div>
+
+</div>
 
         <div class="booking-tabs">
           <span class="active">Overview</span>
@@ -80,6 +92,29 @@
     </div>
   </section>
 </main>
+
+<!-- GALERÍA (arriba en la página) -->
+<div class="tour-gallery-gyg">
+  ...
+</div>
+
+<!-- 🔥 LIGHTBOX (UNA sola vez por página) -->
+<div id="tourLightbox" class="tour-lightbox" aria-hidden="true">
+  <button class="tour-lightbox-close" id="lightboxClose" type="button">✕</button>
+
+  <div class="tour-lightbox-counter" id="lightboxCounter">1 / 4</div>
+
+  <button class="tour-lightbox-nav tour-lightbox-prev" id="lightboxPrev" type="button">‹</button>
+
+  <div class="tour-lightbox-content">
+    <img id="lightboxImage" src="" alt="Gallery image">
+  </div>
+
+  <button class="tour-lightbox-nav tour-lightbox-next" id="lightboxNext" type="button">›</button>
+</div>
+
+</body>
+  
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
