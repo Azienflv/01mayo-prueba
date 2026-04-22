@@ -6,7 +6,7 @@
   <title>Excursions | PCG Tours</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css?v=50"/>
 </head>
 
 <body>
@@ -29,517 +29,580 @@
 
 <main style="padding-top:120px;">
 
-<section class="section">
-  <div class="container center">
-    <h1>All Excursions</h1>
-<p>Choose your adventure in Punta Cana</p>
+  <section class="section">
+    <div class="container center">
+      <h1>All Excursions</h1>
+      <p>Choose your adventure in Punta Cana</p>
+    </div>
+  </section>
 
-<div class="search-box">
-  <input 
-    type="text" 
-    id="searchInput" 
-    placeholder="Search tours (Saona, Buggies, VIP...)"
-  />
-</div>
-  </div>
-</section>
-<div class="excursions-search-wrap">
-  <div class="excursions-search-box">
-    <span class="excursions-search-icon">🔎</span>
-    <input
-      type="text"
-      id="excursionsSearch"
-      class="excursions-search-input"
-      placeholder="Search excursions, categories or experiences..."
-      autocomplete="off"
-    >
-  </div>
-
-  <p id="excursionsSearchCount" class="excursions-search-count">
-    Showing all excursions
-  </p>
-</div>
-<section class="featured-excursions section">
-  <div class="container">
-
-    <div class="cards-grid">
-
-      <!-- DOLPHIN -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/dolphin/dolphin-1.jpg"
-          alt="Dolphin Experience Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Family Experience</span>
-            <span class="tour-rating">⭐ 4.8</span>
-          </div>
-
-          <h3>Dolphin Experience</h3>
-
-          <p>
-            Enjoy a magical experience interacting with dolphins. Perfect for families,
-            couples, and anyone looking for a unique activity in Punta Cana.
-          </p>
-
-          <ul>
-            <li>Interaction with dolphins</li>
-            <li>Perfect for all ages</li>
-            <li>3 different experiences available</li>
-          </ul>
-
-          <a href="excursions/dolphin/index.html" class="card-link">
-            View options →
-          </a>
-        </div>
-      </article>
-
-      <!-- SAONA -->
-      <!-- SAONA -->
-<article
-  class="tour-card searchable-tour-card"
-  data-title="Saona Island"
-  data-family="saona"
-  data-description="Classic VIP Luxury island excursion Punta Cana natural pool beach"
->
-  <img
-    src="assets/imagines/tours/saona/saona-1.jpg"
-    alt="Saona Island Punta Cana"
-    class="tour-img"
-  />
-  <div class="tour-content">
-    <div class="tour-top">
-      <span class="tour-badge">Best Seller</span>
-      <span class="tour-rating">⭐ 4.9</span>
+  <div class="excursions-search-wrap">
+    <div class="excursions-search-box">
+      <span class="excursions-search-icon">🔎</span>
+      <input
+        type="text"
+        id="excursionsSearch"
+        class="excursions-search-input"
+        placeholder="Search excursions, categories or experiences..."
+        autocomplete="off"
+      >
     </div>
 
-    <h3>Saona Island</h3>
-
-    <p>
-      Choose between Classic, VIP, and Luxury experiences for one of the most iconic island tours in the Dominican Republic.
+    <p id="excursionsSearchCount" class="excursions-search-count">
+      Showing all excursions
     </p>
-
-    <ul>
-      <li>Multiple options</li>
-      <li>Natural pool and island</li>
-      <li>Top-selling experience</li>
-    </ul>
-
-    <a href="excursions/saona/index.html" class="card-link">
-      View options →
-    </a>
   </div>
-</article>
 
-      <!-- BUGGIES -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/buggies/buggies-1.jpg"
-          alt="Buggies Adventure Punta Cana"
-          class="tour-img"
-        />
+  <section class="featured-excursions section">
+    <div class="container">
 
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Top Adventure</span>
-            <span class="tour-rating">⭐ 4.8</span>
+      <div class="cards-grid">
+
+        <!-- DOLPHIN -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Dolphin Experience"
+          data-family="dolphin"
+          data-description="dolphin family experience punta cana swim encounter royal"
+        >
+          <img
+            src="assets/imagines/tours/dolphin/dolphin-1.jpg"
+            alt="Dolphin Experience Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Family Experience</span>
+              <span class="tour-rating">⭐ 4.8</span>
+            </div>
+
+            <h3>Dolphin Experience</h3>
+
+            <p>
+              Enjoy a magical experience interacting with dolphins. Perfect for families,
+              couples, and anyone looking for a unique activity in Punta Cana.
+            </p>
+
+            <ul>
+              <li>Interaction with dolphins</li>
+              <li>Perfect for all ages</li>
+              <li>3 different experiences available</li>
+            </ul>
+
+            <a href="excursions/dolphin/index.html" class="card-link">
+              View options →
+            </a>
           </div>
+        </article>
 
-          <h3>Buggies Adventure</h3>
+        <!-- SAONA -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Saona Island"
+          data-family="saona"
+          data-description="classic vip luxury island excursion punta cana natural pool beach"
+        >
+          <img
+            src="assets/imagines/tours/saona/saona-1.jpg"
+            alt="Saona Island Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Best Seller</span>
+              <span class="tour-rating">⭐ 4.9</span>
+            </div>
 
-          <p>
-            Drive through dirt roads, explore local countryside, and enjoy an exciting off-road adventure in Punta Cana.
-          </p>
+            <h3>Saona Island</h3>
 
-          <ul>
-            <li>Adrenaline experience</li>
-            <li>Different buggy packages</li>
-            <li>Perfect for groups & couples</li>
-          </ul>
+            <p>
+              Choose between Classic, VIP, and Luxury experiences for one of the most iconic island tours in the Dominican Republic.
+            </p>
 
-          <a href="excursions/buggies/index.html" class="card-link">
-            View options →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Multiple options</li>
+              <li>Natural pool and island</li>
+              <li>Top-selling experience</li>
+            </ul>
 
-      <!-- PARTY BOAT -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/partyboat/partyboat-1.jpg"
-          alt="Party Boat Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Sea Experience</span>
-            <span class="tour-rating">⭐ 4.7</span>
+            <a href="excursions/saona/index.html" class="card-link">
+              View options →
+            </a>
           </div>
+        </article>
 
-          <h3>Party Boat</h3>
+        <!-- BUGGIES -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Buggies Adventure"
+          data-family="buggies"
+          data-description="buggy adventure off road punta cana adrenaline couples groups"
+        >
+          <img
+            src="assets/imagines/tours/buggies/buggies-1.jpg"
+            alt="Buggies Adventure Punta Cana"
+            class="tour-img"
+          />
 
-          <p>
-            Enjoy music, drinks, dancing, and unforgettable ocean vibes on one of the most fun boat experiences in Punta Cana.
-          </p>
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Top Adventure</span>
+              <span class="tour-rating">⭐ 4.8</span>
+            </div>
 
-          <ul>
-            <li>Music and entertainment</li>
-            <li>Caribbean ocean vibes</li>
-            <li>Perfect for groups</li>
-          </ul>
+            <h3>Buggies Adventure</h3>
 
-          <a href="excursions/partyboat/index.html" class="card-link">
-            View details →
-          </a>
-        </div>
-      </article>
+            <p>
+              Drive through dirt roads, explore local countryside, and enjoy an exciting off-road adventure in Punta Cana.
+            </p>
 
-      <!-- LAKE PARK -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/lake-park/lake-park-1.png"
-          alt="Caribbean Lake Park Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Water Park</span>
-            <span class="tour-rating">⭐ 4.7</span>
+            <ul>
+              <li>Adrenaline experience</li>
+              <li>Different buggy packages</li>
+              <li>Perfect for groups & couples</li>
+            </ul>
+
+            <a href="excursions/buggies/index.html" class="card-link">
+              View options →
+            </a>
           </div>
+        </article>
 
-          <h3>Caribbean Lake Park</h3>
+        <!-- PARTY BOAT -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Party Boat"
+          data-family="partyboat"
+          data-description="party boat music drinks ocean snorkeling fun punta cana"
+        >
+          <img
+            src="assets/imagines/tours/partyboat/partyboat-1.jpg"
+            alt="Party Boat Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Sea Experience</span>
+              <span class="tour-rating">⭐ 4.7</span>
+            </div>
 
-          <p>
-            Choose from adrenaline, adventure, or family splash experiences in one of Punta Cana’s most fun water parks.
-          </p>
+            <h3>Party Boat</h3>
 
-          <ul>
-            <li>Water activities</li>
-            <li>Different packs available</li>
-            <li>Fun for all ages</li>
-          </ul>
+            <p>
+              Enjoy music, drinks, dancing, and unforgettable ocean vibes on one of the most fun boat experiences in Punta Cana.
+            </p>
 
-          <a href="excursions/lakepark/index.html" class="card-link">
-            View options →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Music and entertainment</li>
+              <li>Caribbean ocean vibes</li>
+              <li>Perfect for groups</li>
+            </ul>
 
-      <!-- DOMITAI -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/domitai/domitai-1.png"
-          alt="Domitai Park Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Adventure Park</span>
-            <span class="tour-rating">⭐ 4.6</span>
+            <a href="excursions/partyboat/index.html" class="card-link">
+              View details →
+            </a>
           </div>
+        </article>
 
-          <h3>Domitai Park</h3>
+        <!-- LAKE PARK -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Caribbean Lake Park"
+          data-family="lakepark"
+          data-description="water park adventure splash family punta cana aqua"
+        >
+          <img
+            src="assets/imagines/tours/lake-park/lake-park-1.png"
+            alt="Caribbean Lake Park Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Water Park</span>
+              <span class="tour-rating">⭐ 4.7</span>
+            </div>
 
-          <p>
-            Explore nature, cenotes, zipline, and horseback experiences in one unforgettable adventure park in Punta Cana.
-          </p>
+            <h3>Caribbean Lake Park</h3>
 
-          <ul>
-            <li>Nature and adventure</li>
-            <li>Multiple experiences</li>
-            <li>Great for all ages</li>
-          </ul>
+            <p>
+              Choose from adrenaline, adventure, or family splash experiences in one of Punta Cana’s most fun water parks.
+            </p>
 
-          <a href="excursions/domitai/index.html" class="card-link">
-            View options →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Water activities</li>
+              <li>Different packs available</li>
+              <li>Fun for all ages</li>
+            </ul>
 
-      <!-- HORSEBACK -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/horseback/horseback-1.png"
-          alt="Horseback Riding Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Nature</span>
-            <span class="tour-rating">⭐ 4.6</span>
+            <a href="excursions/lakepark/index.html" class="card-link">
+              View options →
+            </a>
           </div>
+        </article>
 
-          <h3>Horseback Riding</h3>
+        <!-- DOMITAI -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Domitai Park"
+          data-family="domitai"
+          data-description="domitai park cenote zipline horseback adventure nature punta cana"
+        >
+          <img
+            src="assets/imagines/tours/domitai/domitai-1.png"
+            alt="Domitai Park Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Adventure Park</span>
+              <span class="tour-rating">⭐ 4.6</span>
+            </div>
 
-          <p>
-            Ride through scenic natural trails and enjoy a relaxing horseback experience in Punta Cana.
-          </p>
+            <h3>Domitai Park</h3>
 
-          <ul>
-            <li>Nature experience</li>
-            <li>Relaxing activity</li>
-            <li>Perfect for all levels</li>
-          </ul>
+            <p>
+              Explore nature, cenotes, zipline, and horseback experiences in one unforgettable adventure park in Punta Cana.
+            </p>
 
-          <a href="excursions/horseback/index.html" class="card-link">
-            View details →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Nature and adventure</li>
+              <li>Multiple experiences</li>
+              <li>Great for all ages</li>
+            </ul>
 
-      <!-- EL DORADO -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/eldorado/eldorado-1.png"
-          alt="El Dorado Park Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Nature</span>
-            <span class="tour-rating">⭐ 4.6</span>
+            <a href="excursions/domitai/index.html" class="card-link">
+              View options →
+            </a>
           </div>
+        </article>
 
-          <h3>El Dorado Park</h3>
+        <!-- HORSEBACK -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Horseback Riding"
+          data-family="horseback"
+          data-description="horseback riding nature trail relaxing punta cana beach"
+        >
+          <img
+            src="assets/imagines/tours/horseback/horseback-1.png"
+            alt="Horseback Riding Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Nature</span>
+              <span class="tour-rating">⭐ 4.6</span>
+            </div>
 
-          <p>
-            Enjoy a natural and relaxing experience with adventure activities in one of the most unique parks in Punta Cana.
-          </p>
+            <h3>Horseback Riding</h3>
 
-          <ul>
-            <li>Nature experience</li>
-            <li>Relaxation and fun</li>
-            <li>Perfect for all travelers</li>
-          </ul>
+            <p>
+              Ride through scenic natural trails and enjoy a relaxing horseback experience in Punta Cana.
+            </p>
 
-          <a href="excursions/eldorado/index.html" class="card-link">
-            View details →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Nature experience</li>
+              <li>Relaxing activity</li>
+              <li>Perfect for all levels</li>
+            </ul>
 
-      <!-- MONKEYLAND -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/monkeyland/monkeyland-1.png"
-          alt="Monkeyland Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Family Adventure</span>
-            <span class="tour-rating">⭐ 4.6</span>
+            <a href="excursions/horseback/index.html" class="card-link">
+              View details →
+            </a>
           </div>
+        </article>
 
-          <h3>Monkeyland</h3>
+        <!-- EL DORADO -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="El Dorado Park"
+          data-family="eldorado"
+          data-description="el dorado park nature adventure relaxing punta cana"
+        >
+          <img
+            src="assets/imagines/tours/eldorado/eldorado-1.png"
+            alt="El Dorado Park Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Nature</span>
+              <span class="tour-rating">⭐ 4.6</span>
+            </div>
 
-          <p>
-            Interact with friendly monkeys and choose from simple or combo experiences for a fun day in Punta Cana.
-          </p>
+            <h3>El Dorado Park</h3>
 
-          <ul>
-            <li>Monkey interaction</li>
-            <li>Combo options available</li>
-            <li>Perfect for families</li>
-          </ul>
+            <p>
+              Enjoy a natural and relaxing experience with adventure activities in one of the most unique parks in Punta Cana.
+            </p>
 
-          <a href="excursions/monkeyland/index.html" class="card-link">
-            View options →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Nature experience</li>
+              <li>Relaxation and fun</li>
+              <li>Perfect for all travelers</li>
+            </ul>
 
-      <!-- SAFARI -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/safari/safari-1.jpg"
-          alt="Safari Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Cultural</span>
-            <span class="tour-rating">⭐ 4.6</span>
+            <a href="excursions/eldorado/index.html" class="card-link">
+              View details →
+            </a>
           </div>
+        </article>
 
-          <h3>Safari Punta Cana</h3>
+        <!-- MONKEYLAND -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Monkeyland"
+          data-family="monkeyland"
+          data-description="monkeyland monkeys family combo adventure punta cana"
+        >
+          <img
+            src="assets/imagines/tours/monkeyland/monkeyland-1.png"
+            alt="Monkeyland Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Family Adventure</span>
+              <span class="tour-rating">⭐ 4.6</span>
+            </div>
 
-          <p>
-            Discover Dominican culture, countryside, and local traditions in an authentic safari experience.
-          </p>
+            <h3>Monkeyland</h3>
 
-          <ul>
-            <li>Local culture</li>
-            <li>Village visits</li>
-            <li>Authentic experience</li>
-          </ul>
+            <p>
+              Interact with friendly monkeys and choose from simple or combo experiences for a fun day in Punta Cana.
+            </p>
 
-          <a href="excursions/safari/index.html" class="card-link">
-            View details →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Monkey interaction</li>
+              <li>Combo options available</li>
+              <li>Perfect for families</li>
+            </ul>
 
-      <!-- SANTO DOMINGO -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/santo-domingo/santo-domingo-1.png"
-          alt="Santo Domingo City Tour"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Cultural</span>
-            <span class="tour-rating">⭐ 4.6</span>
+            <a href="excursions/monkeyland/index.html" class="card-link">
+              View options →
+            </a>
           </div>
+        </article>
 
-          <h3>Santo Domingo City Tour</h3>
+        <!-- SAFARI -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Safari Punta Cana"
+          data-family="safari"
+          data-description="safari culture countryside dominican village authentic punta cana"
+        >
+          <img
+            src="assets/imagines/tours/safari/safari-1.jpg"
+            alt="Safari Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Cultural</span>
+              <span class="tour-rating">⭐ 4.6</span>
+            </div>
 
-          <p>
-            Discover the first city of the Americas with colonial architecture, history, and a full cultural experience.
-          </p>
+            <h3>Safari Punta Cana</h3>
 
-          <ul>
-            <li>Colonial Zone</li>
-            <li>City and history</li>
-            <li>Full-day experience</li>
-          </ul>
+            <p>
+              Discover Dominican culture, countryside, and local traditions in an authentic safari experience.
+            </p>
 
-          <a href="excursions/santo-domingo/index.html" class="card-link">
-            View details →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Local culture</li>
+              <li>Village visits</li>
+              <li>Authentic experience</li>
+            </ul>
 
-      <!-- SAMANA -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/samana-cayo/samana-cayo-1.png"
-          alt="Samana Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Top Experience</span>
-            <span class="tour-rating">⭐ 4.8</span>
+            <a href="excursions/safari/index.html" class="card-link">
+              View details →
+            </a>
           </div>
+        </article>
 
-          <h3>Samaná</h3>
+        <!-- SANTO DOMINGO -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Santo Domingo City Tour"
+          data-family="santo-domingo"
+          data-description="santo domingo city tour colonial zone history culture full day"
+        >
+          <img
+            src="assets/imagines/tours/santo-domingo/santo-domingo-1.png"
+            alt="Santo Domingo City Tour"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Cultural</span>
+              <span class="tour-rating">⭐ 4.6</span>
+            </div>
 
-          <p>
-            Choose between classic, waterfall, or whale watching experiences in one of the most breathtaking destinations in the Dominican Republic.
-          </p>
+            <h3>Santo Domingo City Tour</h3>
 
-          <ul>
-            <li>Multiple options</li>
-            <li>Nature & adventure</li>
-            <li>Full-day experience</li>
-          </ul>
+            <p>
+              Discover the first city of the Americas with colonial architecture, history, and a full cultural experience.
+            </p>
 
-          <a href="excursions/samana/index.html" class="card-link">
-            View options →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Colonial Zone</li>
+              <li>City and history</li>
+              <li>Full-day experience</li>
+            </ul>
 
-      <!-- COCO BONGO -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/cocobongo/cocobongo-1.png"
-          alt="Coco Bongo Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Nightlife</span>
-            <span class="tour-rating">⭐ 4.7</span>
+            <a href="excursions/santo-domingo/index.html" class="card-link">
+              View details →
+            </a>
           </div>
+        </article>
 
-          <h3>Coco Bongo</h3>
+        <!-- SAMANA -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Samana"
+          data-family="samana"
+          data-description="samana cayo limon whale watching nature adventure full day"
+        >
+          <img
+            src="assets/imagines/tours/samana-cayo/samana-cayo-1.png"
+            alt="Samana Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Top Experience</span>
+              <span class="tour-rating">⭐ 4.8</span>
+            </div>
 
-          <p>
-            One of the most iconic nightlife experiences in Punta Cana with live shows, music, and unforgettable entertainment.
-          </p>
+            <h3>Samaná</h3>
 
-          <ul>
-            <li>Live performances</li>
-            <li>Party atmosphere</li>
-            <li>VIP options available</li>
-          </ul>
+            <p>
+              Choose between classic, waterfall, or whale watching experiences in one of the most breathtaking destinations in the Dominican Republic.
+            </p>
 
-          <a href="excursions/cocobongo/index.html" class="card-link">
-            View options →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Multiple options</li>
+              <li>Nature & adventure</li>
+              <li>Full-day experience</li>
+            </ul>
 
-      <!-- SCAPE PARK -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/scape-park/scape-park-1.png"
-          alt="Scape Park Punta Cana"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Adventure Park</span>
-            <span class="tour-rating">⭐ 4.8</span>
+            <a href="excursions/samana/index.html" class="card-link">
+              View options →
+            </a>
           </div>
+        </article>
 
-          <h3>Scape Park</h3>
+        <!-- COCO BONGO -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Coco Bongo"
+          data-family="cocobongo"
+          data-description="coco bongo nightlife party show vip punta cana"
+        >
+          <img
+            src="assets/imagines/tours/cocobongo/cocobongo-1.png"
+            alt="Coco Bongo Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Nightlife</span>
+              <span class="tour-rating">⭐ 4.7</span>
+            </div>
 
-          <p>
-            Enjoy zip lines, cenotes, caves, and one of the most complete adventure park experiences in Punta Cana.
-          </p>
+            <h3>Coco Bongo</h3>
 
-          <ul>
-            <li>Hoyo Azul</li>
-            <li>Zip lines</li>
-            <li>Nature adventure</li>
-          </ul>
+            <p>
+              One of the most iconic nightlife experiences in Punta Cana with live shows, music, and unforgettable entertainment.
+            </p>
 
-          <a href="excursions/scape-park/index.html" class="card-link">
-            View details →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Live performances</li>
+              <li>Party atmosphere</li>
+              <li>VIP options available</li>
+            </ul>
 
-      <!-- BAVARO ADVENTURE -->
-      <article class="tour-card">
-        <img
-          src="assets/imagines/tours/bavaro-adventure/bavaro-1.jpg"
-          alt="Bávaro Adventure Park"
-          class="tour-img"
-        />
-        <div class="tour-content">
-          <div class="tour-top">
-            <span class="tour-badge">Adventure Park</span>
-            <span class="tour-rating">⭐ 4.7</span>
+            <a href="excursions/cocobongo/index.html" class="card-link">
+              View options →
+            </a>
           </div>
+        </article>
 
-          <h3>Bávaro Adventure Park</h3>
+        <!-- SCAPE PARK -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Scape Park"
+          data-family="scape-park"
+          data-description="scape park hoyo azul zipline cenote cave adventure punta cana"
+        >
+          <img
+            src="assets/imagines/tours/scape-park/scape-park-1.png"
+            alt="Scape Park Punta Cana"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Adventure Park</span>
+              <span class="tour-rating">⭐ 4.8</span>
+            </div>
 
-          <p>
-            Enjoy multiple adventure experiences in one place, including buggy routes, water attractions, and adrenaline-filled activities.
-          </p>
+            <h3>Scape Park</h3>
 
-          <ul>
-            <li>Multiple adventure options</li>
-            <li>Buggies and water fun</li>
-            <li>Perfect for thrill seekers</li>
-          </ul>
+            <p>
+              Enjoy zip lines, cenotes, caves, and one of the most complete adventure park experiences in Punta Cana.
+            </p>
 
-          <a href="excursions/bavaro-adventure/index.html" class="card-link">
-            View options →
-          </a>
-        </div>
-      </article>
+            <ul>
+              <li>Hoyo Azul</li>
+              <li>Zip lines</li>
+              <li>Nature adventure</li>
+            </ul>
 
+            <a href="excursions/scape-park/index.html" class="card-link">
+              View details →
+            </a>
+          </div>
+        </article>
+
+        <!-- BAVARO ADVENTURE -->
+        <article
+          class="tour-card searchable-tour-card"
+          data-title="Bavaro Adventure Park"
+          data-family="bavaro-adventure"
+          data-description="bavaro adventure park buggies splash adrenaline water fun punta cana"
+        >
+          <img
+            src="assets/imagines/tours/bavaro-adventure/bavaro-1.jpg"
+            alt="Bávaro Adventure Park"
+            class="tour-img"
+          />
+          <div class="tour-content">
+            <div class="tour-top">
+              <span class="tour-badge">Adventure Park</span>
+              <span class="tour-rating">⭐ 4.7</span>
+            </div>
+
+            <h3>Bávaro Adventure Park</h3>
+
+            <p>
+              Enjoy multiple adventure experiences in one place, including buggy routes, water attractions, and adrenaline-filled activities.
+            </p>
+
+            <ul>
+              <li>Multiple adventure options</li>
+              <li>Buggies and water fun</li>
+              <li>Perfect for thrill seekers</li>
+            </ul>
+
+            <a href="excursions/bavaro-adventure/index.html" class="card-link">
+              View options →
+            </a>
+          </div>
+        </article>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
@@ -561,31 +624,55 @@ menuToggle.addEventListener("click", () => {
   mainNav.classList.toggle("active");
 });
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("searchInput");
-  const cards = document.querySelectorAll(".searchable-tour-card");
+  const input = document.getElementById("excursionsSearch");
+  const countText = document.getElementById("excursionsSearchCount");
+  const cards = Array.from(document.querySelectorAll(".searchable-tour-card"));
 
   if (!input || !cards.length) return;
 
-  input.addEventListener("input", () => {
-    const value = input.value.toLowerCase();
+  function normalizeText(text) {
+    return (text || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
 
-    cards.forEach(card => {
-      const title = card.dataset.title.toLowerCase();
-      const family = card.dataset.family.toLowerCase();
-      const desc = card.dataset.description.toLowerCase();
+  function filterExcursions() {
+    const value = normalizeText(input.value.trim());
+    let visibleCount = 0;
 
-      const text = title + " " + family + " " + desc;
+    cards.forEach((card) => {
+      const title = normalizeText(card.dataset.title);
+      const family = normalizeText(card.dataset.family);
+      const desc = normalizeText(card.dataset.description);
 
-      if (text.includes(value)) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
+      const text = `${title} ${family} ${desc}`;
+      const matches = !value || text.includes(value);
+
+      card.style.display = matches ? "" : "none";
+
+      if (matches) visibleCount++;
     });
-  });
+
+    if (!countText) return;
+
+    if (!value) {
+      countText.textContent = "Showing all excursions";
+    } else if (visibleCount === 0) {
+      countText.textContent = `No excursions found for "${input.value}"`;
+    } else if (visibleCount === 1) {
+      countText.textContent = "1 excursion found";
+    } else {
+      countText.textContent = `${visibleCount} excursions found`;
+    }
+  }
+
+  input.addEventListener("input", filterExcursions);
 });
 </script>
+
 </body>
 </html>
