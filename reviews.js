@@ -153,3 +153,199 @@ async function setupReviewsSection() {
 }
 
 document.addEventListener("DOMContentLoaded", setupReviewsSection);
+
+async function getCurrentReviewUser() {
+  if (!supabaseClient) return null;
+
+  const { data, error } = await supabaseClient.auth.getUser();
+
+  if (error) {
+    console.error("Error getting auth user:", error);
+    return null;
+  }
+
+  return data?.user || null;
+}
+
+async function signInWithGoogleForReviews() {
+  if (!supabaseClient) {
+    alert("Supabase no está disponible.");
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: window.location.href
+    }
+  });
+
+  if (error) {
+    console.error("Google login error:", error);
+    alert("No se pudo iniciar sesión con Google.");
+  }
+}
+
+async function signOutReviewsUser() {
+  if (!supabaseClient) return;
+
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) {
+    console.error("Sign out error:", error);
+    alert("No se pudo cerrar sesión.");
+    return;
+  }
+
+  window.location.reload();
+}
+
+async function loadApprovedReviews(tourSlug) {
+  const list = document.getElementById("approved-reviews-list");
+  const averageBox = document.getElementById("reviews-average-box");
+
+  if (!list || !supabaseClient || !tourSlug) return;
+
+  const { data, error } = await supabaseClient
+    .from("reviews")
+    .select("*")
+    .eq("tour_slug", tourSlug)
+    .eq("status", "approved")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Error loading approved reviews:", error);
+    list.innerHTML = `<p>Could not load reviews.</p>`;
+    return;
+  }
+
+  const reviews = data || [];
+
+  if (averageBox) {
+    if (!reviews.length) {
+      averageBox.innerHTML = `
+        <div class="reviews-average-card">
+          <strong>New experience</strong>
+          <span>No reviews yet</span>
+        </div>
+      `;
+    } else {
+      const total = reviews.reduce((sum, r) => sum + (r.rating || 0), 0);
+      const avg = (total / reviews.length).toFixed(1);
+
+      averageBox.innerHTML = `
+        <div class="reviews-average-card">
+          <strong>⭐ ${avg}</strong>
+          <span>${reviews.length} review${reviews.length === 1 ? "" : "s"}</span>
+        </div>
+      `;
+    }
+  }
+
+  if (!reviews.length) {
+    list.innerHTML = `<p>No reviews yet. Be the first to leave one.</p>`;
+    return;
+  }
+
+  list.innerHTML = reviews.map((review) => `
+    <article class="review-card">
+      <div class="review-card-top">
+        <strong>${review.client_name || "Traveler"}</strong>
+        <span>${"⭐".repeat(review.rating || 0)}</span>
+      </div>
+      <p>${review.comment || ""}</p>
+      <small>${new Date(review.created_at).toLocaleDateString()}</small>
+    </article>
+  `).join("");
+}
+
+async function setupReviewsSection() {
+  const widget = document.getElementById("booking-widget");
+  if (!widget) return;
+
+  const tourSlug = widget.dataset.tour;
+  if (!tourSlug) return;
+
+  const loginBox = document.getElementById("reviews-login-box");
+  const userBox = document.getElementById("reviews-user-box");
+  const userText = document.getElementById("reviews-user-text");
+  const loginBtn = document.getElementById("google-review-login");
+  const logoutBtn = document.getElementById("google-review-logout");
+  const form = document.getElementById("review-form");
+  const message = document.getElementById("review-message");
+
+  await loadApprovedReviews(tourSlug);
+
+  if (loginBtn) {
+    loginBtn.addEventListener("click", signInWithGoogleForReviews);
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", signOutReviewsUser);
+  }
+
+  const user = await getCurrentReviewUser();
+
+  if (!user) {
+    if (loginBox) loginBox.style.display = "block";
+    if (userBox) userBox.style.display = "none";
+    if (form) form.style.display = "none";
+    return;
+  }
+
+  if (loginBox) loginBox.style.display = "none";
+  if (userBox) userBox.style.display = "block";
+  if (form) form.style.display = "block";
+
+  const displayName =
+    user.user_metadata?.full_name ||
+    user.user_metadata?.name ||
+    user.email ||
+    "Traveler";
+
+  if (userText) {
+    userText.textContent = `Signed in as ${displayName}`;
+  }
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const rating = document.getElementById("review-rating")?.value;
+    const comment = document.getElementById("review-comment")?.value.trim();
+
+    if (!rating || !comment) {
+      if (message) message.textContent = "Please complete rating and comment.";
+      return;
+    }
+
+    const payload = {
+      user_id: user.id,
+      tour_slug: tourSlug,
+      client_name: displayName,
+      client_email: user.email || null,
+      rating: Number(rating),
+      comment,
+      status: "pending"
+    };
+
+    const { error } = await supabaseClient
+      .from("reviews")
+      .insert([payload]);
+
+    if (error) {
+      console.error("Error saving review:", error);
+      if (message) message.textContent = "Could not submit review.";
+      return;
+    }
+
+    form.reset();
+
+    if (message) {
+      message.textContent = "Thanks! Your review was sent and is pending approval.";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", setupReviewsSection);
