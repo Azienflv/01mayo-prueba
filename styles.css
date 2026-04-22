@@ -3112,3 +3112,100 @@ body.lightbox-open {
 .searchable-tour-card.is-hidden {
   display: none !important;
 }
+
+.tour-reviews-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.reviews-section-head h2 {
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.reviews-section-head p {
+  color: #64748b;
+  margin-bottom: 16px;
+}
+
+.reviews-average-card {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.reviews-average-card strong {
+  font-size: 20px;
+  color: #0f172a;
+}
+
+.reviews-average-card span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.reviews-login-box,
+.reviews-user-box,
+.review-form {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.review-field {
+  margin-bottom: 14px;
+}
+
+.review-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.review-field select,
+.review-field textarea {
+  width: 100%;
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+  padding: 12px;
+  font: inherit;
+}
+
+.approved-reviews-list {
+  display: grid;
+  gap: 14px;
+}
+
+.review-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.review-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.review-card p {
+  color: #334155;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.review-card small {
+  color: #64748b;
+}
