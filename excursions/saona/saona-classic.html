@@ -128,6 +128,59 @@
   <div id="approved-reviews-list" class="approved-reviews-list"></div>
 </section>
       
+      <!-- Coments -->
+
+<section class="tour-reviews-section">
+  <div class="reviews-section-head">
+    <h2>Traveler reviews</h2>
+    <p>Read what other guests say and share your own experience.</p>
+  </div>
+
+  <div id="reviews-average-box"></div>
+
+  <div id="reviews-login-box" class="reviews-login-box">
+    <p>Sign in with Google to leave a review.</p>
+    <button id="google-review-login" class="btn btn-primary" type="button">
+      Continue with Google
+    </button>
+  </div>
+
+  <div id="reviews-user-box" class="reviews-user-box" style="display:none;">
+    <p id="reviews-user-text"></p>
+    <button id="google-review-logout" class="btn" type="button">
+      Sign out
+    </button>
+  </div>
+
+  <form id="review-form" class="review-form" style="display:none;">
+    <div class="review-field">
+      <label for="review-rating">Rating</label>
+      <select id="review-rating" required>
+        <option value="">Select rating</option>
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Very good</option>
+        <option value="3">3 - Good</option>
+        <option value="2">2 - Fair</option>
+        <option value="1">1 - Poor</option>
+      </select>
+    </div>
+
+    <div class="review-field">
+      <label for="review-comment">Comment</label>
+      <textarea
+        id="review-comment"
+        rows="5"
+        placeholder="Tell other travelers about your experience..."
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit review</button>
+    <p id="review-message"></p>
+  </form>
+
+  <div id="approved-reviews-list" class="approved-reviews-list"></div>
+</section>
       
       <!-- RIGHT BOOKING WIDGET -->
 <aside class="booking-sidebar">
@@ -159,9 +212,11 @@
 <!-- 💳 PAYPAL SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=ASqatHJyuAstbG5v1wNY7UkCXN6W-8gssX6oHqVjVaC3PI6SMu3AoIPP4FvMG5oO4hBQzdH41rA0HP2h&currency=USD"></script>
 
-  <script src="../../reviews.js?v=1"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=USD&intent=capture"></script>
 <script src="../../data/tours.js?v=9"></script>
 <script src="../../booking.js?v=9"></script>
+<script src="../../reviews.js?v=1"></script>
 
 </body>
 </html>
