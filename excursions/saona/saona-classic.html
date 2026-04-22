@@ -86,6 +86,49 @@
         </div>
       </div>
 
+
+<section class="tour-reviews-section">
+  <div class="tour-reviews-head">
+    <h2>Traveler reviews</h2>
+    <p>Real opinions from guests who booked experiences in Punta Cana.</p>
+  </div>
+
+  <div id="reviews-login-box" class="reviews-login-box">
+    <p>Sign in with Google to leave a review.</p>
+    <button id="google-review-login" class="btn btn-primary">Continue with Google</button>
+  </div>
+
+  <div id="reviews-user-box" class="reviews-user-box" style="display:none;">
+    <p id="reviews-user-text"></p>
+    <button id="google-review-logout" class="btn">Sign out</button>
+  </div>
+
+  <form id="review-form" class="review-form" style="display:none;">
+    <div class="review-rating-row">
+      <label for="review-rating">Rating</label>
+      <select id="review-rating" required>
+        <option value="">Select rating</option>
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Very good</option>
+        <option value="3">3 - Good</option>
+        <option value="2">2 - Fair</option>
+        <option value="1">1 - Poor</option>
+      </select>
+    </div>
+
+    <div class="review-comment-row">
+      <label for="review-comment">Your review</label>
+      <textarea id="review-comment" rows="5" placeholder="Tell other travelers about your experience..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit review</button>
+    <p id="review-message"></p>
+  </form>
+
+  <div id="approved-reviews-list" class="approved-reviews-list"></div>
+</section>
+      
+      
       <!-- RIGHT BOOKING WIDGET -->
 <aside class="booking-sidebar">
   <div id="booking-widget" data-tour="saona-classic"></div>
