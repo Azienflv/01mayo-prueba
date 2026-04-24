@@ -32,19 +32,33 @@ async function fetchHotelesWeb() {
   return data || [];
 }
 
-function getPickupForTour(hotelObj, tour) {
+function getPickupForTour(hotelObj, tour, selectedTime = "") {
   if (!hotelObj || !hotelObj.pickups) return "";
 
-  let horarios =
-    hotelObj.pickups[tour.id] ||
-    hotelObj.pickups[tour.name] ||
-    [];
+  const pickups = hotelObj.pickups;
 
-  if (!Array.isArray(horarios)) {
-    horarios = horarios ? [horarios] : [];
+  const tourPickups =
+    pickups[tour.id] ||
+    pickups[tour.slug] ||
+    pickups[tour.name] ||
+    null;
+
+  if (!tourPickups) return "";
+
+  if (Array.isArray(tourPickups)) {
+    return tourPickups.filter(Boolean)[0] || "";
   }
 
-  return horarios.filter(Boolean)[0] || "";
+  if (typeof tourPickups === "object") {
+    const pickup =
+      tourPickups[selectedTime] ||
+      tourPickups.default ||
+      "";
+
+    return pickup || "";
+  }
+
+  return tourPickups || "";
 }
 
 // =======================
