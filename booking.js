@@ -32,6 +32,24 @@ async function fetchHotelesWeb() {
   return data || [];
 }
 
+async function fetchProductoWebBySlug(slug) {
+  if (!supabaseClient || !slug) return null;
+
+  const { data, error } = await supabaseClient
+    .from("productos")
+    .select("*")
+    .eq("slug", slug)
+    .eq("activo_web", true)
+    .single();
+
+  if (error) {
+    console.warn("Producto web no encontrado o inactivo:", slug, error);
+    return null;
+  }
+
+  return data;
+}
+
 function getPickupForTour(hotelObj, tour, selectedTime = "") {
   if (!hotelObj || !hotelObj.pickups) return "";
 
