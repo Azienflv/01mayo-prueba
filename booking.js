@@ -112,7 +112,7 @@ const hotelesData = await fetchHotelesWeb();
 
   const bookingState = {
     date: "",
-    time: tour.times?.[0] || "",
+    time: (tour.times && tour.times.length ? tour.times[0] : ""),
     hotel: "",
     fullName: "",
     email: "",
