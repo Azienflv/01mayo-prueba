@@ -19,9 +19,9 @@ async function fetchHotelesWeb() {
   if (!supabaseClient) return [];
 
   const { data, error } = await supabaseClient
-    .from("hoteles")
-    .select("*")
-    .order("nombre", { ascending: true });
+  .from("hoteles")
+  .select("*")
+  .order("nombre", { ascending: true });
 
   if (error) {
     console.error("Error cargando hoteles:", error);
