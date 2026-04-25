@@ -91,9 +91,9 @@ async function renderBookingWidget() {
   const getTotal = () => adults * tour.adult + children * tour.child;
 
   const getCurrentPickupTime = () => {
-    const hotel = hotelesData.find((h) => h.nombre === bookingState.hotel);
-    return getPickupForTour(hotel, tour);
-  };
+  const hotel = hotelesData.find((h) => h.nombre === bookingState.hotel);
+  return getPickupForTour(hotel, tour, bookingState.time);
+};
 
   // =======================
   // 📊 SUMMARY
