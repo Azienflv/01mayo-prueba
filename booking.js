@@ -21,7 +21,6 @@ async function fetchHotelesWeb() {
   const { data, error } = await supabaseClient
     .from("hoteles")
     .select("*")
-    .eq("activo", true)
     .order("nombre", { ascending: true });
 
   if (error) {
