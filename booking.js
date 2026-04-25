@@ -107,8 +107,6 @@ const tour = {
 
 const hotelesData = await fetchHotelesWeb();
 
-  time: (tour.times && tour.times.length ? tour.times[0] : "")
-
   let adults = 2;
   let children = 0;
 
