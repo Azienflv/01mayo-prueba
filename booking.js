@@ -271,7 +271,7 @@ const hotelesData = await fetchHotelesWeb();
           <div class="booking-field">
             <label for="booking-time">Start time</label>
             <select id="booking-time" class="booking-input">
-              ${tour.times.map((time) => `
+              ${(tour.times || []).map((time) => `
                 <option value="${time}" ${bookingState.time === time ? "selected" : ""}>
                   ${time}
                 </option>
