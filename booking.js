@@ -86,11 +86,27 @@ async function renderBookingWidget() {
   const widget = document.getElementById("booking-widget");
   if (!widget) return;
 
-  const tour = getTourDataById(widget.dataset.tour);
-  if (!tour) {
-    widget.innerHTML = "<p>Tour data not available.</p>";
-    return;
-  }
+  const tourKey = widget.dataset.tour;
+const baseTour = getTourDataById(tourKey);
+
+if (!baseTour) {
+  widget.innerHTML = "<p>Tour data not available.</p>";
+  return;
+}
+
+const productoWeb = await fetchProductoWebBySlug(tourKey);
+
+const tour = {
+  ...baseTour,
+  name: productoWeb?.nombre || baseTour.name,
+  adult: Number(productoWeb?.adulto ?? baseTour.adult),
+  child: Number(productoWeb?.nino ?? baseTour.child),
+  times: Array.isArray(productoWeb?.horarios) && productoWeb.horarios.length
+    ? productoWeb.horarios
+    : (baseTour.times || [])
+};
+
+const hotelesData = await fetchHotelesWeb();
 
   const hotelesData = await fetchHotelesWeb();
 
