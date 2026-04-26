@@ -193,6 +193,32 @@ function isDateAllowed(dateStr) {
     }
   }
 
+async function getRemainingSpots(dateStr) {
+  if (!supabaseClient) return null;
+
+  const { data, error } = await supabaseClient
+    .from("reservations")
+    .select("adults, children")
+    .eq("tour_slug", tour.id)
+    .eq("selected_date", dateStr);
+
+  if (error) {
+    console.error("Error getting capacity:", error);
+    return null;
+  }
+
+  const totalBooked = (data || []).reduce(
+    (sum, r) => sum + (r.adults || 0) + (r.children || 0),
+    0
+  );
+
+  const max = tour.capacidad_maxima || 0;
+
+  if (!max) return null;
+
+  return max - totalBooked;
+}
+  
   return { ok: true };
 }
 
