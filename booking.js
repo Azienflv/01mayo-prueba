@@ -129,6 +129,72 @@ async function renderBookingWidget() {
     return getPickupForTour(hotel, tour, bookingState.time);
   };
 
+function isDateAllowed(dateStr) {
+  if (!dateStr) {
+    return {
+      ok: false,
+      message: "Please select a date."
+    };
+  }
+
+  const selectedDate = new Date(`${dateStr}T00:00:00`);
+  const today = new Date();
+
+  const dayNames = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday"
+  ];
+
+  const selectedDay = dayNames[selectedDate.getDay()];
+
+  if (
+    Array.isArray(tour.dias_disponibles) &&
+    tour.dias_disponibles.length > 0 &&
+    !tour.dias_disponibles.includes(selectedDay)
+  ) {
+    return {
+      ok: false,
+      message: "This tour is not available on the selected day."
+    };
+  }
+
+  if (
+    Array.isArray(tour.fechas_bloqueadas) &&
+    tour.fechas_bloqueadas.includes(dateStr)
+  ) {
+    return {
+      ok: false,
+      message: "This date is fully booked or unavailable."
+    };
+  }
+
+  const isToday =
+    selectedDate.getFullYear() === today.getFullYear() &&
+    selectedDate.getMonth() === today.getMonth() &&
+    selectedDate.getDate() === today.getDate();
+
+  if (isToday && tour.hora_limite_reserva) {
+    const [hours, minutes] = tour.hora_limite_reserva.split(":").map(Number);
+
+    const limit = new Date();
+    limit.setHours(hours, minutes, 0, 0);
+
+    if (today > limit) {
+      return {
+        ok: false,
+        message: "Bookings for today are already closed."
+      };
+    }
+  }
+
+  return { ok: true };
+}
+  
   // =======================
   // 📊 SUMMARY
   // =======================
