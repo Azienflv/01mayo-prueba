@@ -135,7 +135,37 @@ function isDateAllowed(dateStr) {
       ok: false,
       message: "Please select a date."
     };
+
+    async function isCapacityAvailable(dateStr) {
+  if (!supabaseClient) return { ok: true };
+
+  const { data, error } = await supabaseClient
+    .from("reservations")
+    .select("adults, children")
+    .eq("tour_slug", tour.id)
+    .eq("selected_date", dateStr);
+
+  if (error) {
+    console.error("Capacity check error:", error);
+    return { ok: true }; // no bloqueamos si falla
   }
+
+  const totalBooked = (data || []).reduce(
+    (sum, r) => sum + (r.adults || 0) + (r.children || 0),
+    0
+  );
+
+  const max = tour.capacidad_maxima || 0;
+
+  if (max > 0 && totalBooked >= max) {
+    return {
+      ok: false,
+      message: "This tour is fully booked for this date."
+    };
+  }
+
+  return { ok: true };
+}
 
   const selectedDate = new Date(`${dateStr}T00:00:00`);
   const today = new Date();
