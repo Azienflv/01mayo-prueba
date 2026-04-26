@@ -538,26 +538,32 @@ function isDateAllowed(dateStr, tour) {
       });
     });
 
-    nextBtn.addEventListener("click", () => {
+    nextBtn.addEventListener("click", async () => {
   bookingState.date = dateEl.value;
   bookingState.time = timeEl.value;
   bookingState.hotel = hotelEl.value;
 
-  const validation = isDateAllowed(bookingState.date, tour);
+  if (!bookingState.date || !bookingState.time || !bookingState.hotel) {
+    alert("Please complete date, time, and hotel before continuing.");
+    return;
+  }
+
+  const validation = isDateAllowed(bookingState.date);
 
   if (!validation.ok) {
     alert(validation.message);
     return;
   }
 
-  if (!bookingState.date || !bookingState.time || !bookingState.hotel) {
-    alert("Please complete date, time, and hotel.");
+  const capacityCheck = await isCapacityAvailable(bookingState.date);
+
+  if (!capacityCheck.ok) {
+    alert(capacityCheck.message);
     return;
   }
 
-
-      renderStep2();
-    });
+  renderStep2();
+});
 
     updateMinDate();
     updateTotals();
