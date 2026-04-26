@@ -106,6 +106,7 @@ async function renderBookingWidget() {
     dias_disponibles: productoWeb?.dias_disponibles || [],
     hora_limite_reserva: productoWeb?.hora_limite_reserva || null,
     fechas_bloqueadas: productoWeb?.fechas_bloqueadas || []
+    capacidad_maxima: Number(productoWeb?.capacidad_maxima ?? 0)
   };
 
   const hotelesData = await fetchHotelesWeb();
