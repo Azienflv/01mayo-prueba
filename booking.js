@@ -475,6 +475,7 @@ function isDateAllowed(dateStr, tour) {
           <label for="booking-hotel">Pickup hotel</label>
           <select id="booking-hotel" class="booking-input">
             <option value="">Select hotel</option>
+            <div id="spots-warning" style="margin-top:10px; font-size:14px;"></div>
             ${hotelesData.map((hotel) => `
               <option value="${hotel.nombre}" ${bookingState.hotel === hotel.nombre ? "selected" : ""}>
                 ${hotel.nombre}
