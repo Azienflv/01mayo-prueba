@@ -105,6 +105,10 @@ const tour = {
     : (baseTour.times || [])
 };
 
+tour.dias_disponibles = productoWeb?.dias_disponibles || [];
+tour.hora_limite_reserva = productoWeb?.hora_limite_reserva || null;
+tour.fechas_bloqueadas = productoWeb?.fechas_bloqueadas || [];
+  
 const hotelesData = await fetchHotelesWeb();
 
   let adults = 2;
