@@ -532,6 +532,29 @@ function isDateAllowed(dateStr, tour) {
     const totalEl = document.getElementById("booking-total");
     const adultCountEl = document.getElementById("adult-count");
     const childCountEl = document.getElementById("child-count");
+    const spotsBox = document.getElementById("spots-warning");
+    const spotsBox = document.getElementById("spots-warning");
+
+const spotsBox = document.getElementById("spots-warning");
+
+async function updateSpots() {
+  if (!bookingState.date) return;
+
+  const remaining = await getRemainingSpots(bookingState.date);
+
+  if (remaining === null) {
+    spotsBox.innerHTML = "";
+    return;
+  }
+
+  if (remaining <= 0) {
+    spotsBox.innerHTML = `<span style="color:#ef4444;">❌ Sold out</span>`;
+  } else if (remaining <= 5) {
+    spotsBox.innerHTML = `<span style="color:#f59e0b;">⚠️ Only ${remaining} spots left</span>`;
+  } else {
+    spotsBox.innerHTML = `<span style="color:#22c55e;">✅ Available</span>`;
+  }
+}
 
     function updateMinDate() {
       const today = new Date();
