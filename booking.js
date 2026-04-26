@@ -444,14 +444,22 @@ function isDateAllowed(dateStr, tour) {
     });
 
     nextBtn.addEventListener("click", () => {
-      bookingState.date = dateEl.value;
-      bookingState.time = timeEl.value;
-      bookingState.hotel = hotelEl.value;
+  bookingState.date = dateEl.value;
+  bookingState.time = timeEl.value;
+  bookingState.hotel = hotelEl.value;
 
-      if (!bookingState.date || !bookingState.time || !bookingState.hotel) {
-        alert("Please complete date, time, and hotel before continuing.");
-        return;
-      }
+  const validation = isDateAllowed(bookingState.date, tour);
+
+  if (!validation.ok) {
+    alert(validation.message);
+    return;
+  }
+
+  if (!bookingState.date || !bookingState.time || !bookingState.hotel) {
+    alert("Please complete date, time, and hotel.");
+    return;
+  }
+
 
       renderStep2();
     });
