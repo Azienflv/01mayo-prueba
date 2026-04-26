@@ -86,37 +86,36 @@ async function renderBookingWidget() {
   if (!widget) return;
 
   const tourKey = widget.dataset.tour;
-const baseTour = getTourDataById(tourKey);
+  const baseTour = getTourDataById(tourKey);
 
-if (!baseTour) {
-  widget.innerHTML = "<p>Tour data not available.</p>";
-  return;
-}
+  if (!baseTour) {
+    widget.innerHTML = "<p>Tour data not available.</p>";
+    return;
+  }
 
-const productoWeb = await fetchProductoWebBySlug(tourKey);
+  const productoWeb = await fetchProductoWebBySlug(tourKey);
 
-const tour = {
-  ...baseTour,
-  name: productoWeb?.nombre || baseTour.name,
-  adult: Number(productoWeb?.adulto ?? baseTour.adult),
-  child: Number(productoWeb?.nino ?? baseTour.child),
-  times: Array.isArray(productoWeb?.horarios) && productoWeb.horarios.length
-    ? productoWeb.horarios
-    : (baseTour.times || [])
-};
+  const tour = {
+    ...baseTour,
+    name: productoWeb?.nombre || baseTour.name,
+    adult: Number(productoWeb?.adulto ?? baseTour.adult),
+    child: Number(productoWeb?.nino ?? baseTour.child),
+    times: Array.isArray(productoWeb?.horarios) && productoWeb.horarios.length
+      ? productoWeb.horarios
+      : (baseTour.times || []),
+    dias_disponibles: productoWeb?.dias_disponibles || [],
+    hora_limite_reserva: productoWeb?.hora_limite_reserva || null,
+    fechas_bloqueadas: productoWeb?.fechas_bloqueadas || []
+  };
 
-tour.dias_disponibles = productoWeb?.dias_disponibles || [];
-tour.hora_limite_reserva = productoWeb?.hora_limite_reserva || null;
-tour.fechas_bloqueadas = productoWeb?.fechas_bloqueadas || [];
-  
-const hotelesData = await fetchHotelesWeb();
+  const hotelesData = await fetchHotelesWeb();
 
   let adults = 2;
   let children = 0;
 
   const bookingState = {
     date: "",
-    time: (tour.times && tour.times.length ? tour.times[0] : ""),
+    time: tour.times && tour.times.length ? tour.times[0] : "",
     hotel: "",
     fullName: "",
     email: "",
@@ -126,9 +125,9 @@ const hotelesData = await fetchHotelesWeb();
   const getTotal = () => adults * tour.adult + children * tour.child;
 
   const getCurrentPickupTime = () => {
-  const hotel = hotelesData.find((h) => h.nombre === bookingState.hotel);
-  return getPickupForTour(hotel, tour, bookingState.time);
-};
+    const hotel = hotelesData.find((h) => h.nombre === bookingState.hotel);
+    return getPickupForTour(hotel, tour, bookingState.time);
+  };
 
   // =======================
   // 📊 SUMMARY
