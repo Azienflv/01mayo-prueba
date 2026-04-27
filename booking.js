@@ -95,18 +95,18 @@ async function renderBookingWidget() {
   const productoWeb = await fetchProductoWebBySlug(tourKey);
 
   const tour = {
-    ...baseTour,
-    name: productoWeb?.nombre || baseTour.name,
-    adult: Number(productoWeb?.adulto ?? baseTour.adult),
-    child: Number(productoWeb?.nino ?? baseTour.child),
-    times: Array.isArray(productoWeb?.horarios) && productoWeb.horarios.length
-      ? productoWeb.horarios
-      : (baseTour.times || []),
-    dias_disponibles: productoWeb?.dias_disponibles || [],
-    hora_limite_reserva: productoWeb?.hora_limite_reserva || null,
-    fechas_bloqueadas: productoWeb?.fechas_bloqueadas || []
-    capacidad_maxima: Number(productoWeb?.capacidad_maxima ?? 0)
-  };
+  ...baseTour,
+  name: productoWeb?.nombre || baseTour.name,
+  adult: Number(productoWeb?.adulto ?? baseTour.adult),
+  child: Number(productoWeb?.nino ?? baseTour.child),
+  times: Array.isArray(productoWeb?.horarios) && productoWeb.horarios.length
+    ? productoWeb.horarios
+    : (baseTour.times || []),
+  dias_disponibles: productoWeb?.dias_disponibles || [],
+  hora_limite_reserva: productoWeb?.hora_limite_reserva || null,
+  fechas_bloqueadas: productoWeb?.fechas_bloqueadas || [],
+  capacidad_maxima: Number(productoWeb?.capacidad_maxima ?? 0)
+};
 
   const hotelesData = await fetchHotelesWeb();
 
