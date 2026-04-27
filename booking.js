@@ -192,6 +192,9 @@ function isDateAllowed(dateStr) {
     }
   }
 
+  return { ok: true };
+}
+
 async function getRemainingSpots(dateStr) {
   if (!supabaseClient) return null;
 
@@ -216,9 +219,6 @@ async function getRemainingSpots(dateStr) {
   if (!max) return null;
 
   return max - totalBooked;
-}
-  
-  return { ok: true };
 }
 
 async function isCapacityAvailable(dateStr) {
