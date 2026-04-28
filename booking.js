@@ -370,41 +370,6 @@ async function isCapacityAvailable(dateStr) {
     }).render("#paypal-button-container");
   }
 
-
-function isDateAllowed(dateStr, tour) {
-  if (!dateStr) return false;
-
-  const date = new Date(dateStr);
-  const today = new Date();
-
-  // 🔹 Día de la semana
-  const dayNames = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday"
-  ];
-
-  const selectedDay = dayNames[date.getDay()];
-
-  if (tour.dias_disponibles.length > 0 && !tour.dias_disponibles.includes(selectedDay)) {
-    return {
-      ok: false,
-      message: "This tour is not available on that day."
-    };
-  }
-
-  // 🔹 Fechas bloqueadas
-  if (tour.fechas_bloqueadas.includes(dateStr)) {
-    return {
-      ok: false,
-      message: "This date is not available."
-    };
-  }
-
   // 🔹 Hora límite (solo si es hoy)
   const isToday =
     date.toDateString() === today.toDateString();
