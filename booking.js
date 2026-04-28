@@ -370,25 +370,6 @@ async function isCapacityAvailable(dateStr) {
     }).render("#paypal-button-container");
   }
 
-  // 🔹 Hora límite (solo si es hoy)
-  const isToday =
-    date.toDateString() === today.toDateString();
-
-  if (isToday && tour.hora_limite_reserva) {
-    const [h, m] = tour.hora_limite_reserva.split(":");
-    const limit = new Date();
-    limit.setHours(h, m, 0);
-
-    if (today > limit) {
-      return {
-        ok: false,
-        message: "Booking closed for today."
-      };
-    }
-  }
-
-  return { ok: true };
-}
   
   // =======================
   // 🥇 STEP 1
