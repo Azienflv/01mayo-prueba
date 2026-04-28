@@ -517,6 +517,11 @@ async function updateSpots() {
   }
 }
 
+dateEl.addEventListener("change", () => {
+  bookingState.date = dateEl.value;
+  updateSpots();
+});
+    
     function updateMinDate() {
       const today = new Date();
       const yyyy = today.getFullYear();
