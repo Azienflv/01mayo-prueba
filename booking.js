@@ -497,9 +497,6 @@ async function isCapacityAvailable(dateStr) {
     const adultCountEl = document.getElementById("adult-count");
     const childCountEl = document.getElementById("child-count");
     const spotsBox = document.getElementById("spots-warning");
-    const spotsBox = document.getElementById("spots-warning");
-
-const spotsBox = document.getElementById("spots-warning");
 
 async function updateSpots() {
   if (!bookingState.date) return;
