@@ -1,81 +1,142 @@
-<section class="tour-container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saona Island Luxury Experience | PCG Tours</title>
 
-  <!-- 🔥 HEADER -->
-  <div class="tour-header">
-    <h1>Saona Island Luxury Experience 💎</h1>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../styles.css?v=31"/>
+</head>
 
-    <div class="tour-meta">
-      <span class="tour-rating">⭐ 4.8 (245 reviews)</span>
-      <span class="tour-location">📍 Punta Cana, Dominican Republic</span>
+<body>
+
+<header class="site-header">
+  <div class="container header-container">
+    <a href="../../index.html" class="logo">
+      <img src="../../assets/imagines/logo.png" class="site-logo" alt="PCG Logo">
+      <span class="logo-text">Punta Cana Going Tours</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="../../index.html">Home</a>
+      <a href="../../excursions.html">Excursions</a>
+    </nav>
+  </div>
+</header>
+
+<main style="padding-top:100px;">
+  <section class="section">
+    <div class="container booking-layout">
+
+      <!-- MAIN -->
+      <div class="booking-main">
+
+        <h1>Saona Island Luxury Experience</h1>
+
+        <div style="margin-bottom:12px; font-weight:700;">
+          ⭐⭐⭐⭐⭐ 4.8 <span style="color:#64748b;">(premium experience)</span>
+        </div>
+
+        <p style="font-size:18px; color:#475569; max-width:700px;">
+          Enjoy Saona Island like never before with a luxury experience featuring exclusive areas,
+          premium service, fewer crowds, and unforgettable Caribbean views.
+        </p>
+
+        <!-- GALLERY -->
+        <div class="tour-gallery-gyg">
+          <div class="tour-gallery-main">
+            <img src="../../assets/imagines/tours/saona/saona-1.jpg" alt="Saona Luxury">
+          </div>
+
+          <div class="tour-gallery-grid">
+            <img src="../../assets/imagines/tours/saona/saona-2.jpg" alt="">
+            <img src="../../assets/imagines/tours/saona/saona-3.jpg" alt="">
+            <img src="../../assets/imagines/tours/saona/saona-4.jpg" alt="">
+
+            <div class="tour-gallery-more">
+              <span>View all photos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="booking-tabs">
+          <span class="active">Overview</span>
+          <span>Details</span>
+          <span>Good to know</span>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="booking-copy">
+
+          <h2>Experience</h2>
+          <p>
+            Discover Saona Island in a premium way with smaller groups, personalized attention,
+            and exclusive beach access. Relax in paradise, swim in crystal-clear waters,
+            and enjoy a high-end Caribbean day.
+          </p>
+
+          <h3>Highlights</h3>
+          <ul>
+            <li>Exclusive Saona Island experience</li>
+            <li>Natural pool with starfish</li>
+            <li>Luxury boat or catamaran experience</li>
+            <li>Private beach area with fewer crowds</li>
+            <li>Premium lunch and drinks included</li>
+          </ul>
+
+          <h3>Included</h3>
+          <ul>
+            <li>Transportation</li>
+            <li>Professional guide</li>
+            <li>Natural pool stop</li>
+            <li>Luxury boat / catamaran</li>
+            <li>Premium lunch</li>
+            <li>Open bar</li>
+            <li>Saona Island access</li>
+          </ul>
+
+          <h3>Practical information</h3>
+          <ul>
+            <li>Bring sunscreen and sunglasses</li>
+            <li>Wear beach clothing</li>
+            <li>Perfect for couples and premium travelers</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="booking-sidebar">
+        <div id="booking-widget" data-tour="saona-luxury"></div>
+      </aside>
+
     </div>
+  </section>
+</main>
+
+<!-- LIGHTBOX -->
+<div id="tourLightbox" class="tour-lightbox" aria-hidden="true">
+  <button class="tour-lightbox-close" id="lightboxClose" type="button">✕</button>
+
+  <div class="tour-lightbox-counter" id="lightboxCounter">1 / 4</div>
+
+  <button class="tour-lightbox-nav tour-lightbox-prev" id="lightboxPrev" type="button">‹</button>
+
+  <div class="tour-lightbox-content">
+    <img id="lightboxImage" src="" alt="Gallery image">
   </div>
 
-  <!-- 🖼️ GALERÍA -->
-  <div class="tour-gallery">
+  <button class="tour-lightbox-nav tour-lightbox-next" id="lightboxNext" type="button">›</button>
+</div>
 
-    <div class="tour-gallery-main">
-      <img src="../assets/images/saona-luxury-main.jpg" alt="Saona Luxury">
-    </div>
-
-    <div class="tour-gallery-gyg">
-      <img src="../assets/images/saona1.jpg">
-      <img src="../assets/images/saona2.jpg">
-      <img src="../assets/images/saona3.jpg">
-      <img src="../assets/images/saona4.jpg">
-    </div>
-
-    <button class="tour-gallery-more">Ver todas las fotos</button>
-  </div>
-
-  <!-- 💡 LIGHTBOX -->
-  <div class="tour-lightbox" id="tourLightbox" aria-hidden="true">
-    <button class="tour-lightbox-close" id="lightboxClose">×</button>
-
-    <img id="lightboxImage" src="" alt="">
-    <div class="tour-lightbox-counter" id="lightboxCounter"></div>
-
-    <button class="tour-lightbox-nav tour-lightbox-prev" id="lightboxPrev" type="button">‹</button>
-    <button class="tour-lightbox-nav tour-lightbox-next" id="lightboxNext" type="button">›</button>
-  </div>
-
-  <!-- 📄 CONTENIDO -->
-  <div class="tour-content">
-
-    <h2>Luxury Experience</h2>
-    <p>
-      Enjoy the most exclusive version of Saona Island with private areas,
-      premium service, and unforgettable Caribbean views.
-    </p>
-
-    <h2>Itinerary</h2>
-    <ul>
-      <li><strong>Río Chavón:</strong> Movie filming location.</li>
-      <li><strong>Casa de Campo Marina:</strong> Luxury villas of celebrities.</li>
-      <li><strong>Parque Nacional del Este</strong></li>
-      <li><strong>Natural Pools:</strong> Crystal clear waters.</li>
-      <li><strong>Catuano Channel</strong></li>
-      <li><strong>Private Beach + Lunch</strong></li>
-      <li><strong>Premium Buffet with waiter service</strong></li>
-      <li><strong>Private Hammocks</strong></li>
-      <li><strong>Mano Juan Village & Turtle Sanctuary</strong></li>
-      <li><strong>Canto de la Playa</strong></li>
-      <li><strong>Return by speedboat</strong></li>
-    </ul>
-
-  </div>
-
-  <!-- 📦 BOOKING -->
-  <div id="booking-widget" data-tour="saona-luxury"></div>
-
-</section>
-
-<!-- 🔌 SCRIPTS (ORDEN IMPORTANTE) -->
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="https://www.paypal.com/sdk/js?client-id=ASqatHJyuAstbG5v1wNY7UkCXN6W-8gssX6oHqVjVaC3PI6SMu3AoIPP4FvMG5oO4hBQzdH41rA0HP2h&currency=USD&intent=capture"></script>
-
 <script src="../../data/tours.js?v=9"></script>
-
 <script src="../../booking.js?v=99"></script>
-
 <script src="../../reviews.js?v=1"></script>
+
+</body>
+</html>
