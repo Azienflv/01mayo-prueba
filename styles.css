@@ -3209,3 +3209,19 @@ body.lightbox-open {
 .review-card small {
   color: #64748b;
 }
+
+.hero-badges {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.hero-badges span {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  backdrop-filter: blur(6px);
+}
