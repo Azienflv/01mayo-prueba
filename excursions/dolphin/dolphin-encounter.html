@@ -317,13 +317,21 @@
 <!-- 🔥 INIT BOOKING -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  if (window.renderBookingWidget) {
-    renderBookingWidget(); // desktop
+
+  // DESKTOP
+  if (window.innerWidth > 768) {
+    if (window.renderBookingWidget) {
+      renderBookingWidget();
+    }
   }
 
-  if (window.initBookingWidget) {
-    initBookingWidget("#booking-widget-mobile"); // mobile
+  // MOBILE
+  if (window.innerWidth <= 768) {
+    if (window.initBookingWidget) {
+      initBookingWidget("#booking-widget-mobile");
+    }
   }
+
 });
 </script>
 
