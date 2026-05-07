@@ -3604,4 +3604,8 @@ body.lightbox-open {
   }
 }
 
-
+@media (max-width: 768px) {
+  .booking-sidebar {
+    display: none;
+  }
+}
