@@ -3593,4 +3593,15 @@ body.lightbox-open {
   font-weight: 700;
 }
 
+/* 👇 SOLO MOBILE */
+@media (min-width: 768px) {
+  .mobile-booking-bar {
+    display: none;
+  }
+
+  .booking-modal {
+    display: none;
+  }
+}
+
 
