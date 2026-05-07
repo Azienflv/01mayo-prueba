@@ -3369,3 +3369,14 @@ body.lightbox-open {
   font-size: 12px;
 }
 
+.tour-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tour-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
