@@ -296,34 +296,14 @@
   <button class="tour-lightbox-nav tour-lightbox-next" id="lightboxNext" type="button">›</button>
 </div>
 
-<!-- 🔥 BOOKING MODAL -->
+<!-- 🔥 BOOKING MODAL (MOBILE) -->
 <div id="bookingModal" class="booking-modal">
   <div class="booking-modal-content">
 
     <button onclick="closeBooking()" class="close-btn">✕</button>
 
-    <!-- 🔥 AQUÍ VA TU BOOKING ACTUAL -->
-    <div class="booking-card">
-      <h3>From $99 USD</h3>
-
-      <label>Select date</label>
-      <input type="date">
-
-      <label>Adults</label>
-      <input type="number" value="1" min="1">
-
-      <label>Children</label>
-      <input type="number" value="0" min="0">
-
-      <label>Pickup hotel</label>
-      <select>
-        <option>Select hotel</option>
-      </select>
-
-      <button class="btn btn-primary" style="margin-top:15px;">
-        Continue
-      </button>
-    </div>
+    <!-- ✅ MISMO BOOKING DEL SISTEMA (NO MANUAL) -->
+    <div id="booking-widget-mobile" data-tour="buggies-splash-emotion"></div>
 
   </div>
 </div>
@@ -346,14 +326,26 @@
 <script src="../../reviews.js?v=1"></script>
 
 
-<!-- 🔥 MODAL CONTROL -->
+<!-- 🔥 INICIALIZAR BOOKING MOBILE -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.initBookingWidget) {
+    initBookingWidget("#booking-widget-mobile");
+  }
+});
+</script>
+
+
+<!-- 🔥 CONTROL MODAL -->
 <script>
 function openBooking() {
   document.getElementById("bookingModal").classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
 function closeBooking() {
   document.getElementById("bookingModal").classList.remove("active");
+  document.body.style.overflow = "auto";
 }
 </script>
 
