@@ -3646,3 +3646,55 @@ body.lightbox-open {
     display: none;
   }
 }
+
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.booking-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.booking-modal-content {
+  transform: translateY(100%);
+  transition: 0.3s ease;
+}
+
+.booking-modal.active .booking-modal-content {
+  transform: translateY(0);
+}
+
+.booking-modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-book-btn {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.modal-book-btn button {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
