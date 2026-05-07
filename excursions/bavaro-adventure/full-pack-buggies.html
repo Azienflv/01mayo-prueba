@@ -329,16 +329,62 @@
   <button class="tour-lightbox-nav tour-lightbox-next" id="lightboxNext" type="button">›</button>
 </div>
 
+  <!-- 🔥 BOOKING MODAL (MOBILE) -->
+<div id="bookingModal" class="booking-modal">
+  <div class="booking-modal-content">
+
+    <button onclick="closeBooking()" class="close-btn">✕</button>
+
+    <!-- ✅ MISMO SISTEMA DE BOOKING -->
+    <div id="booking-widget-mobile" data-tour="full-pack-buggies"></div>
+
+  </div>
+</div>
+
+
+<!-- 📱 MOBILE BOOKING BAR -->
+<div class="mobile-booking-bar">
+  <span class="price">From $145</span>
+  <button onclick="openBooking()">Reserve now</button>
+</div>
+
+
+<!-- ⚙️ SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="https://www.paypal.com/sdk/js?client-id=ASqatHJyuAstbG5v1wNY7UkCXN6W-8gssX6oHqVjVaC3PI6SMu3AoIPP4FvMG5oO4hBQzdH41rA0HP2h&currency=USD&intent=capture"></script>
+
 <script src="../../data/tours.js?v=9"></script>
 <script src="../../booking.js?v=99"></script>
 <script src="../../reviews.js?v=1"></script>
 
-  <div class="mobile-booking-bar">
-  <span class="price">From $145</span>
-  <button onclick="openBooking()">Reserve now</button>
-</div>
+
+<!-- 🔥 INIT BOOKING MOBILE -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.renderBookingWidget) {
+    renderBookingWidget(); // desktop
+  }
+
+  if (window.initBookingWidget) {
+    initBookingWidget("#booking-widget-mobile"); // mobile modal
+  }
+});
+</script>
+
+
+<!-- 🔥 CONTROL MODAL -->
+<script>
+function openBooking() {
+  document.getElementById("bookingModal").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeBooking() {
+  document.getElementById("bookingModal").classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+</script>
 
 </body>
 </html>
