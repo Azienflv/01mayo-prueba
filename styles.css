@@ -3472,4 +3472,58 @@ body.lightbox-open {
   padding: 20px;
 }
 
+/* 🔥 FIX MOBILE BOOKING MODAL */
+.booking-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(6px);
+  display: none;
+  z-index: 9999;
+}
+
+.booking-modal.active {
+  display: block;
+}
+
+/* CONTENIDO */
+.booking-modal-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  background: #ffffff;
+  border-radius: 20px 20px 0 0;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* SCROLL SUAVE */
+.booking-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.booking-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+/* BOTÓN CERRAR */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 
