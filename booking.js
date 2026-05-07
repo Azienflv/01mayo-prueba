@@ -251,6 +251,18 @@ async function isCapacityAvailable(dateStr) {
 
   return { ok: true };
 }
+
+  <script>
+function openBooking() {
+  document.getElementById("bookingModal").classList.add("active");
+}
+
+function closeBooking() {
+  document.getElementById("bookingModal").classList.remove("active");
+}
+</script>
+
+  
   // =======================
   // 📊 SUMMARY
   // =======================
