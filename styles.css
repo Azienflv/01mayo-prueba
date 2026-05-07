@@ -3609,3 +3609,40 @@ body.lightbox-open {
     display: none;
   }
 }
+
+.booking-modal-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.booking-modal {
+  background: rgba(0,0,0,0.4);
+}
+
+.booking-modal-content {
+  background: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .mobile-booking-bar,
+  .booking-modal {
+    display: none;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .booking-sidebar {
+    display: none;
+  }
+}
