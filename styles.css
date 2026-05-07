@@ -3526,4 +3526,71 @@ body.lightbox-open {
   cursor: pointer;
 }
 
+/* 🔥 MOBILE BOOKING MODAL PRO */
+.booking-modal {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 9999;
+  transition: bottom 0.35s ease;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow-y: auto;
+}
+
+.booking-modal.active {
+  bottom: 0;
+}
+
+/* contenido */
+.booking-modal-content {
+  padding: 20px;
+  padding-bottom: 120px;
+}
+
+/* botón cerrar */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+}
+
+/* barra inferior tipo app */
+.mobile-booking-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+}
+
+.mobile-booking-bar .price {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.mobile-booking-bar button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
 
