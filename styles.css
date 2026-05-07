@@ -3380,3 +3380,17 @@ body.lightbox-open {
   flex-direction: column;
   flex: 1;
 }
+
+.tour-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tour-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+
