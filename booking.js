@@ -710,9 +710,21 @@ dateEl.addEventListener("change", () => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (window.innerWidth > 768) {
-    renderBookingWidget();
+
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    // SOLO MOBILE
+    if (window.initBookingWidget) {
+      initBookingWidget("#booking-widget-mobile");
+    }
+  } else {
+    // SOLO DESKTOP
+    if (window.renderBookingWidget) {
+      renderBookingWidget();
+    }
   }
+
 });
 
 document.addEventListener("DOMContentLoaded", () => {
