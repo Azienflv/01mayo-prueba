@@ -708,7 +708,14 @@ dateEl.addEventListener("change", () => {
   renderStep1();
 }
 
-document.addEventListener("DOMContentLoaded", renderBookingWidget);
+document.addEventListener("DOMContentLoaded", () => {
+
+  // SOLO DESKTOP
+  if (window.innerWidth > 768) {
+    renderBookingWidget();
+  }
+
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   const galleryImages = Array.from(document.querySelectorAll(".tour-gallery-gyg img"));
