@@ -340,27 +340,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <!-- 🔥 CONTROL MODAL -->
+
 <script>
 function openBooking() {
   const modal = document.getElementById("bookingModal");
-
   modal.classList.add("active");
-  document.body.classList.add("modal-open");
+  document.body.style.overflow = "hidden";
 
-  // 🔥 AQUÍ SE CARGA EL BOOKING REAL
-  const container = document.querySelector("#booking-widget-mobile");
+  // 🔥 CLAVE: mover widget al modal
+  const desktopWidget = document.getElementById("booking-widget");
+  const mobileWidget = document.getElementById("booking-widget-mobile");
 
-  if (container && window.initBookingWidget) {
-    container.innerHTML = "";
-    initBookingWidget("#booking-widget-mobile");
+  if (desktopWidget && mobileWidget) {
+    mobileWidget.innerHTML = "";
+    desktopWidget.id = "booking-widget-mobile";
+    renderBookingWidget();
   }
 }
 
 function closeBooking() {
   document.getElementById("bookingModal").classList.remove("active");
-  document.body.classList.remove("modal-open");
+  document.body.style.overflow = "auto";
 }
 </script>
-
+  
 </body>
 </html>
