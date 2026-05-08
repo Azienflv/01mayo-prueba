@@ -3654,10 +3654,9 @@ body.lightbox-open {
 .booking-modal {
   position: fixed;
   inset: 0;
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
   background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: flex-end;
   opacity: 0;
   pointer-events: none;
   transition: 0.3s ease;
@@ -3669,6 +3668,9 @@ body.lightbox-open {
 }
 
 .booking-modal-content {
+  width: 100%;
+  background: white;
+  border-radius: 20px 20px 0 0;
   transform: translateY(100%);
   transition: 0.3s ease;
 }
