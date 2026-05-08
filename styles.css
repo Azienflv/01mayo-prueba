@@ -3774,3 +3774,31 @@ body.modal-open {
 body.modal-open {
   overflow: hidden;
 }
+
+/* 🔥 FIX GALERÍA MÓVIL */
+@media (max-width: 768px) {
+
+  .tour-gallery-gyg {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tour-gallery-main {
+    height: auto !important;
+  }
+
+  .tour-gallery-main img {
+    height: 260px !important;
+    object-fit: cover;
+  }
+
+  .tour-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    height: auto !important;
+  }
+
+  .tour-gallery-grid img,
+  .tour-gallery-more {
+    aspect-ratio: 1 / 1;
+  }
+
+}
