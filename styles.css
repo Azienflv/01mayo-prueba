@@ -3823,3 +3823,22 @@ body.modal-open {
     border: 5px solid red !important;
   }
 }
+
+@media (min-width: 769px) {
+  .mobile-booking-bar,
+  .booking-modal {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-booking-bar {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  #booking-widget {
+    display: none !important;
+  }
+}
