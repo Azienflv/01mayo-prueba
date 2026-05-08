@@ -3698,3 +3698,75 @@ body.lightbox-open {
 body.modal-open {
   overflow: hidden;
 }
+
+/* 🔥 MODAL BASE */
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 9999;
+}
+
+/* 🔥 CUANDO SE ABRE */
+.booking-modal.active {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* 🔥 CONTENIDO */
+.booking-modal-content {
+  background: #fff;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* 🔥 HEADER */
+.booking-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* 🔥 BOTÓN CERRAR */
+.close-btn {
+  background: #e5e7eb;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+}
+
+/* 🔥 MOBILE BAR */
+.mobile-booking-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9998;
+  border-top: 1px solid #e5e7eb;
+}
+
+.mobile-booking-bar button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* 🔥 FIX IOS */
+body.modal-open {
+  overflow: hidden;
+}
