@@ -709,12 +709,9 @@ dateEl.addEventListener("change", () => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  // SOLO DESKTOP
   if (window.innerWidth > 768) {
     renderBookingWidget();
   }
-
 });
 
 document.addEventListener("DOMContentLoaded", () => {
