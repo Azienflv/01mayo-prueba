@@ -340,11 +340,8 @@ function openBooking() {
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
 
-  // 🔥 Render seguro SIN tocar IDs
   if (typeof renderBookingWidget === "function") {
-    setTimeout(() => {
-      renderBookingWidget();
-    }, 100); // pequeño delay para asegurar que el modal esté visible
+    renderBookingWidget();
   }
 }
 
@@ -353,7 +350,7 @@ function closeBooking() {
   document.body.style.overflow = "auto";
 }
 </script>
-
+  
   <script>
 function closeBooking() {
   document.getElementById("bookingModal").classList.remove("active");
