@@ -3802,3 +3802,9 @@ body.modal-open {
   }
 
 }
+
+@media (max-width: 768px) {
+  .tour-gallery-gyg {
+    border: 5px solid red !important;
+  }
+}
