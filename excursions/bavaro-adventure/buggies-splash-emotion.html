@@ -331,8 +331,20 @@
 function openBooking() {
   document.getElementById("bookingModal").classList.add("active");
   document.body.style.overflow = "hidden";
+
+  // 🔥 render aquí (CLAVE)
+  if (window.initBookingWidget) {
+    initBookingWidget("#booking-widget-mobile");
+  }
 }
 
+function closeBooking() {
+  document.getElementById("bookingModal").classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+</script>
+
+  <script>
 function closeBooking() {
   document.getElementById("bookingModal").classList.remove("active");
   document.body.style.overflow = "auto";
