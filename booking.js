@@ -81,8 +81,9 @@ function getPickupForTour(hotelObj, tour, selectedTime = "") {
 // 🚀 MAIN
 // =======================
 async function renderBookingWidget() {
-  const widget = document.getElementById("booking-widget");
-  if (!widget) return;
+  const widget =
+  document.getElementById("booking-widget") ||
+  document.getElementById("booking-widget-mobile");
 
   const tourKey = widget.dataset.tour;
   const baseTour = getTourDataById(tourKey);
