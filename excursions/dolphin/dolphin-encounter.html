@@ -342,13 +342,23 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- 🔥 CONTROL MODAL -->
 <script>
 function openBooking() {
-  document.getElementById("bookingModal").classList.add("active");
-  document.body.style.overflow = "hidden";
+  const modal = document.getElementById("bookingModal");
+
+  modal.classList.add("active");
+  document.body.classList.add("modal-open");
+
+  // 🔥 AQUÍ SE CARGA EL BOOKING REAL
+  const container = document.querySelector("#booking-widget-mobile");
+
+  if (container && window.initBookingWidget) {
+    container.innerHTML = "";
+    initBookingWidget("#booking-widget-mobile");
+  }
 }
 
 function closeBooking() {
   document.getElementById("bookingModal").classList.remove("active");
-  document.body.style.overflow = "auto";
+  document.body.classList.remove("modal-open");
 }
 </script>
 
