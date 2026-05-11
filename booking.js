@@ -100,7 +100,9 @@ if (!widget) return;
   const productoWeb = await fetchProductoWebBySlug(tourKey);
 
 // 👉 🔥 LLAMADA A LA GALERÍA (AQUÍ)
-renderGallery(tourKey);
+setTimeout(() => {
+  renderGallery(tourKey);
+}, 0);
 
 const tour = {
   ...baseTour,
