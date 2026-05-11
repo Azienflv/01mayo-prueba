@@ -794,3 +794,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+async function fetchTourImages(tourId) {
+  const { data, error } = await supabase
+    .from("tour_images")
+    .select("*")
+    .eq("tour_id", tourId)
+    .order("orden", { ascending: true });
+
+  if (error) {
+    console.error(error);
+    return [];
+  }
+
+  return data;
+}
+
