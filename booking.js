@@ -817,23 +817,27 @@ async function fetchTourImages(tourId) {
 
 // 🔹 RENDER GALERÍA
 async function renderGallery(tourId) {
+  console.log("🔥 Cargando galería:", tourId);
+
   const images = await fetchTourImages(tourId);
 
-  if (!images.length) return;
+  // 👉 SI NO HAY IMÁGENES EN DB → NO TOCAR HTML
+  if (!images.length) {
+    console.log("⚠️ Usando galería manual (HTML)");
+    return;
+  }
+
+  console.log("📸 Imágenes desde DB:", images);
 
   const mainImg = document.querySelector(".tour-gallery-main img");
   const grid = document.querySelector(".tour-gallery-grid");
 
   if (!mainImg || !grid) return;
 
+  // 👉 REEMPLAZA SOLO SI HAY DATA
   mainImg.src = images[0].url;
 
   grid.innerHTML = images.slice(1, 9).map(img => `
     <img src="${img.url}" onclick="changeMain('${img.url}')">
   `).join("");
-}
-
-function changeMain(url) {
-  const mainImg = document.querySelector(".tour-gallery-main img");
-  if (mainImg) mainImg.src = url;
 }
