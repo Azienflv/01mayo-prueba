@@ -99,7 +99,10 @@ if (!widget) return;
 
   const productoWeb = await fetchProductoWebBySlug(tourKey);
 
-  const tour = {
+// 👉 🔥 LLAMADA A LA GALERÍA (AQUÍ)
+renderGallery(tourKey);
+
+const tour = {
   ...baseTour,
   name: productoWeb?.nombre || baseTour.name,
   adult: Number(productoWeb?.adulto ?? baseTour.adult),
@@ -113,26 +116,26 @@ if (!widget) return;
   capacidad_maxima: Number(productoWeb?.capacidad_maxima ?? 0)
 };
 
-  const hotelesData = await fetchHotelesWeb();
+const hotelesData = await fetchHotelesWeb();
 
-  let adults = 2;
-  let children = 0;
+let adults = 2;
+let children = 0;
 
-  const bookingState = {
-    date: "",
-    time: tour.times && tour.times.length ? tour.times[0] : "",
-    hotel: "",
-    fullName: "",
-    email: "",
-    phone: ""
-  };
+const bookingState = {
+  date: "",
+  time: tour.times && tour.times.length ? tour.times[0] : "",
+  hotel: "",
+  fullName: "",
+  email: "",
+  phone: ""
+};
 
-  const getTotal = () => adults * tour.adult + children * tour.child;
+const getTotal = () => adults * tour.adult + children * tour.child;
 
-  const getCurrentPickupTime = () => {
-    const hotel = hotelesData.find((h) => h.nombre === bookingState.hotel);
-    return getPickupForTour(hotel, tour, bookingState.time);
-  };
+const getCurrentPickupTime = () => {
+  const hotel = hotelesData.find((h) => h.nombre === bookingState.hotel);
+  return getPickupForTour(hotel, tour, bookingState.time);
+};
 
 function isDateAllowed(dateStr) {
   if (!dateStr) {
