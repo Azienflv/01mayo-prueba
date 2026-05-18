@@ -48,6 +48,23 @@ async function loadDynamicTourGallery() {
 
     if (!images.length) return;
 
+    document.body.insertAdjacentHTML("afterbegin", `
+  <div style="
+    position:fixed;
+    top:10px;
+    left:10px;
+    z-index:999999;
+    background:white;
+    color:black;
+    padding:10px;
+    border:3px solid red;
+    max-width:300px;
+  ">
+    <strong>Test imagen dinámica</strong><br>
+    <img src="${images[0]}" style="width:250px;height:auto;display:block;margin-top:8px;">
+  </div>
+`);
+
     alert("Primera imagen: " + images[0]);
 
     gallery.innerHTML = `
