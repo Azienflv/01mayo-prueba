@@ -9,7 +9,15 @@ async function loadDynamicTourGallery() {
     const gallery = document.querySelector(".tour-gallery-gyg");
     const widget = document.querySelector("#booking-widget[data-tour]");
 
-    if (!gallery || !widget) return;
+    if (!gallery) {
+      alert("No encontré .tour-gallery-gyg");
+      return;
+    }
+
+    if (!widget) {
+      alert("No encontré #booking-widget[data-tour]");
+      return;
+    }
 
     const tourSlug = widget.dataset.tour;
 
@@ -19,10 +27,12 @@ async function loadDynamicTourGallery() {
       .eq("slug", tourSlug)
       .single();
 
-    if (error || !data) {
-      console.warn("No dynamic gallery data:", error);
+    if (error) {
+      alert("Error Supabase: " + JSON.stringify(error));
       return;
     }
+
+    alert("Producto encontrado: " + data.slug);
 
     let images = [];
 
@@ -34,22 +44,20 @@ async function loadDynamicTourGallery() {
 
     images = images.filter(Boolean);
 
-    if (!images.length) {
-      console.warn("No images found for:", tourSlug);
-      return;
-    }
+    alert("Imágenes encontradas: " + images.length);
 
-    const mainImage = images[0];
-    const thumbImages = images.slice(1, 4);
+    if (!images.length) return;
+
+    alert("Primera imagen: " + images[0]);
 
     gallery.innerHTML = `
       <div class="tour-gallery-main">
-        <img src="${mainImage}" alt="${tourSlug}">
+        <img src="${images[0]}" alt="${tourSlug}" style="width:100%; height:100%; object-fit:cover;">
       </div>
 
       <div class="tour-gallery-grid">
-        ${thumbImages.map(img => `
-          <img src="${img}" alt="${tourSlug}">
+        ${images.slice(1, 4).map(img => `
+          <img src="${img}" alt="${tourSlug}" style="width:100%; height:100%; object-fit:cover;">
         `).join("")}
 
         <div class="tour-gallery-more">
@@ -58,10 +66,8 @@ async function loadDynamicTourGallery() {
       </div>
     `;
 
-    console.log("Dynamic gallery loaded:", images);
-
   } catch (err) {
-    console.error("Dynamic gallery error:", err);
+    alert("Error JS: " + err.message);
   }
 }
 
