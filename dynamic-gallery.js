@@ -15,13 +15,13 @@ async function loadDynamicTourGallery() {
 
     const tourSlug = widget.dataset.tour;
 
-    const { data, error } = await supabaseGallery
+ const { data, error } = await supabaseGallery
   .from("productos")
   .select("*")
   .eq("slug", tourSlug)
   .single();
-    alert("Tour: " + tourSlug);
 
+alert("Tour: " + tourSlug);
 alert(JSON.stringify(data));
 
 console.log("Tour dinámico:", data);
