@@ -2,53 +2,48 @@ const SUPABASE_URL = "https://gqurgezuuytxrcmudnik.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXJnZXp1dXl0eHJjbXVkbmlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTAyMjIsImV4cCI6MjA5MDE4NjIyMn0.1EW73snm3LvXPW0jK-g_-Klze0FyIbXI4dzv0J2XGr4";
 
 
+const SUPABASE_URL = "https://gqurgezuuytxrcmudnik.supabase.co";
+const SUPABASE_ANON_KEY = "TU_ANON_KEY_REAL_AQUI";
+
 const supabaseGallery = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 async function loadDynamicTourGallery() {
   try {
-    alert("dynamic-gallery cargó en esta página ✅");
-
-    const widget = document.querySelector("[data-tour]");
     const gallery = document.querySelector(".tour-gallery-gyg");
+    const widget = document.querySelector("#booking-widget[data-tour]");
 
-    if (!widget) {
-      alert("No encontré data-tour");
-      return;
-    }
-
-    if (!gallery) {
-      alert("No encontré .tour-gallery-gyg");
-      return;
-    }
+    if (!gallery || !widget) return;
 
     const tourSlug = widget.dataset.tour;
 
     const { data, error } = await supabaseGallery
       .from("productos")
-      .select("*")
+      .select("slug, imagen_url, imagenes_urls")
       .eq("slug", tourSlug)
       .single();
 
-    alert("Tour slug: " + tourSlug);
-    alert("Data: " + JSON.stringify(data));
-    alert("Error: " + JSON.stringify(error));
+    if (error || !data) {
+      console.warn("No dynamic gallery data:", error);
+      return;
+    }
 
-    if (error || !data) return;
+    let images = [];
 
-    const images =
-      Array.isArray(data.imagenes_urls) && data.imagenes_urls.length
-        ? data.imagenes_urls
-        : data.imagen_url
-          ? [data.imagen_url]
-          : [];
+    if (Array.isArray(data.imagenes_urls) && data.imagenes_urls.length > 0) {
+      images = data.imagenes_urls;
+    } else if (data.imagen_url) {
+      images = [data.imagen_url];
+    }
+
+    images = images.filter(Boolean);
 
     if (!images.length) {
-      alert("El producto no tiene imágenes en Supabase");
+      console.warn("No images found for:", tourSlug);
       return;
     }
 
     const mainImage = images[0];
-    const thumbs = images.slice(1, 4);
+    const thumbImages = images.slice(1, 4);
 
     gallery.innerHTML = `
       <div class="tour-gallery-main">
@@ -56,7 +51,7 @@ async function loadDynamicTourGallery() {
       </div>
 
       <div class="tour-gallery-grid">
-        ${thumbs.map(img => `
+        ${thumbImages.map(img => `
           <img src="${img}" alt="${tourSlug}">
         `).join("")}
 
@@ -66,11 +61,11 @@ async function loadDynamicTourGallery() {
       </div>
     `;
 
+    console.log("Dynamic gallery loaded:", images);
+
   } catch (err) {
-    alert("Error JS: " + err.message);
-    console.error(err);
+    console.error("Dynamic gallery error:", err);
   }
 }
 
 document.addEventListener("DOMContentLoaded", loadDynamicTourGallery);
-
