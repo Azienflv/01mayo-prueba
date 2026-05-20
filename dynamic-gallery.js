@@ -9,15 +9,7 @@ async function loadDynamicTourGallery() {
     const gallery = document.querySelector(".tour-gallery-gyg");
     const widget = document.querySelector("#booking-widget[data-tour]");
 
-    if (!gallery) {
-      alert("No encontré .tour-gallery-gyg");
-      return;
-    }
-
-    if (!widget) {
-      alert("No encontré #booking-widget[data-tour]");
-      return;
-    }
+    if (!gallery || !widget) return;
 
     const tourSlug = widget.dataset.tour;
 
@@ -27,54 +19,46 @@ async function loadDynamicTourGallery() {
       .eq("slug", tourSlug)
       .single();
 
-    if (error) {
-      alert("Error Supabase: " + JSON.stringify(error));
-      return;
-    }
-
-    alert("Producto encontrado: " + data.slug);
+    if (error || !data) return;
 
     let images = [];
 
-    if (Array.isArray(data.imagenes_urls) && data.imagenes_urls.length > 0) {
+    if (Array.isArray(data.imagenes_urls)) {
       images = data.imagenes_urls;
-    } else if (data.imagen_url) {
+    } else if (typeof data.imagenes_urls === "string") {
+      try {
+        images = JSON.parse(data.imagenes_urls);
+      } catch {
+        images = [];
+      }
+    }
+
+    if (!images.length && data.imagen_url) {
       images = [data.imagen_url];
     }
 
-    images = images.filter(Boolean);
-
-    alert("Imágenes encontradas: " + images.length);
+    images = images
+      .map(img => typeof img === "string" ? img.trim() : "")
+      .filter(Boolean);
 
     if (!images.length) return;
 
-    document.body.insertAdjacentHTML("afterbegin", `
-  <div style="
-    position:fixed;
-    top:10px;
-    left:10px;
-    z-index:999999;
-    background:white;
-    color:black;
-    padding:10px;
-    border:3px solid red;
-    max-width:300px;
-  ">
-    <strong>Test imagen dinámica</strong><br>
-    <img src="${images[0]}" style="width:250px;height:auto;display:block;margin-top:8px;">
-  </div>
-`);
-
-    alert("Primera imagen: " + images[0]);
-
     gallery.innerHTML = `
       <div class="tour-gallery-main">
-        <img src="${images[0]}" alt="${tourSlug}" style="width:100%; height:100%; object-fit:cover;">
+        <img 
+          src="${images[0]}" 
+          alt="${tourSlug}" 
+          style="width:100%; height:100%; object-fit:cover; display:block;"
+        >
       </div>
 
       <div class="tour-gallery-grid">
         ${images.slice(1, 4).map(img => `
-          <img src="${img}" alt="${tourSlug}" style="width:100%; height:100%; object-fit:cover;">
+          <img 
+            src="${img}" 
+            alt="${tourSlug}" 
+            style="width:100%; height:100%; object-fit:cover; display:block;"
+          >
         `).join("")}
 
         <div class="tour-gallery-more">
@@ -84,8 +68,6 @@ async function loadDynamicTourGallery() {
     `;
 
   } catch (err) {
-    alert("Error JS: " + err.message);
+    console.error("Error dynamic gallery:", err);
   }
 }
-
-document.addEventListener("DOMContentLoaded", loadDynamicTourGallery);
