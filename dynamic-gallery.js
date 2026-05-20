@@ -44,6 +44,17 @@ async function loadDynamicTourGallery() {
     if (!images.length) return;
 
     gallery.innerHTML = `
+  <div style="background:white;color:black;padding:15px;border:3px solid red;">
+    <h3>DEBUG GALERÍA</h3>
+    <p><strong>Slug:</strong> ${tourSlug}</p>
+    <p><strong>Total imágenes:</strong> ${images.length}</p>
+    <p style="word-break:break-all;"><strong>Imagen 1:</strong> ${images[0]}</p>
+    <img src="${images[0]}" style="width:100%;max-width:400px;display:block;">
+  </div>
+`;
+return;
+
+    gallery.innerHTML = `
       <div class="tour-gallery-main">
         <img 
           src="${images[0]}" 
