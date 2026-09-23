@@ -398,9 +398,14 @@ async function isCapacityAvailable(dateStr) {
   function renderStep1() {
     widget.innerHTML = `
       <div class="booking-card">
-        <div class="booking-price-top">
+                <div class="booking-price-top">
           <span class="booking-price-label">From</span>
-          <strong>$${tour.adult} USD</strong>
+          ${tour.enPromocion ? `
+            <strong style="color:#e11d48;">$${tour.adult} USD</strong>
+            <span style="text-decoration:line-through; opacity:0.6; margin-left:6px;">$${tour.adultOriginal} USD</span>
+          ` : `
+            <strong>$${tour.adult} USD</strong>
+          `}
           <small>Price per adult</small>
         </div>
 
@@ -463,7 +468,7 @@ async function isCapacityAvailable(dateStr) {
           <div class="booking-person-row">
             <div>
               <strong>Adults</strong>
-              <span>$${tour.adult} USD each</span>
+              <span>${tour.enPromocion ? `<s style="opacity:0.6;">$${tour.adultOriginal}</s> $${tour.adult} USD each` : `$${tour.adult} USD each`}</span>
             </div>
             <div class="qty-control">
               <button type="button" class="qty-btn" data-type="adult" data-action="minus">−</button>
@@ -475,7 +480,7 @@ async function isCapacityAvailable(dateStr) {
           <div class="booking-person-row">
             <div>
               <strong>Children</strong>
-              <span>$${tour.child} USD each</span>
+              <span>${tour.enPromocion ? `<s style="opacity:0.6;">$${tour.childOriginal}</s> $${tour.child} USD each` : `$${tour.child} USD each`}</span>
             </div>
             <div class="qty-control">
               <button type="button" class="qty-btn" data-type="child" data-action="minus">−</button>
