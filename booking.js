@@ -104,11 +104,20 @@ setTimeout(() => {
   renderGallery(tourKey);
 }, 0);
 
+const precioAdultoBase = Number(productoWeb?.adulto ?? baseTour.adult);
+const precioNinoBase = Number(productoWeb?.nino ?? baseTour.child);
+const precioAdultoPromo = Number(productoWeb?.precio_promo_adulto ?? 0);
+const precioNinoPromo = Number(productoWeb?.precio_promo_nino ?? 0);
+const promoActiva = !!productoWeb?.en_promocion && precioAdultoPromo > 0;
+
 const tour = {
   ...baseTour,
   name: productoWeb?.nombre || baseTour.name,
-  adult: Number(productoWeb?.adulto ?? baseTour.adult),
-  child: Number(productoWeb?.nino ?? baseTour.child),
+  adult: promoActiva ? precioAdultoPromo : precioAdultoBase,
+  child: promoActiva ? precioNinoPromo : precioNinoBase,
+  adultOriginal: precioAdultoBase,
+  childOriginal: precioNinoBase,
+  enPromocion: promoActiva,
   times: Array.isArray(productoWeb?.horarios) && productoWeb.horarios.length
     ? productoWeb.horarios
     : (baseTour.times || []),
