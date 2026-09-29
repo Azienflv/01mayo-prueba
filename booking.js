@@ -398,7 +398,7 @@ async function isCapacityAvailable(dateStr) {
   function renderStep1() {
     widget.innerHTML = `
       <div class="booking-card">
-                <div class="booking-price-top">
+        <div class="booking-price-top">
           <span class="booking-price-label">From</span>
           ${tour.enPromocion ? `
             <strong style="color:#e11d48;">$${tour.adult} USD</strong>
