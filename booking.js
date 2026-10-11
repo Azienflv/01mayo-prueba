@@ -66,10 +66,16 @@ function getPickupForTour(hotelObj, tour, selectedTime = "") {
   }
 
   if (typeof tourPickups === "object") {
-    const pickup =
+    let pickup =
       tourPickups[selectedTime] ||
       tourPickups.default ||
       "";
+
+    // Desde el panel, cada horario puede tener varios pickups guardados
+    // (una lista); para la web mostramos el primero como sugerido.
+    if (Array.isArray(pickup)) {
+      pickup = pickup.filter(Boolean)[0] || "";
+    }
 
     return pickup || "";
   }
@@ -104,11 +110,20 @@ setTimeout(() => {
   renderGallery(tourKey);
 }, 0);
 
+const precioAdultoBase = Number(productoWeb?.adulto ?? baseTour.adult);
+const precioNinoBase = Number(productoWeb?.nino ?? baseTour.child);
+const precioAdultoPromo = Number(productoWeb?.precio_promo_adulto ?? 0);
+const precioNinoPromo = Number(productoWeb?.precio_promo_nino ?? 0);
+const promoActiva = !!productoWeb?.en_promocion && precioAdultoPromo > 0;
+
 const tour = {
   ...baseTour,
   name: productoWeb?.nombre || baseTour.name,
-  adult: Number(productoWeb?.adulto ?? baseTour.adult),
-  child: Number(productoWeb?.nino ?? baseTour.child),
+  adult: promoActiva ? precioAdultoPromo : precioAdultoBase,
+  child: promoActiva ? precioNinoPromo : precioNinoBase,
+  adultOriginal: precioAdultoBase,
+  childOriginal: precioNinoBase,
+  enPromocion: promoActiva,
   times: Array.isArray(productoWeb?.horarios) && productoWeb.horarios.length
     ? productoWeb.horarios
     : (baseTour.times || []),
@@ -391,7 +406,12 @@ async function isCapacityAvailable(dateStr) {
       <div class="booking-card">
         <div class="booking-price-top">
           <span class="booking-price-label">From</span>
-          <strong>$${tour.adult} USD</strong>
+          ${tour.enPromocion ? `
+            <strong style="color:#e11d48;">$${tour.adult} USD</strong>
+            <span style="text-decoration:line-through; opacity:0.6; margin-left:6px;">$${tour.adultOriginal} USD</span>
+          ` : `
+            <strong>$${tour.adult} USD</strong>
+          `}
           <small>Price per adult</small>
         </div>
 
@@ -431,21 +451,15 @@ async function isCapacityAvailable(dateStr) {
         <div class="booking-field">
           <label for="booking-hotel">Pickup hotel</label>
           <select id="booking-hotel" class="booking-input">
-  <option value="">Select hotel</option>
-  ${hotelesData.map((hotel) => `
-    <option value="${hotel.nombre}" ${bookingState.hotel === hotel.nombre ? "selected" : ""}>
-      ${hotel.nombre}
-    </option>
-  `).join("")}
-</select>
-
-<div id="spots-warning" style="margin-top:10px; font-size:14px;"></div>
+            <option value="">Select hotel</option>
             ${hotelesData.map((hotel) => `
               <option value="${hotel.nombre}" ${bookingState.hotel === hotel.nombre ? "selected" : ""}>
                 ${hotel.nombre}
               </option>
             `).join("")}
           </select>
+
+          <div id="spots-warning" style="margin-top:10px; font-size:14px;"></div>
         </div>
 
         <div class="booking-people">
@@ -454,7 +468,7 @@ async function isCapacityAvailable(dateStr) {
           <div class="booking-person-row">
             <div>
               <strong>Adults</strong>
-              <span>$${tour.adult} USD each</span>
+              <span>${tour.enPromocion ? `<s style="opacity:0.6;">$${tour.adultOriginal}</s> $${tour.adult} USD each` : `$${tour.adult} USD each`}</span>
             </div>
             <div class="qty-control">
               <button type="button" class="qty-btn" data-type="adult" data-action="minus">−</button>
@@ -466,7 +480,7 @@ async function isCapacityAvailable(dateStr) {
           <div class="booking-person-row">
             <div>
               <strong>Children</strong>
-              <span>$${tour.child} USD each</span>
+              <span>${tour.enPromocion ? `<s style="opacity:0.6;">$${tour.childOriginal}</s> $${tour.child} USD each` : `$${tour.child} USD each`}</span>
             </div>
             <div class="qty-control">
               <button type="button" class="qty-btn" data-type="child" data-action="minus">−</button>
@@ -801,7 +815,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // 🔹 FETCH GALERÍA
 async function fetchTourImages(tourId) {
-  const { data, error } = await supabase
+  if (!supabaseClient) return [];
+
+  const { data, error } = await supabaseClient
     .from("tour_images")
     .select("*")
     .eq("tour_id", tourId)
