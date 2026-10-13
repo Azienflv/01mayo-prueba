@@ -21,6 +21,15 @@ const MASTER_TOURS = [
   },
   {
     family: "saona",
+    id: "saona-deluxe",
+    name: "Saona Deluxe",
+    adult: 84,
+    child: 45,
+    times: ["7:00 AM", "8:00 AM"],
+    file: "excursions/saona/saona-deluxe.html"
+  },
+  {
+    family: "saona",
     id: "saona-luxury",
     name: "Saona Luxury",
     adult: 139,
