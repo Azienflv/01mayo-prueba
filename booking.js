@@ -107,7 +107,7 @@ if (!widget) return;
 
 // 👉 🔥 LLAMADA A LA GALERÍA (AQUÍ)
 setTimeout(() => {
-  renderGallery(tourKey);
+  renderGallery(tourKey, productoWeb);
 }, 0);
 
 const precioAdultoBase = Number(productoWeb?.adulto ?? baseTour.adult);
@@ -733,10 +733,9 @@ dateEl.addEventListener("change", () => {
 }
 
 
+// 🔹 LIGHTBOX (usa la lista dinámica window.__pcgGalleryImages si existe)
 document.addEventListener("DOMContentLoaded", () => {
-  const galleryImages = Array.from(document.querySelectorAll(".tour-gallery-gyg img"));
-  const mainImage = document.querySelector(".tour-gallery-main img");
-  const viewAllBtn = document.querySelector(".tour-gallery-more");
+  const gallery = document.querySelector(".tour-gallery-gyg");
 
   const lightbox = document.getElementById("tourLightbox");
   const lightboxImage = document.getElementById("lightboxImage");
@@ -745,16 +744,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxPrev = document.getElementById("lightboxPrev");
   const lightboxNext = document.getElementById("lightboxNext");
 
-  if (!mainImage || !galleryImages.length || !lightbox) return;
+  if (!gallery || !lightbox) return;
 
-  const images = galleryImages.map((img) => ({
-    src: img.src,
-    alt: img.alt || "Gallery image"
-  }));
+  function getImages() {
+    if (Array.isArray(window.__pcgGalleryImages) && window.__pcgGalleryImages.length) {
+      return window.__pcgGalleryImages;
+    }
+    return Array.from(gallery.querySelectorAll("img")).map((img) => ({
+      src: img.src,
+      alt: img.alt || "Gallery image"
+    }));
+  }
 
   let currentIndex = 0;
 
   function updateLightbox(index) {
+    const images = getImages();
+    if (!images.length) return;
     lightboxImage.src = images[index].src;
     lightboxImage.alt = images[index].alt;
     lightboxCounter.textContent = `${index + 1} / ${images.length}`;
@@ -775,26 +781,33 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showPrev() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    const n = getImages().length;
+    if (!n) return;
+    currentIndex = (currentIndex - 1 + n) % n;
     updateLightbox(currentIndex);
   }
 
   function showNext() {
-    currentIndex = (currentIndex + 1) % images.length;
+    const n = getImages().length;
+    if (!n) return;
+    currentIndex = (currentIndex + 1) % n;
     updateLightbox(currentIndex);
   }
 
-  galleryImages.forEach((img, index) => {
-    img.addEventListener("click", () => {
-      openLightbox(index);
-    });
-  });
-
-  if (viewAllBtn) {
-    viewAllBtn.addEventListener("click", () => {
+  // Delegación: funciona aunque las imágenes se reemplacen desde el panel
+  gallery.addEventListener("click", (e) => {
+    if (e.target.closest(".tour-gallery-more")) {
       openLightbox(0);
-    });
-  }
+      return;
+    }
+
+    const img = e.target.closest("img");
+    if (!img) return;
+
+    const all = Array.from(gallery.querySelectorAll("img"));
+    const idx = all.indexOf(img);
+    openLightbox(idx >= 0 ? idx : 0);
+  });
 
   lightboxClose.addEventListener("click", closeLightbox);
   lightboxPrev.addEventListener("click", showPrev);
@@ -832,28 +845,64 @@ async function fetchTourImages(tourId) {
 }
 
 // 🔹 RENDER GALERÍA
-async function renderGallery(tourId) {
-  console.log("🔥 Cargando galería:", tourId);
+// Fuente principal: productos.imagenes_urls (lo que sube el panel).
+// Respaldo: tabla tour_images. Si no hay nada, se queda el HTML original.
+function resolveImageUrl(u) {
+  if (typeof u !== "string") return "";
+  const clean = u.trim();
+  if (!clean) return "";
+  if (/^(https?:)?\/\//i.test(clean) || clean.startsWith("data:")) return clean;
+  try {
+    return new URL(clean.replace(/^\/+/, ""), window.location.origin + "/").href;
+  } catch (e) {
+    return clean;
+  }
+}
 
-  const images = await fetchTourImages(tourId);
+async function renderGallery(tourId, productoWeb) {
+  let urls = [];
 
-  // 👉 SI NO HAY IMÁGENES EN DB → NO TOCAR HTML
-  if (!images.length) {
+  if (productoWeb && Array.isArray(productoWeb.imagenes_urls)) {
+    urls = productoWeb.imagenes_urls.map(resolveImageUrl).filter(Boolean);
+  }
+
+  if (!urls.length) {
+    const rows = await fetchTourImages(tourId);
+    urls = rows.map((r) => resolveImageUrl(r.url)).filter(Boolean);
+  }
+
+  // Sin imágenes en la base de datos → no tocar el HTML
+  if (!urls.length) {
     console.log("⚠️ Usando galería manual (HTML)");
     return;
   }
 
-  console.log("📸 Imágenes desde DB:", images);
-
   const mainImg = document.querySelector(".tour-gallery-main img");
   const grid = document.querySelector(".tour-gallery-grid");
 
-  if (!mainImg || !grid) return;
+  if (!mainImg) return;
 
-  // 👉 REEMPLAZA SOLO SI HAY DATA
-  mainImg.src = images[0].url;
+  const alt = (productoWeb && productoWeb.nombre) || tourId;
 
-  grid.innerHTML = images.slice(1, 9).map(img => `
-    <img src="${img.url}" onclick="changeMain('${img.url}')">
-  `).join("");
+  mainImg.src = urls[0];
+  mainImg.alt = alt;
+
+  if (grid) {
+    const moreBtn = grid.querySelector(".tour-gallery-more");
+
+    grid.querySelectorAll("img").forEach((img) => img.remove());
+
+    urls.slice(1, 4).forEach((url, i) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.alt = `${alt} ${i + 2}`;
+      img.loading = "lazy";
+      grid.insertBefore(img, moreBtn || null);
+    });
+  }
+
+  window.__pcgGalleryImages = urls.map((url, i) => ({
+    src: url,
+    alt: `${alt} ${i + 1}`
+  }));
 }
