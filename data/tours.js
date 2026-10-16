@@ -11,13 +11,13 @@ const MASTER_TOURS = [
     file: "excursions/saona/saona-classic.html"
   },
   {
-    family: "saona",
-    id: "saona-vip",
-    name: "Saona VIP",
+    family: "catalina",
+    id: "isla-catalina",
+    name: "Isla Catalina",
     adult: 109,
     child: 55,
-    times: ["7:00 AM", "8:00 AM"],
-    file: "excursions/saona/saona-vip.html"
+    times: ["7:40 AM", "8:00 AM"],
+    file: "excursions/catalina/isla-catalina.html"
   },
   {
     family: "saona",

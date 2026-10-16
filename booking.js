@@ -133,6 +133,12 @@ const tour = {
   capacidad_maxima: Number(productoWeb?.capacidad_maxima ?? 0)
 };
 
+// Barra fija móvil: precio y nombre siempre desde la base de datos
+const mobileBarPrice = document.querySelector(".mobile-booking-bar .price");
+if (mobileBarPrice) {
+  mobileBarPrice.textContent = `From $${tour.adult} · ${tour.name}`;
+}
+
 const hotelesData = await fetchHotelesWeb();
 
 let adults = 2;
